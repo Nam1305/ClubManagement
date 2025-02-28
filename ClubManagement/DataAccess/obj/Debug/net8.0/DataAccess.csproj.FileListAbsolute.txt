@@ -1,0 +1,14 @@
+D:\ss5\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.deps.json
+D:\ss5\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.runtimeconfig.json
+D:\ss5\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.dll
+D:\ss5\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.pdb
+D:\ss5\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.csproj.AssemblyReference.cache
+D:\ss5\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\ss5\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.AssemblyInfoInputs.cache
+D:\ss5\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.AssemblyInfo.cs
+D:\ss5\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.csproj.CoreCompileInputs.cache
+D:\ss5\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.dll
+D:\ss5\ClubManagement\DataAccess\obj\Debug\net8.0\refint\DataAccess.dll
+D:\ss5\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.pdb
+D:\ss5\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.genruntimeconfig.cache
+D:\ss5\ClubManagement\DataAccess\obj\Debug\net8.0\ref\DataAccess.dll
