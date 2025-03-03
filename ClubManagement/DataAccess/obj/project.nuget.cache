@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MWTjF9c3CVg=",
+  "dgSpecHash": "noH3XbXhuh8=",
   "success": true,
-  "projectFilePath": "D:\\ss5\\ClubManagement\\DataAccess\\DataAccess.csproj",
+  "projectFilePath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thang\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\thang\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
