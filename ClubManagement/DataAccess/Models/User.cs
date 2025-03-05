@@ -17,6 +17,8 @@ public partial class User
 
     public string? StudentNumber { get; set; }
 
+    public string Username { get; set; } = null!;
+
     public virtual ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
 
     public virtual ICollection<UserClub> UserClubs { get; set; } = new List<UserClub>();
