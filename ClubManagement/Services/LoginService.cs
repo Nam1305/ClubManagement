@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Models;
 using Repository;
-using Repository.DTO;
 
 namespace Services
 {
@@ -17,13 +16,13 @@ namespace Services
             repo = new UserRepo();
         }
 
-        public UserDTO Login(string username,string password)
+        public User Login(string username,string password)
         {
             if (username == null || password == null)
             {
                 return null;
             }
-            UserDTO user = repo.GetByUsernameandPassword(username, password);
+            User user = repo.GetByUsernameandPassword(username, password);
             return user;
         }
     

@@ -1,6 +1,6 @@
+D:\prnFinal\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.dll
 D:\prnFinal\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\appsetting.json
 D:\prnFinal\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.deps.json
-D:\prnFinal\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.dll
 D:\prnFinal\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.pdb
 D:\prnFinal\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\DataAccess.dll
 D:\prnFinal\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\DataAccess.pdb

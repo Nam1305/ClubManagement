@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClubManagement"
         mc:Ignorable="d"
-        Title="RegisterWindow" Height="500" Width="800" WindowStartupLocation="CenterScreen" Background="#F5F5F5">
+        Title="RegisterWindow" Height="550" Width="800" WindowStartupLocation="CenterScreen" Background="#F5F5F5">
     <Grid>
-        <Border Background="White" Width="444" Height="436" CornerRadius="15" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="20">
+        <Border Background="White" Width="444" Height="Auto" CornerRadius="15" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="20" MinHeight="480">
             <Border.Effect>
                 <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5"/>
             </Border.Effect>
@@ -15,18 +15,21 @@
                 <TextBlock Text="Register" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
                 <Label Content="Full Name" FontWeight="Bold"/>
-                <TextBox Name="txtFullName" Height="34" Padding="5" BorderBrush="#888" BorderThickness="1"/>
+                <TextBox Name="txtFullName" Height="34" Padding="5" BorderBrush="#888" BorderThickness="1" Margin="0,0,0,10"/>
 
-                <Label Content="Email" FontWeight="Bold" Margin="0,10,0,0"/>
-                <TextBox Name="txtEmail" Height="34" Padding="5" BorderBrush="#888" BorderThickness="1"/>
+                <Label Content="Email" FontWeight="Bold"/>
+                <TextBox Name="txtEmail" Height="34" Padding="5" BorderBrush="#888" BorderThickness="1" Margin="0,0,0,10"/>
 
-                <Label Content="Username" FontWeight="Bold" Margin="0,10,0,0"/>
-                <TextBox Name="txtUsername" Height="34" Padding="5" BorderBrush="#888" BorderThickness="1"/>
+                <Label Content="Student Number" FontWeight="Bold"/>
+                <TextBox Name="txtStudentNumber" Height="34" Padding="5" BorderBrush="#888" BorderThickness="1" Margin="0,0,0,10"/>
 
-                <Label Content="Password" FontWeight="Bold" Margin="0,10,0,0"/>
-                <PasswordBox Name="pwdPassword" Height="34" Padding="5" BorderBrush="#888" BorderThickness="1"/>
+                <Label Content="Username" FontWeight="Bold"/>
+                <TextBox Name="txtUsername" Height="34" Padding="5" BorderBrush="#888" BorderThickness="1" Margin="0,0,0,10"/>
 
-                <Button x:Name="btnRegister" Content="Register" Background="#0078D7" Foreground="White" FontSize="16" FontWeight="Bold" Height="40" Margin="0,20,0,0" BorderThickness="0" Cursor="Hand" Click="btnRegister_Click"/>
+                <Label Content="Password" FontWeight="Bold"/>
+                <PasswordBox Name="pwdPassword" Height="34" Padding="5" BorderBrush="#888" BorderThickness="1" Margin="0,0,0,20"/>
+
+                <Button x:Name="btnRegister" Content="Register" Background="#0078D7" Foreground="White" FontSize="16" FontWeight="Bold" Height="40" Margin="0,0,0,0" BorderThickness="0" Cursor="Hand" Click="btnRegister_Click"/>
             </StackPanel>
         </Border>
     </Grid>
