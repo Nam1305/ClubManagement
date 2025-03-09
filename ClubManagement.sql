@@ -67,7 +67,7 @@ CREATE TABLE userClubs (
 CREATE TABLE Users (
   userId        int IDENTITY NOT NULL, 
   fullName      nvarchar(255) NULL, 
-  email         nvarchar(255) NULL, 
+  username      NVARCHAR(50) NOT NULL , 
   password      nvarchar(255) NULL, 
   role          nvarchar(255) NULL, 
   studentNumber nvarchar(255) NULL, 
