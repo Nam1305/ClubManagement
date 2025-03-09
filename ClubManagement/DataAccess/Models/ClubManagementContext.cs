@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
 
 namespace DataAccess.Models;
 
@@ -30,21 +28,14 @@ public partial class ClubManagementContext : DbContext
     public virtual DbSet<UserClub> UserClubs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var builder = new ConfigurationBuilder();
-        builder.SetBasePath(Directory.GetCurrentDirectory());
-        builder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-        var configuration = builder.Build();
-        optionsBuilder.UseSqlServer(configuration.GetConnectionString("Default"));
-    }
-    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-    //        => optionsBuilder.UseSqlServer("Server=thang\\SQLEXPRESS13;uid=sa;password=123;database=ClubManagement;Encrypt=True;TrustServerCertificate=True;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-Q1O37LP\\DAITNA;Database=ClubManagement;User Id=sa;Password=sa;TrustServerCertificate=true;Trusted_Connection=SSPI;Encrypt=false;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Club>(entity =>
         {
-            entity.HasKey(e => e.ClubId).HasName("PK__Clubs__DF4AEAB25259D879");
+            entity.HasKey(e => e.ClubId).HasName("PK__Clubs__DF4AEAB2A79A6997");
 
             entity.Property(e => e.ClubId).HasColumnName("clubId");
             entity.Property(e => e.ClubName)
@@ -58,7 +49,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<Event>(entity =>
         {
-            entity.HasKey(e => e.EventId).HasName("PK__Events__2DC7BD0950F938B4");
+            entity.HasKey(e => e.EventId).HasName("PK__Events__2DC7BD0929615BAC");
 
             entity.Property(e => e.EventId).HasColumnName("eventId");
             entity.Property(e => e.ClubId).HasColumnName("clubId");
@@ -84,7 +75,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<EventParticipant>(entity =>
         {
-            entity.HasKey(e => e.EventParticipantId).HasName("PK__EventPar__29D5D90BFF3B9EAC");
+            entity.HasKey(e => e.EventParticipantId).HasName("PK__EventPar__29D5D90BDEDD1CE2");
 
             entity.Property(e => e.EventParticipantId).HasColumnName("eventParticipantId");
             entity.Property(e => e.EventId).HasColumnName("eventId");
@@ -106,7 +97,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<Report>(entity =>
         {
-            entity.HasKey(e => e.ReportId).HasName("PK__Report__1C9B4E2DEFF4567F");
+            entity.HasKey(e => e.ReportId).HasName("PK__Report__1C9B4E2D90777A42");
 
             entity.ToTable("Report");
 
@@ -130,7 +121,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFFFEC588FF");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFF8AE87BC6");
 
             entity.Property(e => e.UserId).HasColumnName("userId");
             entity.Property(e => e.Email)
@@ -148,11 +139,15 @@ public partial class ClubManagementContext : DbContext
             entity.Property(e => e.StudentNumber)
                 .HasMaxLength(255)
                 .HasColumnName("studentNumber");
+            entity.Property(e => e.Username)
+                .HasMaxLength(255)
+                .HasDefaultValue("default_username")
+                .HasColumnName("username");
         });
 
         modelBuilder.Entity<UserClub>(entity =>
         {
-            entity.HasKey(e => e.UserClubId).HasName("PK__userClub__C5E838BD93657D87");
+            entity.HasKey(e => e.UserClubId).HasName("PK__userClub__C5E838BD2C115CDC");
 
             entity.ToTable("userClubs");
 

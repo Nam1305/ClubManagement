@@ -1,0 +1,5 @@
+{
+    "ConnectionStrings": {
+        "DBDefault": "Data Source=DESKTOP-Q1O37LP\\DAITNA;Initial Catalog=ClubManagement;User ID=sa;Password=sa;Trusted_Connection=True;Trust Server Certificate=True"
+    }
+}
