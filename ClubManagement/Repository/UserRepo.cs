@@ -11,7 +11,18 @@ namespace Repository
         {
             context = new ClubManagementContext();
         }
+        
+        public List<User> GetAllUsers()
+        {
+            return context.Users.Where(x => x.Role == "vicechairman" || x.Role == "member").ToList();
+        }
 
+        public List<string> GetAllRoles()
+        {
+            return context.Users.Select(x => x.Role).Distinct().ToList();
+        }
+
+        
         private string HashPassword(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password);

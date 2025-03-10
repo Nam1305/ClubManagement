@@ -6,8 +6,44 @@
         xmlns:local="clr-namespace:ClubManagement"
         mc:Ignorable="d"
         Title="Chairmanhome" Height="450" Width="800">
-    <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="324,202,0,0" TextWrapping="Wrap" Text="Đây là trang trưởng club" VerticalAlignment="Top"/>
+    <Grid Background="LightBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
 
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="FullName:"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Email:"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Role :"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Student number:"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="UserName:"/>
+       
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtFullname"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtEmail"></TextBox>
+        <ComboBox Grid.Row="2" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="cbRole"></ComboBox>
+
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtStudentNumber"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUsername"></TextBox>
+
+
+
+        <DataGrid Grid.Row="8" Grid.ColumnSpan="2" Name="dgMembers" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgMembers_SelectionChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Fullname" Binding="{Binding FullName}"/>
+                <DataGridTextColumn Width="*" Header="Email" Binding="{Binding Email}"/>
+                <DataGridTextColumn Width="*" Header="Role" Binding="{Binding Role}"/>
+                <DataGridTextColumn Width="*" Header="StudentNumber" Binding="{Binding StudentNumber}"/>
+                <DataGridTextColumn Width="*" Header="Username" Binding="{Binding Username}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

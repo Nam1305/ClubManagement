@@ -64,17 +64,21 @@ CREATE TABLE userClubs (
   approvedAt date NULL, 
   PRIMARY KEY (userClubId));
 
+CREATE TABLE Roles (
+  roleId   INT IDENTITY PRIMARY KEY,
+  roleName NVARCHAR(255) NOT NULL UNIQUE
+);
+
 CREATE TABLE Users (
   userId        int IDENTITY NOT NULL, 
   fullName      nvarchar(255) NULL, 
   email			VARCHAR(50)  NULL , 
   password      nvarchar(255) NULL, 
-  role          nvarchar(255) NULL, 
+  roleId		INT NULL ,  
   studentNumber nvarchar(255) NULL, 
   username      NVARCHAR(50) NOT NULL , 
-
+  FOREIGN KEY (roleId) REFERENCES Roles(roleId) ,
   PRIMARY KEY (userId));
-
 
 ALTER TABLE userClubs ADD CONSTRAINT FKuserClubs595478 FOREIGN KEY (userId) REFERENCES Users (userId);
 ALTER TABLE userClubs ADD CONSTRAINT FKuserClubs901847 FOREIGN KEY (clubId) REFERENCES Clubs (clubId);
@@ -83,21 +87,31 @@ ALTER TABLE EventParticipants ADD CONSTRAINT FKEventParti840496 FOREIGN KEY (use
 ALTER TABLE EventParticipants ADD CONSTRAINT FKEventParti303397 FOREIGN KEY (eventId) REFERENCES Events (eventId);
 ALTER TABLE Report ADD CONSTRAINT FKReport196346 FOREIGN KEY (clubId) REFERENCES Clubs (clubId);
 
+INSERT INTO Roles (roleName) VALUES 
+('Admin'),
+('Chairman'),
+('ViceChairman'),
+('TeamLeader'),
+('Member');
+
 -- Chèn dữ liệu vào bảng Users
 SET IDENTITY_INSERT Users ON;
-INSERT INTO Users (userId, fullName, email, password, role, studentNumber, username)
+
+INSERT INTO Users (userId, fullName, email, password, roleId, studentNumber, username)
 VALUES 
-(1, 'Nguyễn Văn A', 'admin@example.com', 'admin123', 'admin', 'SV001', 'adminUser'),
-(2, 'Trần Thị B', 'chairman@example.com', 'chairman123', 'chairman', 'SV002', 'chairmanUser'),
-(3, 'Lê Văn C', 'vice@example.com', 'vice123', 'viceChairMan', 'SV003', 'viceUser'),
-(4, 'Phạm Thị D', 'member1@example.com', 'member123', 'member', 'SV004', 'memberUser1'),
-(5, 'Hoàng Văn E', 'member2@example.com', 'member123', 'member', 'SV005', 'memberUser2'),
-(6, 'Ngô Thị F', 'member3@example.com', 'member123', 'member', 'SV006', 'memberUser3'),
-(7, 'Bùi Văn G', 'member4@example.com', 'member123', 'member', 'SV007', 'memberUser4'),
-(8, 'Đinh Thị H', 'member5@example.com', 'member123', 'member', 'SV008', 'memberUser5'),
-(9, 'Phan Văn I', 'member6@example.com', 'member123', 'member', 'SV009', 'memberUser6'),
-(10, 'Võ Thị K', 'member7@example.com', 'member123', 'member', 'SV010', 'memberUser7');
+(1, 'Nguyễn Văn A', 'admin@example.com', 'admin123', 1, 'SV001', 'adminUser'),         -- Admin
+(2, 'Trần Thị B', 'chairman@example.com', 'chairman123', 2, 'SV002', 'chairmanUser'),   -- Chairman
+(3, 'Lê Văn C', 'vice@example.com', 'vice123', 3, 'SV003', 'viceUser'),                 -- ViceChairman
+(4, 'Phạm Thị D', 'member1@example.com', 'member123', 5, 'SV004', 'memberUser1'),       -- Member
+(5, 'Hoàng Văn E', 'member2@example.com', 'member123', 5, 'SV005', 'memberUser2'),      -- Member
+(6, 'Ngô Thị F', 'member3@example.com', 'member123', 5, 'SV006', 'memberUser3'),        -- Member
+(7, 'Bùi Văn G', 'member4@example.com', 'member123', 5, 'SV007', 'memberUser4'),        -- Member
+(8, 'Đinh Thị H', 'member5@example.com', 'member123', 5, 'SV008', 'memberUser5'),       -- Member
+(9, 'Phan Văn I', 'member6@example.com', 'member123', 5, 'SV009', 'memberUser6'),       -- Member
+(10, 'Võ Thị K', 'member7@example.com', 'member123', 5, 'SV010', 'memberUser7');        -- Member
+
 SET IDENTITY_INSERT Users OFF;
+
 
 -- Chèn dữ liệu vào bảng Clubs
 SET IDENTITY_INSERT Clubs ON;
