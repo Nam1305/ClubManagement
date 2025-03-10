@@ -12,12 +12,27 @@ namespace Repository
         {
             context = new ClubManagementContext();
         }
-        
-        public List<User> GetAllUsers()
+
+        public List<object> GetUsers()
         {
-            return context.Users.Include(x => x.Role).Where(x => x.RoleId == 5 || x.RoleId == 4 || x.RoleId == 3).ToList();
+            return context.Users
+                .Include(x => x.UserClubs)
+                    .ThenInclude(x => x.Club)
+                .Include(x => x.Role)
+                .Where(x => x.RoleId == 5 || x.RoleId == 4 || x.RoleId == 3)
+                .Select(u => new
+                {   FullName = u.FullName, 
+                    Email = u.Email,
+                    Role = u.Role,
+                    StudentNumber = u.StudentNumber,
+                    Username = u.Username,
+                    ClubName = u.UserClubs.Select(uc => uc.Club.ClubName).FirstOrDefault(),
+                    AppliedAt = u.UserClubs.Select(uc => uc.AppliedAt).FirstOrDefault(),
+                    ApprovedAt = u.UserClubs.Select(uc => uc.ApprovedAt).FirstOrDefault()
+                })
+                .ToList<object>(); // Chuyển về List<object>
         }
-        
+
         private string HashPassword(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password);

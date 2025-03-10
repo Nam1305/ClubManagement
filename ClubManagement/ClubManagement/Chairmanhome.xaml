@@ -13,6 +13,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
@@ -25,7 +27,7 @@
         <Label Grid.Row="2" Grid.Column="0" Content="Role :"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Student number:"/>
         <Label Grid.Row="4" Grid.Column="0" Content="UserName:"/>
-       
+
         <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtFullname"></TextBox>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtEmail"></TextBox>
         <ComboBox Grid.Row="2" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="cbRole"></ComboBox>
@@ -33,7 +35,11 @@
         <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtStudentNumber"></TextBox>
         <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUsername"></TextBox>
 
-
+        <StackPanel Grid.Row="5" Grid.Column="2" Margin="3" Width="300" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button Margin="3" MinWidth="80" Content="Add" Name="btnAdd" Click="btnAdd_Click" />
+            <Button Margin="3" MinWidth="80" Content="Update" Name="btnUpdate" />
+            <Button Margin="3" MinWidth="80" Content="Delete" Name="btnDelete" />
+        </StackPanel>
 
         <DataGrid Grid.Row="8" Grid.ColumnSpan="2" Name="dgMembers" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgMembers_SelectionChanged" >
             <DataGrid.Columns>
@@ -42,6 +48,9 @@
                 <DataGridTextColumn Width="*" Header="Role" Binding="{Binding Role.RoleName}"/>
                 <DataGridTextColumn Width="*" Header="StudentNumber" Binding="{Binding StudentNumber}"/>
                 <DataGridTextColumn Width="*" Header="Username" Binding="{Binding Username}"/>
+                <DataGridTextColumn Width="*" Header="Club Name" Binding="{Binding ClubName}"/>
+                <DataGridTextColumn Width="*" Header="Applied At" Binding="{Binding AppliedAt, StringFormat={}{0:dd/MM/yyyy}}"/>
+                <DataGridTextColumn Width="*" Header="Approved At" Binding="{Binding ApprovedAt, StringFormat={}{0:dd/MM/yyyy}}"/>
 
             </DataGrid.Columns>
         </DataGrid>

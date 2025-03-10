@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\clubmanagement\\chairmanhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\chairmanhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\repository\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|solutionrelative:repository\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\clubmanagement\\chairmanhome.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\chairmanhome.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\clubmanagement\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{461C5FC1-FEE2-4535-B680-4F622116E9D1}|Services\\Services.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\services\\chairmanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{461C5FC1-FEE2-4535-B680-4F622116E9D1}|Services\\Services.csproj|solutionrelative:services\\chairmanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\clubmanagement\\chairmanhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\chairmanhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,26 +43,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\App.xaml",
-              "RelativeDocumentMoniker": "ClubManagement\\App.xaml",
-              "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\App.xaml",
-              "RelativeToolTip": "ClubManagement\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-10T09:51:55.515Z",
+              "Title": "ChairManService.cs",
+              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\ChairManService.cs",
+              "RelativeDocumentMoniker": "Services\\ChairManService.cs",
+              "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\ChairManService.cs",
+              "RelativeToolTip": "Services\\ChairManService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T10:48:30.98Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Chairmanhome.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\Chairmanhome.xaml.cs",
-              "RelativeDocumentMoniker": "ClubManagement\\Chairmanhome.xaml.cs",
-              "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\Chairmanhome.xaml.cs",
-              "RelativeToolTip": "ClubManagement\\Chairmanhome.xaml.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAgwDcAAAAyAAAAAAAAAA==",
+              "Title": "UserRepo.cs",
+              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Repository\\UserRepo.cs",
+              "RelativeDocumentMoniker": "Repository\\UserRepo.cs",
+              "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Repository\\UserRepo.cs",
+              "RelativeToolTip": "Repository\\UserRepo.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwBkAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T08:25:14.176Z",
+              "WhenOpened": "2025-03-10T10:28:16.664Z",
               "EditorCaption": ""
             },
             {
@@ -70,7 +75,20 @@
               "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\Chairmanhome.xaml",
               "RelativeToolTip": "ClubManagement\\Chairmanhome.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-10T07:21:41.05Z",
+              "WhenOpened": "2025-03-10T10:26:10.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Chairmanhome.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\Chairmanhome.xaml.cs",
+              "RelativeDocumentMoniker": "ClubManagement\\Chairmanhome.xaml.cs",
+              "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\Chairmanhome.xaml.cs",
+              "RelativeToolTip": "ClubManagement\\Chairmanhome.xaml.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAA+wCUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T08:25:14.176Z",
               "EditorCaption": ""
             }
           ]

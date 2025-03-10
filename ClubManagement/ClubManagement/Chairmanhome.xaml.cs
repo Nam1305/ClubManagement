@@ -58,5 +58,10 @@ namespace ClubManagement
                 txtUsername.Text = user.Username;
             }
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

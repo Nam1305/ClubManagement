@@ -17,8 +17,8 @@ namespace Services
             repo = new UserRepo();
         }
 
-        public List<User> GetUsers() {
-            return repo.GetAllUsers();
+        public List<object> GetUsers() {
+            return repo.GetUsers();
         }
 
        
