@@ -28,7 +28,6 @@ D:\prnFinal\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\refint\Dat
 D:\prnFinal\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.pdb
 D:\prnFinal\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.genruntimeconfig.cache
 D:\prnFinal\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\ref\DataAccess.dll
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\DataAccess\bin\Debug\net8.0\appsettings.json
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.deps.json
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.runtimeconfig.json
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.dll

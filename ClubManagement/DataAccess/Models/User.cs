@@ -13,13 +13,15 @@ public partial class User
 
     public string? Password { get; set; }
 
-    public string? Role { get; set; }
+    public int? RoleId { get; set; }
 
     public string? StudentNumber { get; set; }
 
     public string Username { get; set; } = null!;
 
     public virtual ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
+
+    public virtual Role? Role { get; set; }
 
     public virtual ICollection<UserClub> UserClubs { get; set; } = new List<UserClub>();
 }

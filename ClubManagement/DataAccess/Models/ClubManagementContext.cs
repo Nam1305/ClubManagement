@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
 
 namespace DataAccess.Models;
 
@@ -25,26 +23,21 @@ public partial class ClubManagementContext : DbContext
 
     public virtual DbSet<Report> Reports { get; set; }
 
+    public virtual DbSet<Role> Roles { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserClub> UserClubs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var builder = new ConfigurationBuilder();
-        builder.SetBasePath(Directory.GetCurrentDirectory());
-        builder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-        var configuration = builder.Build();
-        optionsBuilder.UseSqlServer(configuration.GetConnectionString("Default"));
-    }
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseSqlServer("Server=DESKTOP-Q1O37LP\\DAITNA;Database=ClubManagement;User Id=sa;Password=sa;TrustServerCertificate=true;Trusted_Connection=SSPI;Encrypt=false;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=thang\\SQLEXPRESS13;uid=sa;password=123;database=ClubManagement;Encrypt=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Club>(entity =>
         {
-            entity.HasKey(e => e.ClubId).HasName("PK__Clubs__DF4AEAB2A79A6997");
+            entity.HasKey(e => e.ClubId).HasName("PK__Clubs__DF4AEAB2759136C5");
 
             entity.Property(e => e.ClubId).HasColumnName("clubId");
             entity.Property(e => e.ClubName)
@@ -58,7 +51,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<Event>(entity =>
         {
-            entity.HasKey(e => e.EventId).HasName("PK__Events__2DC7BD0929615BAC");
+            entity.HasKey(e => e.EventId).HasName("PK__Events__2DC7BD097C972DC8");
 
             entity.Property(e => e.EventId).HasColumnName("eventId");
             entity.Property(e => e.ClubId).HasColumnName("clubId");
@@ -84,7 +77,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<EventParticipant>(entity =>
         {
-            entity.HasKey(e => e.EventParticipantId).HasName("PK__EventPar__29D5D90BDEDD1CE2");
+            entity.HasKey(e => e.EventParticipantId).HasName("PK__EventPar__29D5D90B137B1E27");
 
             entity.Property(e => e.EventParticipantId).HasColumnName("eventParticipantId");
             entity.Property(e => e.EventId).HasColumnName("eventId");
@@ -106,7 +99,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<Report>(entity =>
         {
-            entity.HasKey(e => e.ReportId).HasName("PK__Report__1C9B4E2D90777A42");
+            entity.HasKey(e => e.ReportId).HasName("PK__Report__1C9B4E2DD64CEE5D");
 
             entity.ToTable("Report");
 
@@ -128,13 +121,26 @@ public partial class ClubManagementContext : DbContext
                 .HasConstraintName("FKReport196346");
         });
 
+        modelBuilder.Entity<Role>(entity =>
+        {
+            entity.HasKey(e => e.RoleId).HasName("PK__Roles__CD98462A50539E0B");
+
+            entity.HasIndex(e => e.RoleName, "UQ__Roles__B1947861131335E6").IsUnique();
+
+            entity.Property(e => e.RoleId).HasColumnName("roleId");
+            entity.Property(e => e.RoleName)
+                .HasMaxLength(255)
+                .HasColumnName("roleName");
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFF8AE87BC6");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFF3D26887B");
 
             entity.Property(e => e.UserId).HasColumnName("userId");
             entity.Property(e => e.Email)
-                .HasMaxLength(255)
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("email");
             entity.Property(e => e.FullName)
                 .HasMaxLength(255)
@@ -142,21 +148,22 @@ public partial class ClubManagementContext : DbContext
             entity.Property(e => e.Password)
                 .HasMaxLength(255)
                 .HasColumnName("password");
-            entity.Property(e => e.Role)
-                .HasMaxLength(255)
-                .HasColumnName("role");
+            entity.Property(e => e.RoleId).HasColumnName("roleId");
             entity.Property(e => e.StudentNumber)
                 .HasMaxLength(255)
                 .HasColumnName("studentNumber");
             entity.Property(e => e.Username)
-                .HasMaxLength(255)
-                .HasDefaultValue("default_username")
+                .HasMaxLength(50)
                 .HasColumnName("username");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.Users)
+                .HasForeignKey(d => d.RoleId)
+                .HasConstraintName("FK__Users__roleId__440B1D61");
         });
 
         modelBuilder.Entity<UserClub>(entity =>
         {
-            entity.HasKey(e => e.UserClubId).HasName("PK__userClub__C5E838BD2C115CDC");
+            entity.HasKey(e => e.UserClubId).HasName("PK__userClub__C5E838BDAB4F0E65");
 
             entity.ToTable("userClubs");
 

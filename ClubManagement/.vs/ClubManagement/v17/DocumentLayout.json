@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\clubmanagement\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\dataaccess\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\clubmanagement\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\repository\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,27 +51,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LoginWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\LoginWindow.xaml.cs",
-              "RelativeDocumentMoniker": "ClubManagement\\LoginWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\LoginWindow.xaml.cs",
-              "RelativeToolTip": "ClubManagement\\LoginWindow.xaml.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAYwDYAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T09:12:11.207Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\DataAccess\\Models\\User.cs",
               "RelativeDocumentMoniker": "DataAccess\\Models\\User.cs",
               "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\DataAccess\\Models\\User.cs",
               "RelativeToolTip": "DataAccess\\Models\\User.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T08:56:47.453Z",
+              "WhenOpened": "2025-03-10T09:34:10.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\LoginWindow.xaml.cs",
+              "RelativeDocumentMoniker": "ClubManagement\\LoginWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\LoginWindow.xaml.cs",
+              "RelativeToolTip": "ClubManagement\\LoginWindow.xaml.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAA1wDYAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T09:12:11.207Z",
               "EditorCaption": ""
             },
             {
@@ -84,8 +84,7 @@
               "RelativeToolTip": "Repository\\UserRepo.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAuwBUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T08:45:38.885Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T08:45:38.885Z"
             },
             {
               "$type": "Document",
@@ -97,8 +96,7 @@
               "RelativeToolTip": "Services\\ChairManService.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAqwBkAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T08:31:54.384Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T08:31:54.384Z"
             },
             {
               "$type": "Document",
@@ -110,8 +108,7 @@
               "RelativeToolTip": "ClubManagement\\Chairmanhome.xaml.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAuwCsAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T08:25:14.176Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T08:25:14.176Z"
             },
             {
               "$type": "Document",
@@ -122,8 +119,7 @@
               "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\Chairmanhome.xaml",
               "RelativeToolTip": "ClubManagement\\Chairmanhome.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-10T07:21:41.05Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T07:21:41.05Z"
             }
           ]
         }
