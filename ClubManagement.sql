@@ -67,10 +67,12 @@ CREATE TABLE userClubs (
 CREATE TABLE Users (
   userId        int IDENTITY NOT NULL, 
   fullName      nvarchar(255) NULL, 
-  username      NVARCHAR(50) NOT NULL , 
+  email			VARCHAR(50)  NULL , 
   password      nvarchar(255) NULL, 
   role          nvarchar(255) NULL, 
   studentNumber nvarchar(255) NULL, 
+  username      NVARCHAR(50) NOT NULL , 
+
   PRIMARY KEY (userId));
 
 
@@ -81,56 +83,107 @@ ALTER TABLE EventParticipants ADD CONSTRAINT FKEventParti840496 FOREIGN KEY (use
 ALTER TABLE EventParticipants ADD CONSTRAINT FKEventParti303397 FOREIGN KEY (eventId) REFERENCES Events (eventId);
 ALTER TABLE Report ADD CONSTRAINT FKReport196346 FOREIGN KEY (clubId) REFERENCES Clubs (clubId);
 
-
 -- Chèn dữ liệu vào bảng Users
-INSERT INTO Users (fullName, email, password, role, studentNumber) VALUES
-(N'Nguyễn Văn A', 'a@example.com', 'pass123', 'admin', 'SV001'),
-(N'Trần Thị B', 'b@example.com', 'pass123', 'chairMan', 'SV002'),
-(N'Phạm Văn C', 'c@example.com', 'pass123', 'viceChairMan', 'SV003'),
-(N'Lê Thị D', 'd@example.com', 'pass123', 'member', 'SV004'),
-(N'Hoàng Văn E', 'e@example.com', 'pass123', 'member', 'SV005'),
-(N'Đặng Thị F', 'f@example.com', 'pass123', 'member', 'SV006'),
-(N'Bùi Văn G', 'g@example.com', 'pass123', 'member', 'SV007'),
-(N'Ngô Thị H', 'h@example.com', 'pass123', 'member', 'SV008'),
-(N'Huỳnh Văn I', 'i@example.com', 'pass123', 'member', 'SV009'),
-(N'Võ Thị J', 'j@example.com', 'pass123', 'member', 'SV010');
+SET IDENTITY_INSERT Users ON;
+INSERT INTO Users (userId, fullName, email, password, role, studentNumber, username)
+VALUES 
+(1, 'Nguyễn Văn A', 'admin@example.com', 'admin123', 'admin', 'SV001', 'adminUser'),
+(2, 'Trần Thị B', 'chairman@example.com', 'chairman123', 'chairman', 'SV002', 'chairmanUser'),
+(3, 'Lê Văn C', 'vice@example.com', 'vice123', 'viceChairMan', 'SV003', 'viceUser'),
+(4, 'Phạm Thị D', 'member1@example.com', 'member123', 'member', 'SV004', 'memberUser1'),
+(5, 'Hoàng Văn E', 'member2@example.com', 'member123', 'member', 'SV005', 'memberUser2'),
+(6, 'Ngô Thị F', 'member3@example.com', 'member123', 'member', 'SV006', 'memberUser3'),
+(7, 'Bùi Văn G', 'member4@example.com', 'member123', 'member', 'SV007', 'memberUser4'),
+(8, 'Đinh Thị H', 'member5@example.com', 'member123', 'member', 'SV008', 'memberUser5'),
+(9, 'Phan Văn I', 'member6@example.com', 'member123', 'member', 'SV009', 'memberUser6'),
+(10, 'Võ Thị K', 'member7@example.com', 'member123', 'member', 'SV010', 'memberUser7');
+SET IDENTITY_INSERT Users OFF;
 
 -- Chèn dữ liệu vào bảng Clubs
-INSERT INTO Clubs (clubName, description, establishedDate) VALUES
-(N'Câu lạc bộ Bóng đá', N'CLB dành cho những ai yêu bóng đá', '2020-01-01'),
-(N'Câu lạc bộ Âm nhạc', N'Nơi giao lưu của những người yêu nhạc', '2019-05-10'),
-(N'Câu lạc bộ Văn học', N'Thảo luận và sáng tác văn học', '2021-03-15'),
-(N'Câu lạc bộ Công nghệ', N'Nghiên cứu và phát triển công nghệ', '2018-09-20'),
-(N'Câu lạc bộ Môi trường', N'Hành động vì môi trường xanh', '2022-07-07'),
-(N'Câu lạc bộ Nhiếp ảnh', N'Dành cho người đam mê nhiếp ảnh', '2017-11-25'),
-(N'Câu lạc bộ Kịch', N'Biểu diễn và sáng tác kịch nghệ', '2016-06-30'),
-(N'Câu lạc bộ Võ thuật', N'Luyện tập võ thuật truyền thống', '2015-04-12'),
-(N'Câu lạc bộ Lập trình', N'Học hỏi và phát triển kỹ năng lập trình', '2023-02-05'),
-(N'Câu lạc bộ Cờ vua', N'Dành cho người yêu thích cờ vua', '2014-12-01');
-
--- Chèn dữ liệu vào bảng userClubs
-INSERT INTO userClubs (userId, clubId, status, appliedAt, approvedAt) VALUES
-(1, 1, 'approved', '2024-01-01', '2024-01-05'),
-(2, 2, 'disapproved', '2024-01-02', '2024-01-06'),
-(3, 3, 'approved', '2024-01-03', '2024-01-07'),
-(4, 4, 'disapproved', '2024-01-04', '2024-01-08'),
-(5, 5, 'approved', '2024-01-05', '2024-01-09'),
-(6, 6, 'pending', '2024-01-06', '2024-01-10'),
-(7, 7, 'disapproved', '2024-01-07', '2024-01-11'),
-(8, 8, 'approved', '2024-01-08', '2024-01-12'),
-(9, 9, 'approved', '2024-01-09', '2024-01-13'),
-(10, 10, 'pending', '2024-01-10', '2024-01-14');
+SET IDENTITY_INSERT Clubs ON;
+INSERT INTO Clubs (clubId, clubName, description, establishedDate)
+VALUES 
+(1, 'Câu lạc bộ CNTT', 'CLB về công nghệ thông tin', '2020-01-15'),
+(2, 'CLB Toán học', 'CLB dành cho những ai yêu thích toán', '2019-02-20'),
+(3, 'CLB Tiếng Anh', 'Câu lạc bộ học tiếng Anh', '2018-05-10'),
+(4, 'CLB Khoa học', 'Nơi trao đổi về khoa học', '2021-07-25'),
+(5, 'CLB Bóng đá', 'CLB thể thao chuyên về bóng đá', '2017-09-30'),
+(6, 'CLB Cầu lông', 'CLB dành cho những người yêu thích cầu lông', '2018-11-11'),
+(7, 'CLB Văn học', 'CLB nghiên cứu văn học', '2020-03-22'),
+(8, 'CLB Nghệ thuật', 'CLB về hội họa và âm nhạc', '2016-06-12'),
+(9, 'CLB Kinh tế', 'CLB dành cho những ai yêu thích kinh tế', '2019-08-05'),
+(10, 'CLB Du lịch', 'CLB tổ chức các hoạt động du lịch', '2015-12-01');
+SET IDENTITY_INSERT Clubs OFF;
 
 -- Chèn dữ liệu vào bảng Events
-INSERT INTO Events (eventName, status, description, eventDate, location, clubId) VALUES
-(N'Giải đấu bóng đá', 'Scheduled', N'Giải đấu giữa các câu lạc bộ', '2024-03-10', N'Sân vận động', 1),
-(N'Buổi hòa nhạc', 'Scheduled', N'Biểu diễn âm nhạc', '2024-04-15', N'Hội trường lớn', 2),
-(N'Hội sách văn học', 'Scheduled', N'Triển lãm sách', '2024-05-20', N'Thư viện trung tâm', 3),
-(N'Cuộc thi lập trình', 'Scheduled', N'Thử thách lập trình viên', '2024-06-25', N'Phòng máy tính', 4),
-(N'Triển lãm ảnh', 'Scheduled', N'Triển lãm ảnh nghệ thuật', '2024-07-30', N'Nhà triển lãm', 6),
-(N'Vở kịch sân khấu', 'Scheduled', N'Biểu diễn kịch nghệ', '2024-08-05', N'Nhà hát lớn', 7),
-(N'Giải đấu cờ vua', 'Scheduled', N'Cuộc thi đấu cờ vua', '2024-09-10', N'Hội trường A', 10),
-(N'Hoạt động thiện nguyện', 'Scheduled', N'Giúp đỡ cộng đồng', '2024-10-15', N'Làng trẻ SOS', 5),
-(N'Thi đấu võ thuật', 'Scheduled', N'Giải đấu võ thuật', '2024-11-20', N'Sân tập võ', 8),
-(N'Hội thảo công nghệ', 'Scheduled', N'Trao đổi về công nghệ mới', '2024-12-25', N'Trường Đại học', 4);
+SET IDENTITY_INSERT Events ON;
+INSERT INTO Events (eventId, eventName, status, description, eventDate, location, clubId)
+VALUES 
+(1, 'Hội thảo AI', 'Sắp diễn ra', 'Buổi hội thảo về AI', '2025-04-01', 'Phòng 101', 1),
+(2, 'Toán học ứng dụng', 'Hoàn thành', 'Buổi thảo luận về toán ứng dụng', '2024-11-20', 'Phòng 202', 2),
+(3, 'Cuộc thi hùng biện tiếng Anh', 'Sắp diễn ra', 'Cuộc thi hùng biện dành cho sinh viên', '2025-05-10', 'Hội trường A', 3),
+(4, 'Thí nghiệm khoa học', 'Hoàn thành', 'Thực hiện các thí nghiệm vật lý', '2024-12-15', 'Phòng Lab', 4),
+(5, 'Giải đấu bóng đá', 'Sắp diễn ra', 'Giải đấu bóng đá nội bộ', '2025-06-05', 'Sân vận động', 5),
+(6, 'Giải cầu lông sinh viên', 'Hoàn thành', 'Giải đấu cầu lông toàn trường', '2024-10-10', 'Nhà thi đấu', 6),
+(7, 'Hội thảo văn học', 'Sắp diễn ra', 'Hội thảo về văn học hiện đại', '2025-07-07', 'Phòng 303', 7),
+(8, 'Triển lãm nghệ thuật', 'Hoàn thành', 'Triển lãm tranh và nhạc cụ', '2024-09-15', 'Phòng triển lãm', 8),
+(9, 'Tọa đàm kinh tế', 'Sắp diễn ra', 'Tọa đàm về kinh tế thị trường', '2025-08-20', 'Phòng 404', 9),
+(10, 'Tour du lịch hè', 'Hoàn thành', 'Chuyến đi du lịch mùa hè', '2024-07-30', 'Nha Trang', 10);
+SET IDENTITY_INSERT Events OFF;
+
+-- Chèn dữ liệu vào bảng EventParticipants
+SET IDENTITY_INSERT EventParticipants ON;
+INSERT INTO EventParticipants (eventParticipantId, status, userId, eventId)
+VALUES 
+(1, 'Đã tham gia', 4, 1),
+(2, 'Chưa tham gia', 5, 2),
+(3, 'Đã tham gia', 6, 3),
+(4, 'Đã tham gia', 7, 4),
+(5, 'Chưa tham gia', 8, 5),
+(6, 'Đã tham gia', 9, 6),
+(7, 'Đã tham gia', 10, 7),
+(8, 'Chưa tham gia', 2, 8),
+(9, 'Đã tham gia', 3, 9),
+(10, 'Chưa tham gia', 1, 10);
+SET IDENTITY_INSERT EventParticipants OFF;
+
+SET IDENTITY_INSERT Report ON;
+
+INSERT INTO Report (reportId, createdDate, semester, memberChanges, eventSummary, participationStatus, clubId)
+VALUES 
+(1, '2024-06-01', '2024-06-01', '2024-06-01', N'Tổng kết hội thảo AI', N'Tốt', 1),
+(2, '2024-06-10', '2024-06-10', '2024-06-10', N'Báo cáo Toán học', N'Trung bình', 2),
+(3, '2024-07-15', '2024-07-15', '2024-07-15', N'Cuộc thi tiếng Anh', N'Tốt', 3),
+(4, '2024-08-05', '2024-08-05', '2024-08-05', N'Thí nghiệm khoa học', N'Khá', 4),
+(5, '2024-09-10', '2024-09-10', '2024-09-10', N'Giải bóng đá', N'Tốt', 5),
+(6, '2024-10-12', '2024-10-12', '2024-10-12', N'Giải cầu lông', N'Khá', 6),
+(7, '2024-11-22', '2024-11-22', '2024-11-22', N'Hội thảo văn học', N'Trung bình', 7),
+(8, '2024-12-01', '2024-12-01', '2024-12-01', N'Triển lãm nghệ thuật', N'Tốt', 8),
+(9, '2025-01-15', '2025-01-15', '2025-01-15', N'Tọa đàm kinh tế', N'Khá', 9),
+(10, '2025-02-20', '2025-02-20', '2025-02-20', N'Tour du lịch hè', N'Trung bình', 10);
+
+SET IDENTITY_INSERT Report OFF;
+
+
+
+-- Chèn dữ liệu vào bảng userClubs
+SET IDENTITY_INSERT userClubs ON;
+INSERT INTO userClubs (userClubId, userId, clubId, status, appliedAt, approvedAt)
+VALUES 
+(1, 1, 1, 'Đã duyệt', '2024-01-01', '2024-01-05'),
+(2, 2, 2, 'Đã duyệt', '2024-02-10', '2024-02-15'),
+(3, 3, 3, 'Chờ duyệt', '2024-03-20', NULL),
+(4, 4, 4, 'Đã duyệt', '2024-04-05', '2024-04-10'),
+(5, 5, 5, 'Từ chối', '2024-05-12', NULL),
+(6, 6, 6, 'Đã duyệt', '2024-06-18', '2024-06-22'),
+(7, 7, 7, 'Chờ duyệt', '2024-07-25', NULL),
+(8, 8, 8, 'Đã duyệt', '2024-08-30', '2024-09-01'),
+(9, 9, 9, 'Từ chối', '2024-10-02', NULL),
+(10, 10, 10, 'Đã duyệt', '2024-11-11', '2024-11-15');
+SET IDENTITY_INSERT userClubs OFF;
+
+
+
+
+
 
