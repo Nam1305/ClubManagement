@@ -160,7 +160,6 @@ D:\prnFinal\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-window
 D:\prnFinal\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement.genruntimeconfig.cache
 D:\prnFinal\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ref\ClubManagement.dll
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\ClubManagement.exe
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\appsettings.json
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\ClubManagement.deps.json
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\ClubManagement.runtimeconfig.json
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\ClubManagement.dll

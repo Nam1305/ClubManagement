@@ -21,9 +21,6 @@ namespace Services
             return repo.GetAllUsers();
         }
 
-        public List<string> GetAllRoles()
-        {
-            return repo.GetAllRoles();
-        }
+       
     }
 }

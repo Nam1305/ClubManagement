@@ -22,6 +22,7 @@ namespace ClubManagement
     public partial class Chairmanhome : Window
     {
         ChairManService ChairManService;
+        RoleService roleService;
         public Chairmanhome()
         {
             InitializeComponent();
@@ -38,8 +39,8 @@ namespace ClubManagement
 
         public void LoadComboboxRole()
         {
-            ChairManService = new ChairManService();
-            cbRole.ItemsSource = ChairManService.GetAllRoles();
+            roleService = new RoleService();    
+            cbRole.ItemsSource = roleService.GetRoles();
             this.cbRole.DisplayMemberPath = "RoleName";
             this.cbRole.SelectedValuePath = "RoleId";
             this.cbRole.SelectedIndex = 0;
@@ -52,7 +53,7 @@ namespace ClubManagement
             {
                 txtFullname.Text = user.FullName;
                 txtEmail.Text = user.Email;
-                cbRole.SelectedValue = user.Role;
+                cbRole.SelectedValue = user.RoleId;
                 txtStudentNumber.Text = user.StudentNumber; 
                 txtUsername.Text = user.Username;
             }

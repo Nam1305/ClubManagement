@@ -1,5 +1,6 @@
 ﻿using DataAccess.Models;
 using BCrypt.Net;
+using Microsoft.EntityFrameworkCore;
 
 namespace Repository
 {
@@ -14,14 +15,8 @@ namespace Repository
         
         public List<User> GetAllUsers()
         {
-            return context.Users.Where(x => x.Role == "vicechairman" || x.Role == "member").ToList();
+            return context.Users.Include(x => x.Role).Where(x => x.RoleId == 5 || x.RoleId == 4 || x.RoleId == 3).ToList();
         }
-
-        public List<string> GetAllRoles()
-        {
-            return context.Users.Select(x => x.Role).Distinct().ToList();
-        }
-
         
         private string HashPassword(string password)
         {

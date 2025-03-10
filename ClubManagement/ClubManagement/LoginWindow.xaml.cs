@@ -44,24 +44,24 @@ namespace ClubManagement
             }
 
             Window targetWindow = null;
-            switch (account.Role.ToLower())
-            {
-                case "admin":
-                    targetWindow = new Adminhome();
-                    break;
-                case "chairman":
-                    targetWindow = new Chairmanhome();
-                    break;
-                case "vicechairman":
-                    targetWindow = new ViceChairmanhome();
-                    break;
-                case "member":
-                    targetWindow = new Memberhome();
-                    break;
-                default:
-                    MessageBox.Show("Role không hợp lệ!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-            }
+            //switch (account.Role.ToLower())
+            //{
+            //    case "admin":
+            //        targetWindow = new Adminhome();
+            //        break;
+            //    case "chairman":
+            //        targetWindow = new Chairmanhome();
+            //        break;
+            //    case "vicechairman":
+            //        targetWindow = new ViceChairmanhome();
+            //        break;
+            //    case "member":
+            //        targetWindow = new Memberhome();
+            //        break;
+            //    default:
+            //        MessageBox.Show("Role không hợp lệ!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //        return;
+            //}
             MessageBox.Show($"Đăng nhập thành công! Chào mừng {account.Username}.", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
             targetWindow.Show();
             this.Close();

@@ -45,7 +45,7 @@ namespace Services
                 StudentNumber = studentNumber,
                 Username = username,
                 Password = password, // Sẽ được mã hóa trong UserRepo
-                Role = "Member" // Mặc định là Member
+                //Role = "Member" // Mặc định là Member
             };
 
             // Lưu vào database
