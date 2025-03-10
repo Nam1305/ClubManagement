@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 
 namespace DataAccess.Models;
 
@@ -28,8 +30,15 @@ public partial class ClubManagementContext : DbContext
     public virtual DbSet<UserClub> UserClubs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-Q1O37LP\\DAITNA;Database=ClubManagement;User Id=sa;Password=sa;TrustServerCertificate=true;Trusted_Connection=SSPI;Encrypt=false;");
+    {
+        var builder = new ConfigurationBuilder();
+        builder.SetBasePath(Directory.GetCurrentDirectory());
+        builder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+        var configuration = builder.Build();
+        optionsBuilder.UseSqlServer(configuration.GetConnectionString("Default"));
+    }
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+//        => optionsBuilder.UseSqlServer("Server=DESKTOP-Q1O37LP\\DAITNA;Database=ClubManagement;User Id=sa;Password=sa;TrustServerCertificate=true;Trusted_Connection=SSPI;Encrypt=false;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
