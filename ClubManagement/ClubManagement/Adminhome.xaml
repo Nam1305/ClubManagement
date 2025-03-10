@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="Adminhome" Height="450" Width="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="324,202,0,0" TextWrapping="Wrap" Text="Đây là trang admin" VerticalAlignment="Top"/>
-
+         
     </Grid>
 </Window>

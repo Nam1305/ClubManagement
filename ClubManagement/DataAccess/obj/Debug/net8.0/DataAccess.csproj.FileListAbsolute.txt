@@ -43,3 +43,18 @@ C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\DataAccess\obj\
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.pdb
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.genruntimeconfig.cache
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\ref\DataAccess.dll
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.deps.json
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.runtimeconfig.json
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.dll
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.pdb
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.csproj.AssemblyReference.cache
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.AssemblyInfoInputs.cache
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.AssemblyInfo.cs
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.csproj.CoreCompileInputs.cache
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.sourcelink.json
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.dll
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\refint\DataAccess.dll
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.pdb
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.genruntimeconfig.cache
+D:\ClubManagement\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\ref\DataAccess.dll

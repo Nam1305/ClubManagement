@@ -35,3 +35,21 @@ C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Services\obj\De
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\refint\Services.dll
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\Services.pdb
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\ref\Services.dll
+D:\ClubManagement\ClubManagement\ClubManagement\Services\bin\Debug\net8.0\Services.deps.json
+D:\ClubManagement\ClubManagement\ClubManagement\Services\bin\Debug\net8.0\Services.dll
+D:\ClubManagement\ClubManagement\ClubManagement\Services\bin\Debug\net8.0\Services.pdb
+D:\ClubManagement\ClubManagement\ClubManagement\Services\bin\Debug\net8.0\DataAccess.dll
+D:\ClubManagement\ClubManagement\ClubManagement\Services\bin\Debug\net8.0\Repository.dll
+D:\ClubManagement\ClubManagement\ClubManagement\Services\bin\Debug\net8.0\Repository.pdb
+D:\ClubManagement\ClubManagement\ClubManagement\Services\bin\Debug\net8.0\DataAccess.pdb
+D:\ClubManagement\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
+D:\ClubManagement\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\ClubManagement\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
+D:\ClubManagement\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
+D:\ClubManagement\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
+D:\ClubManagement\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\Services.sourcelink.json
+D:\ClubManagement\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\Services.csproj.Up2Date
+D:\ClubManagement\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\Services.dll
+D:\ClubManagement\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\refint\Services.dll
+D:\ClubManagement\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\Services.pdb
+D:\ClubManagement\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\ref\Services.dll

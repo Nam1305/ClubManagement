@@ -77,6 +77,7 @@ CREATE TABLE Users (
   roleId		INT NULL ,  
   studentNumber nvarchar(255) NULL, 
   username      NVARCHAR(50) NOT NULL , 
+  status nvarchar(50) null,
   FOREIGN KEY (roleId) REFERENCES Roles(roleId) ,
   PRIMARY KEY (userId));
 
@@ -97,18 +98,19 @@ INSERT INTO Roles (roleName) VALUES
 -- Chèn dữ liệu vào bảng Users
 SET IDENTITY_INSERT Users ON;
 
-INSERT INTO Users (userId, fullName, email, password, roleId, studentNumber, username)
+INSERT INTO Users (userId, fullName, email, password, roleId, studentNumber, username, status)
 VALUES 
-(1, 'Nguyễn Văn A', 'admin@example.com', 'admin123', 1, 'SV001', 'adminUser'),         -- Admin
-(2, 'Trần Thị B', 'chairman@example.com', 'chairman123', 2, 'SV002', 'chairmanUser'),   -- Chairman
-(3, 'Lê Văn C', 'vice@example.com', 'vice123', 3, 'SV003', 'viceUser'),                 -- ViceChairman
-(4, 'Phạm Thị D', 'member1@example.com', 'member123', 5, 'SV004', 'memberUser1'),       -- Member
-(5, 'Hoàng Văn E', 'member2@example.com', 'member123', 5, 'SV005', 'memberUser2'),      -- Member
-(6, 'Ngô Thị F', 'member3@example.com', 'member123', 5, 'SV006', 'memberUser3'),        -- Member
-(7, 'Bùi Văn G', 'member4@example.com', 'member123', 5, 'SV007', 'memberUser4'),        -- Member
-(8, 'Đinh Thị H', 'member5@example.com', 'member123', 5, 'SV008', 'memberUser5'),       -- Member
-(9, 'Phan Văn I', 'member6@example.com', 'member123', 5, 'SV009', 'memberUser6'),       -- Member
-(10, 'Võ Thị K', 'member7@example.com', 'member123', 5, 'SV010', 'memberUser7');        -- Member
+(1, N'Nguyễn Văn A', 'admin@example.com', 'admin123', 1, 'SV001', 'adminUser', 'active'),       
+(2, N'Trần Thị B', 'chairman@example.com', 'chairman123', 2, 'SV002', 'chairmanUser', 'active'),   
+(3, N'Lê Văn C', 'vice@example.com', 'vice123', 3, 'SV003', 'viceUser', 'inactive'),                
+(4, N'Phạm Thị D', 'member1@example.com', 'member123', 5, 'SV004', 'memberUser1', 'active'),       
+(5, N'Hoàng Văn E', 'member2@example.com', 'member123', 5, 'SV005', 'memberUser2', 'inactive'),      
+(6, N'Ngô Thị F', 'member3@example.com', 'member123', 5, 'SV006', 'memberUser3', 'active'),        
+(7, N'Bùi Văn G', 'member4@example.com', 'member123', 5, 'SV007', 'memberUser4', 'inactive'),        
+(8, N'Đinh Thị H', 'member5@example.com', 'member123', 5, 'SV008', 'memberUser5', 'active'),       
+(9, N'Phan Văn I', 'member6@example.com', 'member123', 5, 'SV009', 'memberUser6', 'active'),       
+(10, N'Võ Thị K', 'member7@example.com', 'member123', 5, 'SV010', 'memberUser7', 'inactive');        
+
 
 SET IDENTITY_INSERT Users OFF;
 
@@ -117,48 +119,48 @@ SET IDENTITY_INSERT Users OFF;
 SET IDENTITY_INSERT Clubs ON;
 INSERT INTO Clubs (clubId, clubName, description, establishedDate)
 VALUES 
-(1, 'Câu lạc bộ CNTT', 'CLB về công nghệ thông tin', '2020-01-15'),
-(2, 'CLB Toán học', 'CLB dành cho những ai yêu thích toán', '2019-02-20'),
-(3, 'CLB Tiếng Anh', 'Câu lạc bộ học tiếng Anh', '2018-05-10'),
-(4, 'CLB Khoa học', 'Nơi trao đổi về khoa học', '2021-07-25'),
-(5, 'CLB Bóng đá', 'CLB thể thao chuyên về bóng đá', '2017-09-30'),
-(6, 'CLB Cầu lông', 'CLB dành cho những người yêu thích cầu lông', '2018-11-11'),
-(7, 'CLB Văn học', 'CLB nghiên cứu văn học', '2020-03-22'),
-(8, 'CLB Nghệ thuật', 'CLB về hội họa và âm nhạc', '2016-06-12'),
-(9, 'CLB Kinh tế', 'CLB dành cho những ai yêu thích kinh tế', '2019-08-05'),
-(10, 'CLB Du lịch', 'CLB tổ chức các hoạt động du lịch', '2015-12-01');
+(1, N'Câu lạc bộ CNTT', N'CLB về công nghệ thông tin', '2020-01-15'),
+(2, N'CLB Toán học', N'CLB dành cho những ai yêu thích toán', '2019-02-20'),
+(3, N'CLB Tiếng Anh', N'Câu lạc bộ học tiếng Anh', '2018-05-10'),
+(4, N'CLB Khoa học', N'Nơi trao đổi về khoa học', '2021-07-25'),
+(5, N'CLB Bóng đá', N'CLB thể thao chuyên về bóng đá', '2017-09-30'),
+(6, N'CLB Cầu lông', N'CLB dành cho những người yêu thích cầu lông', '2018-11-11'),
+(7, N'CLB Văn học', N'CLB nghiên cứu văn học', '2020-03-22'),
+(8, N'CLB Nghệ thuật', N'CLB về hội họa và âm nhạc', '2016-06-12'),
+(9, N'CLB Kinh tế', N'CLB dành cho những ai yêu thích kinh tế', '2019-08-05'),
+(10, 'CLB Du lịch', N'CLB tổ chức các hoạt động du lịch', '2015-12-01');
 SET IDENTITY_INSERT Clubs OFF;
 
 -- Chèn dữ liệu vào bảng Events
 SET IDENTITY_INSERT Events ON;
 INSERT INTO Events (eventId, eventName, status, description, eventDate, location, clubId)
 VALUES 
-(1, 'Hội thảo AI', 'Sắp diễn ra', 'Buổi hội thảo về AI', '2025-04-01', 'Phòng 101', 1),
-(2, 'Toán học ứng dụng', 'Hoàn thành', 'Buổi thảo luận về toán ứng dụng', '2024-11-20', 'Phòng 202', 2),
-(3, 'Cuộc thi hùng biện tiếng Anh', 'Sắp diễn ra', 'Cuộc thi hùng biện dành cho sinh viên', '2025-05-10', 'Hội trường A', 3),
-(4, 'Thí nghiệm khoa học', 'Hoàn thành', 'Thực hiện các thí nghiệm vật lý', '2024-12-15', 'Phòng Lab', 4),
-(5, 'Giải đấu bóng đá', 'Sắp diễn ra', 'Giải đấu bóng đá nội bộ', '2025-06-05', 'Sân vận động', 5),
-(6, 'Giải cầu lông sinh viên', 'Hoàn thành', 'Giải đấu cầu lông toàn trường', '2024-10-10', 'Nhà thi đấu', 6),
-(7, 'Hội thảo văn học', 'Sắp diễn ra', 'Hội thảo về văn học hiện đại', '2025-07-07', 'Phòng 303', 7),
-(8, 'Triển lãm nghệ thuật', 'Hoàn thành', 'Triển lãm tranh và nhạc cụ', '2024-09-15', 'Phòng triển lãm', 8),
-(9, 'Tọa đàm kinh tế', 'Sắp diễn ra', 'Tọa đàm về kinh tế thị trường', '2025-08-20', 'Phòng 404', 9),
-(10, 'Tour du lịch hè', 'Hoàn thành', 'Chuyến đi du lịch mùa hè', '2024-07-30', 'Nha Trang', 10);
+(1, N'Hội thảo AI', N'Sắp diễn ra', N'Buổi hội thảo về AI', '2025-04-01', N'Phòng 101', 1),
+(2, N'Toán học ứng dụng', N'Hoàn thành', N'Buổi thảo luận về toán ứng dụng', '2024-11-20', N'Phòng 202', 2),
+(3, N'Cuộc thi hùng biện tiếng Anh', N'Sắp diễn ra', N'Cuộc thi hùng biện dành cho sinh viên', '2025-05-10', N'Hội trường A', 3),
+(4, N'Thí nghiệm khoa học', N'Hoàn thành', N'Thực hiện các thí nghiệm vật lý', '2024-12-15', N'Phòng Lab', 4),
+(5, N'Giải đấu bóng đá', N'Sắp diễn ra', N'Giải đấu bóng đá nội bộ', '2025-06-05', N'Sân vận động', 5),
+(6, N'Giải cầu lông sinh viên', N'Hoàn thành', N'Giải đấu cầu lông toàn trường', '2024-10-10', N'Nhà thi đấu', 6),
+(7, N'Hội thảo văn học', N'Sắp diễn ra', N'Hội thảo về văn học hiện đại', '2025-07-07', N'Phòng 303', 7),
+(8, N'Triển lãm nghệ thuật', N'Hoàn thành', N'Triển lãm tranh và nhạc cụ', '2024-09-15', N'Phòng triển lãm', 8),
+(9, N'Tọa đàm kinh tế', N'Sắp diễn ra', N'Tọa đàm về kinh tế thị trường', '2025-08-20', N'Phòng 404', 9),
+(10, N'Tour du lịch hè', N'Hoàn thành', N'Chuyến đi du lịch mùa hè', '2024-07-30', N'Nha Trang', 10);
 SET IDENTITY_INSERT Events OFF;
 
 -- Chèn dữ liệu vào bảng EventParticipants
 SET IDENTITY_INSERT EventParticipants ON;
 INSERT INTO EventParticipants (eventParticipantId, status, userId, eventId)
 VALUES 
-(1, 'Đã tham gia', 4, 1),
-(2, 'Chưa tham gia', 5, 2),
-(3, 'Đã tham gia', 6, 3),
-(4, 'Đã tham gia', 7, 4),
-(5, 'Chưa tham gia', 8, 5),
-(6, 'Đã tham gia', 9, 6),
-(7, 'Đã tham gia', 10, 7),
-(8, 'Chưa tham gia', 2, 8),
-(9, 'Đã tham gia', 3, 9),
-(10, 'Chưa tham gia', 1, 10);
+(1, N'Đã tham gia', 4, 1),
+(2, N'Chưa tham gia', 5, 2),
+(3, N'Đã tham gia', 6, 3),
+(4, N'Đã tham gia', 7, 4),
+(5, N'Chưa tham gia', 8, 5),
+(6, N'Đã tham gia', 9, 6),
+(7, N'Đã tham gia', 10, 7),
+(8, N'Chưa tham gia', 2, 8),
+(9, N'Đã tham gia', 3, 9),
+(10, N'Chưa tham gia', 1, 10);
 SET IDENTITY_INSERT EventParticipants OFF;
 
 SET IDENTITY_INSERT Report ON;
@@ -184,16 +186,16 @@ SET IDENTITY_INSERT Report OFF;
 SET IDENTITY_INSERT userClubs ON;
 INSERT INTO userClubs (userClubId, userId, clubId, status, appliedAt, approvedAt)
 VALUES 
-(1, 1, 1, 'Đã duyệt', '2024-01-01', '2024-01-05'),
-(2, 2, 2, 'Đã duyệt', '2024-02-10', '2024-02-15'),
-(3, 3, 3, 'Chờ duyệt', '2024-03-20', NULL),
-(4, 4, 4, 'Đã duyệt', '2024-04-05', '2024-04-10'),
-(5, 5, 5, 'Từ chối', '2024-05-12', NULL),
-(6, 6, 6, 'Đã duyệt', '2024-06-18', '2024-06-22'),
-(7, 7, 7, 'Chờ duyệt', '2024-07-25', NULL),
-(8, 8, 8, 'Đã duyệt', '2024-08-30', '2024-09-01'),
-(9, 9, 9, 'Từ chối', '2024-10-02', NULL),
-(10, 10, 10, 'Đã duyệt', '2024-11-11', '2024-11-15');
+(1, 1, 1, N'approved', '2024-01-01', '2024-01-05'),
+(2, 2, 2, N'approved', '2024-02-10', '2024-02-15'),
+(3, 3, 3, N'approved', '2024-03-20', NULL),
+(4, 4, 4, N'approved', '2024-04-05', '2024-04-10'),
+(5, 5, 5, N'disapproved', '2024-05-12', NULL),
+(6, 6, 6, N'approved', '2024-06-18', '2024-06-22'),
+(7, 7, 7, N'pending', '2024-07-25', NULL),
+(8, 8, 8, N'pending', '2024-08-30', '2024-09-01'),
+(9, 9, 9, N'disapproved', '2024-10-02', NULL),
+(10, 10, 10, N'pending', '2024-11-11', '2024-11-15');
 SET IDENTITY_INSERT userClubs OFF;
 
 
