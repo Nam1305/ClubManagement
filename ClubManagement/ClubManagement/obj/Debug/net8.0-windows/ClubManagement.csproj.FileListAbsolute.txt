@@ -480,3 +480,16 @@ D:\ClubManagement\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-
 D:\ClubManagement\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement.genruntimeconfig.cache
 D:\ClubManagement\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ref\ClubManagement.dll
 D:\ClubManagement\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\appsettings.json
+D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement.csproj.AssemblyReference.cache
+D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\Adminhome.g.cs
+D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\Chairmanhome.g.cs
+D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\LoginWindow.g.cs
+D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\MainWindow.g.cs
+D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\Memberhome.g.cs
+D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\RegisterWindow.g.cs
+D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ResetPasswordWindow .g.cs
+D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\TeamLeaderhome.g.cs
+D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ViceChairmanhome.g.cs
+D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\App.g.cs
+D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement_MarkupCompile.cache
+D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement_MarkupCompile.lref

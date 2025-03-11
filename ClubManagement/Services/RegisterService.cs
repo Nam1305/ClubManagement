@@ -1,6 +1,7 @@
-﻿using DataAccess.Models;
+﻿// Trong Services/RegisterService.cs
+using DataAccess.Models;
 using Repository;
-using System.Text.RegularExpressions;
+using System;
 
 namespace Services
 {
@@ -13,69 +14,53 @@ namespace Services
             userRepo = new UserRepo();
         }
 
-        public (bool Success, string Message) RegisterUser(string fullName, string email, string studentNumber, string username, string password)
+        public bool RegisterUser(string fullName, string email, string studentNumber, string username, string password, string roleName)
         {
-            // Kiểm tra mật khẩu: ít nhất 8 ký tự, có ít nhất 1 số và 1 chữ
-            if (!IsValidPassword(password))
+            try
             {
-                return (false, "Mật khẩu phải có ít nhất 8 ký tự, gồm ít nhất 1 số và 1 chữ!");
+                // Kiểm tra xem username, email, studentNumber đã tồn tại chưa
+                if (userRepo.IsUsernameExists(username))
+                {
+                    throw new Exception("Username đã tồn tại!");
+                }
+                if (userRepo.IsEmailExists(email))
+                {
+                    throw new Exception("Email đã tồn tại!");
+                }
+                if (userRepo.IsStudentNumberExists(studentNumber))
+                {
+                    throw new Exception("Student number đã tồn tại!");
+                }
+
+                // Lấy RoleId từ bảng Roles dựa trên roleName
+                var role = userRepo.GetRoleByName(roleName); // Thêm phương thức này vào UserRepo
+                if (role == null)
+                {
+                    throw new Exception("Vai trò không hợp lệ!");
+                }
+
+                // Tạo đối tượng User mới
+                User newUser = new User
+                {
+                    FullName = fullName,
+                    Email = email,
+                    StudentNumber = studentNumber,
+                    Username = username,
+                    Password = password, // Sẽ được mã hóa trong UserRepo.CreateDate
+                    RoleId = role.RoleId, // Gán RoleId thay vì Role trực tiếp
+                    Status = "active" // Mặc định là active
+                };
+
+                // Lưu vào DB
+                userRepo.CreateDate(newUser);
+                return true;
             }
-
-            // Kiểm tra tính độc nhất
-            if (userRepo.IsUsernameExists(username))
+            catch (Exception ex)
             {
-                return (false, "Username đã tồn tại!");
+                // Xử lý lỗi (có thể log hoặc hiển thị thông báo)
+                Console.WriteLine(ex.Message);
+                return false;
             }
-
-            if (userRepo.IsStudentNumberExists(studentNumber))
-            {
-                return (false, "Mã sinh viên đã tồn tại!");
-            }
-
-            if (userRepo.IsEmailExists(email))
-            {
-                return (false, "Email đã tồn tại!");
-            }
-
-            // Tạo đối tượng User mới
-            User newUser = new User
-            {
-                FullName = fullName,
-                Email = email,
-                StudentNumber = studentNumber,
-                Username = username,
-                Password = password, // Sẽ được mã hóa trong UserRepo
-                //Role = "Member" // Mặc định là Member
-            };
-
-            // Lưu vào database
-            userRepo.CreateDate(newUser);
-            return (true, "Đăng ký thành công!");
-        }
-
-        // Hàm kiểm tra mật khẩu
-        private bool IsValidPassword(string password)
-        {
-            if (password.Length < 8) return false;
-            if (!Regex.IsMatch(password, @"[0-9]")) return false; // ít nhất 1 số
-            if (!Regex.IsMatch(password, @"[a-zA-Z]")) return false; // ít nhất 1 chữ
-            return true;
-        }
-
-        // Các hàm kiểm tra để UI gọi nếu cần
-        public bool IsUsernameExists(string username)
-        {
-            return userRepo.IsUsernameExists(username);
-        }
-
-        public bool IsStudentNumberExists(string studentNumber)
-        {
-            return userRepo.IsStudentNumberExists(studentNumber);
-        }
-
-        public bool IsEmailExists(string email)
-        {
-            return userRepo.IsEmailExists(email);
         }
     }
 }

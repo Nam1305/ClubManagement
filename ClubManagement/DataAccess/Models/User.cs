@@ -19,6 +19,8 @@ public partial class User
 
     public string Username { get; set; } = null!;
 
+    public string? Status { get; set; }
+
     public virtual ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
 
     public virtual Role? Role { get; set; }

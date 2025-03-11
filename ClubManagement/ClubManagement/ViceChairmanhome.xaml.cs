@@ -19,9 +19,13 @@ namespace ClubManagement
     /// </summary>
     public partial class ViceChairmanhome : Window
     {
-        public ViceChairmanhome()
+        private readonly int userId;
+
+        public ViceChairmanhome(int userId)
         {
             InitializeComponent();
+            this.userId = userId;
+            // Thêm logic load dữ liệu nếu cần
         }
     }
 }

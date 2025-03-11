@@ -22,6 +22,12 @@
     <Compile Update="RegisterWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ResetPasswordWindow .xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="TeamLeaderhome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ViceChairmanhome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +49,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ResetPasswordWindow .xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TeamLeaderhome.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ViceChairmanhome.xaml">

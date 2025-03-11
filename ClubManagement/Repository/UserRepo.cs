@@ -1,4 +1,5 @@
-﻿using DataAccess.Models;
+﻿// Trong Repository/UserRepo.cs
+using DataAccess.Models;
 using BCrypt.Net;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,26 +12,6 @@ namespace Repository
         public UserRepo()
         {
             context = new ClubManagementContext();
-        }
-
-        public List<object> GetUsers()
-        {
-            return context.Users
-                .Include(x => x.UserClubs)
-                    .ThenInclude(x => x.Club)
-                .Include(x => x.Role)
-                .Where(x => x.RoleId == 5 || x.RoleId == 4 || x.RoleId == 3)
-                .Select(u => new
-                {   FullName = u.FullName, 
-                    Email = u.Email,
-                    Role = u.Role,
-                    StudentNumber = u.StudentNumber,
-                    Username = u.Username,
-                    ClubName = u.UserClubs.Select(uc => uc.Club.ClubName).FirstOrDefault(),
-                    AppliedAt = u.UserClubs.Select(uc => uc.AppliedAt).FirstOrDefault(),
-                    ApprovedAt = u.UserClubs.Select(uc => uc.ApprovedAt).FirstOrDefault()
-                })
-                .ToList<object>(); // Chuyển về List<object>
         }
 
         private string HashPassword(string password)
@@ -62,16 +43,58 @@ namespace Repository
 
         public User GetByUsernameandPassword(string username, string password)
         {
-            var find = context.Users.FirstOrDefault(u => u.Username == username);
+            var find = context.Users
+                .Include(u => u.Role)
+                .FirstOrDefault(u => u.Username == username);
             if (find == null || !BCrypt.Net.BCrypt.Verify(password, find.Password))
             {
                 return null;
             }
             return new User
             {
+                UserId = find.UserId,
                 Username = find.Username,
-                Role = find.Role
+                FullName = find.FullName,
+                Email = find.Email,
+                RoleId = find.RoleId,
+                Role = find.Role,
+                StudentNumber = find.StudentNumber,
+                Status = find.Status
             };
+        }
+
+        public User GetByEmail(string email)
+        {
+            return context.Users.FirstOrDefault(u => u.Email == email);
+        }
+
+        public string ResetPassword(string email)
+        {
+            var user = GetByEmail(email);
+            if (user == null)
+            {
+                return null;
+            }
+
+            string tempPassword = GenerateTempPassword();
+            user.Password = HashPassword(tempPassword);
+            context.SaveChanges();
+
+            return tempPassword;
+        }
+
+        private string GenerateTempPassword()
+        {
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            Random random = new Random();
+            return new string(Enumerable.Repeat(chars, 8)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        // Thêm phương thức để lấy Role dựa trên roleName
+        public Role GetRoleByName(string roleName)
+        {
+            return context.Roles.FirstOrDefault(r => r.RoleName.ToLower() == roleName.ToLower());
         }
     }
 }

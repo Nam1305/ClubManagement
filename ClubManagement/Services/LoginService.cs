@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Trong Services/LoginService.cs
 using DataAccess.Models;
 using Repository;
 
@@ -10,22 +6,20 @@ namespace Services
 {
     public class LoginService
     {
-        UserRepo repo;
+        private readonly UserRepo repo;
+
         public LoginService()
         {
             repo = new UserRepo();
         }
 
-        public User Login(string username,string password)
+        public User Login(string username, string password)
         {
-            if (username == null || password == null)
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 return null;
             }
-            User user = repo.GetByUsernameandPassword(username, password);
-            return user;
+            return repo.GetByUsernameandPassword(username, password);
         }
-    
- 
     }
 }

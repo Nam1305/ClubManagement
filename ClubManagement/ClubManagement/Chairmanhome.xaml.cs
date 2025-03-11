@@ -11,57 +11,20 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using DataAccess.Models;
-using Services;
 
 namespace ClubManagement
 {
     /// <summary>
-    /// Interaction logic for Chairmanhome.xaml
+    /// Interaction logic for ViceChairmanhome.xaml
     /// </summary>
     public partial class Chairmanhome : Window
     {
-        ChairManService ChairManService;
-        RoleService roleService;
-        public Chairmanhome()
+        private readonly int userId;
+
+        public Chairmanhome(int userId)
         {
             InitializeComponent();
-            LoadComboboxRole();
-            DisplayMember();
-        }
-
-        public void DisplayMember()
-        {
-            ChairManService = new ChairManService();
-            dgMembers.ItemsSource = ChairManService.GetUsers();
-
-        }
-
-        public void LoadComboboxRole()
-        {
-            roleService = new RoleService();    
-            cbRole.ItemsSource = roleService.GetRoles();
-            this.cbRole.DisplayMemberPath = "RoleName";
-            this.cbRole.SelectedValuePath = "RoleId";
-            this.cbRole.SelectedIndex = 0;
-        }
-
-        private void dgMembers_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            User user = dgMembers.SelectedItem as User;
-            if(user != null)
-            {
-                txtFullname.Text = user.FullName;
-                txtEmail.Text = user.Email;
-                cbRole.SelectedValue = user.RoleId;
-                txtStudentNumber.Text = user.StudentNumber; 
-                txtUsername.Text = user.Username;
-            }
-        }
-
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-
+            this.userId = userId;
         }
     }
 }
