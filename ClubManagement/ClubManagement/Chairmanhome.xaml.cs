@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Services;
 
 namespace ClubManagement
 {
@@ -20,11 +21,28 @@ namespace ClubManagement
     public partial class Chairmanhome : Window
     {
         private readonly int userId;
+        private readonly int? clubId;
 
-        public Chairmanhome(int userId)
+        ChairManService ChairManService;
+        public Chairmanhome() : this(0, null) // Truyền giá trị mặc định (0, null)
+{
+}
+
+
+        public Chairmanhome(int userId , int? clubId)
         {
             InitializeComponent();
             this.userId = userId;
+            this.clubId = clubId;
+            GetAllUserByClubId(1);
         }
+        void GetAllUserByClubId(int? ClubId)
+        {
+            ChairManService = new ChairManService();
+            dgMembers.ItemsSource = ChairManService.GetUsers(ClubId);
+        }
+
+       
+
     }
 }

@@ -38,6 +38,7 @@ namespace ClubManagement
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            int? clubId = account.UserClubs.FirstOrDefault()?.ClubId; // Lấy ClubId đầu tiên
 
             Window targetWindow = null;
             // Kiểm tra vai trò dựa trên Role.RoleName
@@ -47,7 +48,7 @@ namespace ClubManagement
                     targetWindow = new Adminhome();
                     break;
                 case "chairman":
-                    targetWindow = new Chairmanhome(account.UserId); // Chỉ truyền UserId
+                    targetWindow = new Chairmanhome(account.UserId, clubId); // Chỉ truyền UserId
                     break;
                 case "vicechairman":
                     targetWindow = new ViceChairmanhome(account.UserId); // Chỉ truyền UserId

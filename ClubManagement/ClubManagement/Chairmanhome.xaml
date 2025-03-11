@@ -36,12 +36,12 @@
         <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUsername"></TextBox>
 
         <StackPanel Grid.Row="5" Grid.Column="2" Margin="3" Width="300" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Margin="3" MinWidth="80" Content="Add" Name="btnAdd" Click="btnAdd_Click" />
+            <Button Margin="3" MinWidth="80" Content="Add" Name="btnAdd"/>
             <Button Margin="3" MinWidth="80" Content="Update" Name="btnUpdate" />
             <Button Margin="3" MinWidth="80" Content="Delete" Name="btnDelete" />
         </StackPanel>
 
-        <DataGrid Grid.Row="8" Grid.ColumnSpan="2" Name="dgMembers" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgMembers_SelectionChanged" >
+        <DataGrid Grid.Row="8" Grid.ColumnSpan="2" Name="dgMembers" AutoGenerateColumns="False" IsReadOnly="True"  >
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Fullname" Binding="{Binding FullName}"/>
                 <DataGridTextColumn Width="*" Header="Email" Binding="{Binding Email}"/>

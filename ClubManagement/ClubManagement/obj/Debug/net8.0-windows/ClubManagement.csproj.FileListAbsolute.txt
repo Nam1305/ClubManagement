@@ -493,3 +493,8 @@ D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windo
 D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\App.g.cs
 D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement_MarkupCompile.cache
 D:\prn final\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement_MarkupCompile.lref
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ResetPasswordWindow .g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\TeamLeaderhome.g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\appsettings.json
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ResetPasswordWindow .baml
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\TeamLeaderhome.baml

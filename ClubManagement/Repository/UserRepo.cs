@@ -44,7 +44,7 @@ namespace Repository
         public User GetByUsernameandPassword(string username, string password)
         {
             var find = context.Users
-                .Include(u => u.Role)
+                .Include(u => u.Role).Include(u => u.UserClubs)
                 .FirstOrDefault(u => u.Username == username);
             if (find == null || !BCrypt.Net.BCrypt.Verify(password, find.Password))
             {
@@ -59,7 +59,8 @@ namespace Repository
                 RoleId = find.RoleId,
                 Role = find.Role,
                 StudentNumber = find.StudentNumber,
-                Status = find.Status
+                Status = find.Status ,
+                UserClubs = find.UserClubs.ToList() // Trả về danh sách UserClubs
             };
         }
 
