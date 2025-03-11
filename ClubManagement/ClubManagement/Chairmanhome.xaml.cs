@@ -25,11 +25,11 @@ namespace ClubManagement
 
         ChairManService ChairManService;
         public Chairmanhome() : this(0, null) // Truyền giá trị mặc định (0, null)
-{
-}
+        {
+        }
 
 
-        public Chairmanhome(int userId , int? clubId)
+        public Chairmanhome(int userId, int? clubId)
         {
             InitializeComponent();
             this.userId = userId;
@@ -42,7 +42,7 @@ namespace ClubManagement
             dgMembers.ItemsSource = ChairManService.GetUsers(ClubId);
         }
 
-       
+
 
     }
 }

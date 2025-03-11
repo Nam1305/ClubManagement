@@ -15,14 +15,27 @@ namespace Repository
            clubManagementContext  = new ClubManagementContext();
         }
 
-        public List<User> GetUsers(int? clubId)
+        public List<object> GetUsers(int? clubId)
         {
             return clubManagementContext.Users
                 .Include(x => x.Role)
-                .Include(x => x.UserClubs)
+                .Include(x => x.UserClubs).ThenInclude(x => x.Club)
                 .Where(x => x.UserClubs.Any(uc => uc.ClubId == clubId)) // Lọc User có ClubId khớp
-                .ToList();
+                .Select(user => new
+                {
+                    user.UserId,
+                    user.FullName,
+                    user.Email,
+                    RoleName = user.Role != null ? user.Role.RoleName : "No Role",
+                    user.StudentNumber,
+                    user.Username,
+                    ClubName = user.UserClubs.FirstOrDefault().Club.ClubName, // Lấy ClubName
+                    AppliedAt = user.UserClubs.FirstOrDefault().AppliedAt,
+                    ApprovedAt = user.UserClubs.FirstOrDefault().ApprovedAt
+                })
+                .ToList<object>(); // Ép kiểu List<object> để dùng được với DataGrid
         }
+
 
 
 

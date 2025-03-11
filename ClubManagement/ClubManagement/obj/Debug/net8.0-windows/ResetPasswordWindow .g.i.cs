@@ -77,7 +77,7 @@ namespace ClubManagement {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ClubManagement;V1.0.0.0;component/resetpasswordwindow%20.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ClubManagement;component/resetpasswordwindow%20.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ResetPasswordWindow .xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

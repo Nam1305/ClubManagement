@@ -17,7 +17,7 @@ namespace Services
             repo = new ChairmanRepo();
         }
 
-        public List<User> GetUsers(int ?clubId) {
+        public List<object> GetUsers(int ?clubId) {
             return repo.GetUsers(clubId);
         }
 
