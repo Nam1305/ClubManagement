@@ -32,3 +32,20 @@ C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Repository\obj\
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\refint\Repository.dll
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.pdb
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\ref\Repository.dll
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.deps.json
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.dll
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.pdb
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\DataAccess.dll
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\DataAccess.pdb
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.csproj.AssemblyReference.cache
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.AssemblyInfoInputs.cache
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.AssemblyInfo.cs
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.csproj.CoreCompileInputs.cache
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.sourcelink.json
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.csproj.Up2Date
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.dll
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\refint\Repository.dll
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.pdb
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\ref\Repository.dll
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\appsettings.json

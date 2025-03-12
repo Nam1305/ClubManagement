@@ -75,3 +75,18 @@ D:\prn final\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAcces
 D:\prn final\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.genruntimeconfig.cache
 D:\prn final\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\ref\DataAccess.dll
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\DataAccess\bin\Debug\net8.0\appsettings.json
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.deps.json
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.runtimeconfig.json
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.dll
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\bin\Debug\net8.0\DataAccess.pdb
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.csproj.AssemblyReference.cache
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.AssemblyInfoInputs.cache
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.AssemblyInfo.cs
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.csproj.CoreCompileInputs.cache
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.sourcelink.json
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.dll
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\refint\DataAccess.dll
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.pdb
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\DataAccess.genruntimeconfig.cache
+D:\ClubManagement01\ClubManagement\ClubManagement\DataAccess\obj\Debug\net8.0\ref\DataAccess.dll
