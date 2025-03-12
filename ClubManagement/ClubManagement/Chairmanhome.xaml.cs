@@ -78,6 +78,7 @@ namespace ClubManagement
             UserDTO user = dgMembers.SelectedItem as UserDTO;
             if (user != null)
             {
+                txtUserId.Text = user.UserId.ToString();
                 txtFullname.Text = user.FullName;
                 txtEmail.Text = user.Email;
                 txtStudentNumber.Text = user.StudentNumber;
@@ -90,7 +91,17 @@ namespace ClubManagement
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            
+            User user = new User();
+            user.UserId = Int32.Parse(txtUserId.Text);
+            user.FullName = txtFullname.Text;
+            user.Email = txtEmail.Text;
+            user.RoleId = (int)cbRole.SelectedValue;
+            user.StudentNumber = txtStudentNumber.Text;
+            user.Username = txtUsername.Text;
+            ChairManService = new ChairManService();
+
+            ChairManService.UpdateUser(user, clubId);
+            GetAllUserByClubId(1);
         }
     }
 }

@@ -30,7 +30,9 @@ namespace Repository
                     RoleName = user.Role != null ? user.Role.RoleName : "No Role",
                     StudentNumber = user.StudentNumber,
                     Username = user.Username,
+                    Status = user.Status,
                     ClubName = user.UserClubs.FirstOrDefault().Club.ClubName,
+                    
                     //AppliedAt = user.UserClubs.FirstOrDefault().AppliedAt,
                     //ApprovedAt = user.UserClubs.FirstOrDefault().ApprovedAt
                 })
@@ -54,10 +56,18 @@ namespace Repository
 
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(User user , int? clubId)
         {
-            clubManagementContext.Update(user);
+            clubManagementContext.Users.Update(user);
+            clubManagementContext.SaveChanges();
 
+            //UserClub userClub = new UserClub
+            //{
+            //    UserId = user.UserId,
+            //    ClubId = clubId,
+            //};
+            //clubManagementContext.UserClubs.Update(userClub);
+            //clubManagementContext.SaveChanges();
         }
 
     }

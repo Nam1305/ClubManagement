@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
@@ -22,20 +22,23 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="FullName:"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Email:"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="Role :"/>
-        <Label Grid.Row="3" Grid.Column="0" Content="Student number:"/>
-        <Label Grid.Row="4" Grid.Column="0" Content="UserName:"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="User Id:"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="FullName:"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Email:"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Role :"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Student number:"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="UserName:"/>
 
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtFullname"></TextBox>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtEmail"></TextBox>
-        <ComboBox Grid.Row="2" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="cbRole"></ComboBox>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUserId"></TextBox>
 
-        <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtStudentNumber"></TextBox>
-        <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUsername"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtFullname"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtEmail"></TextBox>
+        <ComboBox Grid.Row="3" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="cbRole"></ComboBox>
 
-        <StackPanel Grid.Row="5" Grid.Column="2" Margin="3" Width="300" Orientation="Horizontal" HorizontalAlignment="Left">
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtStudentNumber"></TextBox>
+        <TextBox Grid.Row="5" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUsername"></TextBox>
+
+        <StackPanel Grid.Row="6" Grid.Column="2" Margin="3" Width="300" Orientation="Horizontal" HorizontalAlignment="Left">
             <Button Margin="3" MinWidth="80" Content="Add" Name="btnAdd" Click="btnAdd_Click" />
             <Button Margin="3" MinWidth="80" Content="Update" Name="btnUpdate" Click="btnUpdate_Click" />
             <Button Margin="3" MinWidth="80" Content="Delete" Name="btnDelete" />
@@ -43,6 +46,7 @@
 
         <DataGrid Grid.Row="8" Grid.ColumnSpan="2" Name="dgMembers" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgMembers_SelectionChanged"  >
             <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Fullname" Binding="{Binding UserId}"/>
                 <DataGridTextColumn Width="*" Header="Fullname" Binding="{Binding FullName}"/>
                 <DataGridTextColumn Width="*" Header="Email" Binding="{Binding Email}"/>
                 <DataGridTextColumn Width="*" Header="Role" Binding="{Binding RoleName}"/>

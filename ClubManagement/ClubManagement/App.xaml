@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ClubManagement"
 
-             StartupUri="Adminhome.xaml">
+             StartupUri="Chairmanhome.xaml">
 
 
     <Application.Resources>

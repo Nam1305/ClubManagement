@@ -26,6 +26,9 @@ namespace Services
             repo.AddUser(user , clubId);
         }
 
+        public void UpdateUser(User user, int? clubId) {
+            repo.UpdateUser(user , clubId);
+        }
 
     }
 }
