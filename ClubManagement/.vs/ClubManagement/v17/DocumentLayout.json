@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\dataaccess\\models\\club.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\models\\club.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\clubmanagement\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -55,6 +59,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Club.cs",
+              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\DataAccess\\Models\\Club.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Models\\Club.cs",
+              "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\DataAccess\\Models\\Club.cs",
+              "RelativeToolTip": "DataAccess\\Models\\Club.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T16:25:57.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\App.xaml",
               "RelativeDocumentMoniker": "ClubManagement\\App.xaml",
@@ -66,19 +83,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Adminhome.xaml",
               "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\Adminhome.xaml",
               "RelativeDocumentMoniker": "ClubManagement\\Adminhome.xaml",
               "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\Adminhome.xaml",
               "RelativeToolTip": "ClubManagement\\Adminhome.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-12T16:24:25.481Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-12T16:24:25.481Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "RoleService.cs",
               "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\RoleService.cs",
               "RelativeDocumentMoniker": "Services\\RoleService.cs",
@@ -86,12 +102,11 @@
               "RelativeToolTip": "Services\\RoleService.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T16:23:22.121Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-12T16:23:22.121Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "AdminService.cs",
               "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\AdminService.cs",
               "RelativeDocumentMoniker": "Services\\AdminService.cs",
@@ -103,7 +118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "UserDTO.cs",
               "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Repository\\DTO\\UserDTO.cs",
               "RelativeDocumentMoniker": "Repository\\DTO\\UserDTO.cs",
@@ -115,7 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ChairManService.cs",
               "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\ChairManService.cs",
               "RelativeDocumentMoniker": "Services\\ChairManService.cs",
@@ -127,7 +142,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ChairmanRepo.cs",
               "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Repository\\ChairmanRepo.cs",
               "RelativeDocumentMoniker": "Repository\\ChairmanRepo.cs",
