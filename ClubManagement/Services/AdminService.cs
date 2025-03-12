@@ -11,10 +11,12 @@ namespace Services
     public class AdminService
     {
         UserRepo userRepo;
+        ClubRepo clubRepo;
 
         public AdminService()
         {
             userRepo = new UserRepo();
+            clubRepo = new ClubRepo();
         }
 
         public List<User> LoadDataGridUser()
@@ -63,9 +65,31 @@ namespace Services
             return userRepo.GetUserByCbRoleChanged(roleId);
         }
 
+        public List<Club> LoadDataGridClub()
+        {
+            return clubRepo.GetAllClub();
+        }
 
+        public List<Club> SearchClubByName(string clubName)
+        {
+            return clubRepo.SearchClubByName(clubName);
+        }
 
+        public bool AddNewClub(Club club)
+        {
+            return clubRepo.AddNewClub(club);
+        }
 
+        public bool UpdateClub(Club club)
+        {
+            return clubRepo.UpdateClub(club);
+
+        }
+
+        public bool DeleteClub(int clubId)
+        {
+            return clubRepo.DeleteClub(clubId);
+        }
         //Het code cua Pham Hoang Nam
     }
 }

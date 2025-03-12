@@ -23,16 +23,16 @@ namespace ClubManagement
     public partial class Chairmanhome : Window
     {
         private readonly int userId;
-        private readonly int? clubId;
+        private readonly int clubId;
 
         ChairManService ChairManService;
         RoleService RoleService;
-        public Chairmanhome() : this(0, null) // Truyền giá trị mặc định (0, null)
+        public Chairmanhome()  // Truyền giá trị mặc định (0, null)
         {
         }
 
 
-        public Chairmanhome(int userId, int? clubId)
+        public Chairmanhome(int userId, int clubId)
         {
             InitializeComponent();
             LoadCbRole();
@@ -41,7 +41,7 @@ namespace ClubManagement
             GetAllUserByClubId(1);
         }
 
-        private void GetAllUserByClubId(int? ClubId)
+        private void GetAllUserByClubId(int ClubId)
         {
             ChairManService = new ChairManService();
             dgMembers.ItemsSource = ChairManService.GetUsers(ClubId);
