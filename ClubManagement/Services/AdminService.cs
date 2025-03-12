@@ -47,6 +47,24 @@ namespace Services
             return userRepo.AddNewUser(user);
         }
 
+        public bool UpdateUser(User user) 
+        {
+            return userRepo.UpdateUser(user);
+
+        }
+
+        public bool DeleteUser(string studentNumber) 
+        {
+            return userRepo.DeleteUser(studentNumber);
+        }
+
+        public List<User> GetUsersByCbRoleChanged(int roleId) 
+        {
+            return userRepo.GetUserByCbRoleChanged(roleId);
+        }
+
+
+
 
         //Het code cua Pham Hoang Nam
     }

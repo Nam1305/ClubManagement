@@ -15,6 +15,11 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -29,32 +34,35 @@
         <Label Grid.Row="2" Grid.Column="0" Content="Email:"/>
         <Label Grid.Row="3" Grid.Column="0" Content="User Name:"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Status:"/>
-        <Label Grid.Row="5" Grid.Column="0" Content="Role:"/>        
+        <Label Grid.Row="5" Grid.Column="0" Content="Role:"/>
+        <Label Grid.Row="7" Grid.Column="0" Content="Search by Student Number:"/>
+        <Label Grid.Row="8" Grid.Column="0" Content="Search by Full Name:"/>
+        <Label Grid.Row="9" Grid.Column="0" Content="Search by Email:"/>
+        <Label Grid.Row="10" Grid.Column="0" Content="Search by User Name:"/>
+        
 
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtStudentNumber" >
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtStudentNumber" IsReadOnly="True">
             
         </TextBox>
-        <Button x:Name="btnSearch_StudentNumber" Width="160" Margin="3" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="2" Content="Search By Student Number" Click="btnSearch_StudentNumber_Click"/>
+        
         <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtFullName">
             
         </TextBox>
-        <Button x:Name="btnSearch_FullName" Width="160" Margin="3" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="2" Content="Search By Full Name" Click="btnSearch_FullName_Click" />
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtEmail">
-            
-        </TextBox>
-        <Button x:Name="btnSearch_Email" Width="160" Margin="3" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="2" Content="Search By Email" Click="btnSearch_Email_Click" />
-        <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUserName">
-            
-        </TextBox>
-        <Button x:Name="btnSearch_UserName" Width="160" Margin="3" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2" Content="Search By UserName" Click="btnSearch_UserName_Click" />
 
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtEmail" IsReadOnly="True">
+            
+        </TextBox>
+
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUserName" IsReadOnly="True">
+            
+        </TextBox>
 
         <StackPanel  Grid.Row="4" Grid.Column="1" Orientation="Horizontal" >
             <RadioButton x:Name="rbActive">Active</RadioButton>
             <RadioButton x:Name="rbInactive">Inactive</RadioButton>
         </StackPanel>
 
-        <ComboBox Grid.Row="5" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="cbRole">
+        <ComboBox Grid.Row="5" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="cbRole" SelectionChanged="cbRole_SelectionChanged" >
             
         </ComboBox>
         <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
@@ -62,8 +70,29 @@
             <Button x:Name="btnUpdate" MinWidth="80" Margin="3" Content="Update" Click="btnUpdate_Click" />
             <Button x:Name="btnDelete" MinWidth="80" Margin="3" Content="Delete" Click="btnDelete_Click" />
         </StackPanel>
+        <TextBox Grid.Row="7" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtStudentNumberSearch">
 
-        <DataGrid Grid.Row="7" Grid.ColumnSpan="3" Name="dgDataUser" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgDataUser_SelectionChanged" >
+        </TextBox>
+        <Button x:Name="btnSearch_StudentNumber" Width="160" Margin="3" HorizontalAlignment="Left" Grid.Row="7" Grid.Column="2" Content="Search By Student Number" Click="btnSearch_StudentNumber_Click"/>
+
+        <TextBox Grid.Row="8" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtFullNameSearch">
+
+        </TextBox>
+        <Button x:Name="btnSearch_FullName" Width="160" Margin="3" HorizontalAlignment="Left" Grid.Row="8" Grid.Column="2" Content="Search By Full Name" Click="btnSearch_FullName_Click" />
+
+        <TextBox Grid.Row="9" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtEmailSearch">
+
+        </TextBox>
+        <Button x:Name="btnSearch_Email" Width="160" Margin="3" HorizontalAlignment="Left" Grid.Row="9" Grid.Column="2" Content="Search By Email" Click="btnSearch_Email_Click" />
+        <TextBox Grid.Row="10" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUserNameSearch">
+
+        </TextBox>
+
+        <Button x:Name="btnSearch_UserName" Width="160" Margin="3" HorizontalAlignment="Left" Grid.Row="10" Grid.Column="2" Content="Search By UserName" Click="btnSearch_UserName_Click" />
+
+        <Button x:Name="btnReset" Width="160" Margin="3" HorizontalAlignment="Center" Grid.Row="11" Grid.Column="1" Content="Reset" Click="btnReset_Click" />
+        
+        <DataGrid Grid.Row="12" Grid.ColumnSpan="3" Name="dgDataUser" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgDataUser_SelectionChanged" >
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Student Number" Binding="{Binding StudentNumber}"/>
                 <DataGridTextColumn Width="*" Header="Full Name" Binding="{Binding FullName}"/>

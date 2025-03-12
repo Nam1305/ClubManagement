@@ -59,7 +59,7 @@ namespace Repository
                 RoleId = find.RoleId,
                 Role = find.Role,
                 StudentNumber = find.StudentNumber,
-                Status = find.Status ,
+                Status = find.Status,
                 UserClubs = find.UserClubs.ToList() // Trả về danh sách UserClubs
             };
         }
@@ -147,6 +147,53 @@ namespace Repository
                 Console.WriteLine(ex.Message);
                 return false;
             }
+        }
+
+        public bool UpdateUser(User user)
+        {
+            try
+            {
+                var existingUser = context.Users.FirstOrDefault(u => u.StudentNumber == user.StudentNumber);
+                if (existingUser == null)
+                {
+                    return false; // Không tìm thấy user để cập nhật
+                }
+                existingUser.FullName = user.FullName;
+                //existingUser.Email = user.Email;
+                existingUser.RoleId = user.RoleId;
+                existingUser.StudentNumber = user.StudentNumber;
+                //existingUser.Username = user.Username;
+                existingUser.Status = user.Status;
+
+                return context.SaveChanges() > 0;
+            }
+            catch (Exception ex)
+            {
+                // Ghi log lỗi nếu cần
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public bool DeleteUser(string studentNumber)
+        {
+            try
+            {
+                var deleteStudent = GetAllUsers().Where(stud => stud.StudentNumber == studentNumber).FirstOrDefault();
+                context.Remove(deleteStudent);
+                return context.SaveChanges() > 0; // Trả về true nếu có ít nhất 1 bản ghi được update
+            }
+            catch (Exception ex)
+            {
+                // Ghi log lỗi nếu cần
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public List<User> GetUserByCbRoleChanged(int roleId)
+        {
+            return context.Users.Where(u => u.RoleId == roleId).ToList();
         }
 
 
