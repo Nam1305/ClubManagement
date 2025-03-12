@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
 
 namespace DataAccess.Models;
 
@@ -32,19 +30,14 @@ public partial class ClubManagementContext : DbContext
     public virtual DbSet<UserClub> UserClubs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var builder = new ConfigurationBuilder();
-        builder.SetBasePath(Directory.GetCurrentDirectory());
-        builder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-        var configuration = builder.Build();
-        optionsBuilder.UseSqlServer(configuration.GetConnectionString("Default"));
-    }
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=LAPTOP-O6NI576I\\SQLEXPRESS;uid=sa;password=123;database=ClubManagement;Encrypt=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Club>(entity =>
         {
-            entity.HasKey(e => e.ClubId).HasName("PK__Clubs__DF4AEAB2606D282C");
+            entity.HasKey(e => e.ClubId).HasName("PK__Clubs__DF4AEAB2C6036AC0");
 
             entity.Property(e => e.ClubId).HasColumnName("clubId");
             entity.Property(e => e.ClubName)
@@ -54,11 +47,14 @@ public partial class ClubManagementContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("description");
             entity.Property(e => e.EstablishedDate).HasColumnName("establishedDate");
+            entity.Property(e => e.Status)
+                .HasMaxLength(255)
+                .HasColumnName("status");
         });
 
         modelBuilder.Entity<Event>(entity =>
         {
-            entity.HasKey(e => e.EventId).HasName("PK__Events__2DC7BD09C826B80C");
+            entity.HasKey(e => e.EventId).HasName("PK__Events__2DC7BD09EEC1B394");
 
             entity.Property(e => e.EventId).HasColumnName("eventId");
             entity.Property(e => e.ClubId).HasColumnName("clubId");
@@ -84,7 +80,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<EventParticipant>(entity =>
         {
-            entity.HasKey(e => e.EventParticipantId).HasName("PK__EventPar__29D5D90BFD096731");
+            entity.HasKey(e => e.EventParticipantId).HasName("PK__EventPar__29D5D90B106521AA");
 
             entity.Property(e => e.EventParticipantId).HasColumnName("eventParticipantId");
             entity.Property(e => e.EventId).HasColumnName("eventId");
@@ -106,7 +102,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<Report>(entity =>
         {
-            entity.HasKey(e => e.ReportId).HasName("PK__Report__1C9B4E2DADB23AD5");
+            entity.HasKey(e => e.ReportId).HasName("PK__Report__1C9B4E2D74BFA0D7");
 
             entity.ToTable("Report");
 
@@ -130,9 +126,9 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.RoleId).HasName("PK__Roles__CD98462A853A273C");
+            entity.HasKey(e => e.RoleId).HasName("PK__Roles__CD98462AB181124E");
 
-            entity.HasIndex(e => e.RoleName, "UQ__Roles__B19478619B24070A").IsUnique();
+            entity.HasIndex(e => e.RoleName, "UQ__Roles__B19478610524638B").IsUnique();
 
             entity.Property(e => e.RoleId).HasColumnName("roleId");
             entity.Property(e => e.RoleName)
@@ -142,7 +138,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFFD990F4EF");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFF52EB6095");
 
             entity.Property(e => e.UserId).HasColumnName("userId");
             entity.Property(e => e.Email)
@@ -168,12 +164,12 @@ public partial class ClubManagementContext : DbContext
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.RoleId)
-                .HasConstraintName("FK__Users__roleId__5629CD9C");
+                .HasConstraintName("FK__Users__roleId__440B1D61");
         });
 
         modelBuilder.Entity<UserClub>(entity =>
         {
-            entity.HasKey(e => e.UserClubId).HasName("PK__userClub__C5E838BD1E2BDDED");
+            entity.HasKey(e => e.UserClubId).HasName("PK__userClub__C5E838BDD01572D0");
 
             entity.ToTable("userClubs");
 

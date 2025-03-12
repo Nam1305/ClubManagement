@@ -38,7 +38,7 @@ namespace ClubManagement
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            int? clubId = account.UserClubs.FirstOrDefault()?.ClubId; // Lấy ClubId đầu tiên
+            int clubId = account.UserClubs.FirstOrDefault().ClubId; // Lấy ClubId đầu tiên
 
             Window targetWindow = null;
             // Kiểm tra vai trò dựa trên Role.RoleName

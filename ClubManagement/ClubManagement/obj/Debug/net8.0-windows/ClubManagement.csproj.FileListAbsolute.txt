@@ -663,3 +663,5 @@ D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement.pdb
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement.genruntimeconfig.cache
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ref\ClubManagement.dll
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManageForAdminWindow.g.cs
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManageForAdminWindow.baml

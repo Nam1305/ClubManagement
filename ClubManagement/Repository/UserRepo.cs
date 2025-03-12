@@ -98,6 +98,8 @@ namespace Repository
             return context.Roles.FirstOrDefault(r => r.RoleName.ToLower() == roleName.ToLower());
         }
 
+
+
         //Code cua Pham Hoang Nam
         public List<User> GetAllUsers()
         {

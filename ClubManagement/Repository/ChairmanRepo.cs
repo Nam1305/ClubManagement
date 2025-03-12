@@ -59,7 +59,7 @@ namespace Repository
         }
 
 
-        public void AddUser(User user , int? clubId)
+        public void AddUser(User user , int clubId)
         {
             clubManagementContext.Users.Add(user);
             clubManagementContext.SaveChanges();

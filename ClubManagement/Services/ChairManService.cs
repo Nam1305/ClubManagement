@@ -18,11 +18,11 @@ namespace Services
             repo = new ChairmanRepo();
         }
 
-        public List<UserDTO> GetUsers(int ?clubId) {
+        public List<UserDTO> GetUsers(int clubId) {
             return repo.GetUsers(clubId);
         }
 
-        public void AddUser(User user , int? clubId) { 
+        public void AddUser(User user , int clubId) { 
             repo.AddUser(user , clubId);
         }
 

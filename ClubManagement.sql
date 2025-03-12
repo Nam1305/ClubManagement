@@ -24,7 +24,8 @@ CREATE TABLE Clubs (
   clubId          int IDENTITY NOT NULL, 
   clubName        nvarchar(255) NULL, 
   description     nvarchar(255) NULL, 
-  establishedDate date NULL, 
+  establishedDate date NULL,
+  status nvarchar(255) null,
   PRIMARY KEY (clubId));
 
 CREATE TABLE EventParticipants (
@@ -117,18 +118,18 @@ SET IDENTITY_INSERT Users OFF;
 
 -- Chèn dữ liệu vào bảng Clubs
 SET IDENTITY_INSERT Clubs ON;
-INSERT INTO Clubs (clubId, clubName, description, establishedDate)
+INSERT INTO Clubs (clubId, clubName, description, status, establishedDate)
 VALUES 
-(1, N'Câu lạc bộ CNTT', N'CLB về công nghệ thông tin', '2020-01-15'),
-(2, N'CLB Toán học', N'CLB dành cho những ai yêu thích toán', '2019-02-20'),
-(3, N'CLB Tiếng Anh', N'Câu lạc bộ học tiếng Anh', '2018-05-10'),
-(4, N'CLB Khoa học', N'Nơi trao đổi về khoa học', '2021-07-25'),
-(5, N'CLB Bóng đá', N'CLB thể thao chuyên về bóng đá', '2017-09-30'),
-(6, N'CLB Cầu lông', N'CLB dành cho những người yêu thích cầu lông', '2018-11-11'),
-(7, N'CLB Văn học', N'CLB nghiên cứu văn học', '2020-03-22'),
-(8, N'CLB Nghệ thuật', N'CLB về hội họa và âm nhạc', '2016-06-12'),
-(9, N'CLB Kinh tế', N'CLB dành cho những ai yêu thích kinh tế', '2019-08-05'),
-(10, 'CLB Du lịch', N'CLB tổ chức các hoạt động du lịch', '2015-12-01');
+(1, N'Câu lạc bộ CNTT', N'CLB về công nghệ thông tin','inactive' ,'2020-01-15'),
+(2, N'CLB Toán học', N'CLB dành cho những ai yêu thích toán','active' ,'2019-02-20'),
+(3, N'CLB Tiếng Anh', N'Câu lạc bộ học tiếng Anh','active' , '2018-05-10'),
+(4, N'CLB Khoa học', N'Nơi trao đổi về khoa học', 'active' ,'2021-07-25'),
+(5, N'CLB Bóng đá', N'CLB thể thao chuyên về bóng đá','active' , '2017-09-30'),
+(6, N'CLB Cầu lông', N'CLB dành cho những người yêu thích cầu lông','active' , '2018-11-11'),
+(7, N'CLB Văn học', N'CLB nghiên cứu văn học','active' , '2020-03-22'),
+(8, N'CLB Nghệ thuật', N'CLB về hội họa và âm nhạc','inactive' , '2016-06-12'),
+(9, N'CLB Kinh tế', N'CLB dành cho những ai yêu thích kinh tế','active' , '2019-08-05'),
+(10, 'CLB Du lịch', N'CLB tổ chức các hoạt động du lịch', 'inactive' ,'2015-12-01');
 SET IDENTITY_INSERT Clubs OFF;
 
 -- Chèn dữ liệu vào bảng Events

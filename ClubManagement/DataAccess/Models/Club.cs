@@ -13,6 +13,8 @@ public partial class Club
 
     public DateOnly? EstablishedDate { get; set; }
 
+    public string? Status { get; set; }
+
     public virtual ICollection<Event> Events { get; set; } = new List<Event>();
 
     public virtual ICollection<Report> Reports { get; set; } = new List<Report>();

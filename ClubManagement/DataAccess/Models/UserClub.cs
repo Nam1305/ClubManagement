@@ -9,7 +9,7 @@ public partial class UserClub
 
     public int UserId { get; set; }
 
-    public int? ClubId { get; set; }
+    public int ClubId { get; set; }
 
     public string? Status { get; set; }
 

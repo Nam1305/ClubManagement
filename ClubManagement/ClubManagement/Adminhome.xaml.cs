@@ -52,8 +52,8 @@ namespace ClubManagement
 
         private void dgDataUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-             User users = (User)dgDataUser.SelectedItem as User;
-            if (users != null) 
+            User users = (User)dgDataUser.SelectedItem as User;
+            if (users != null)
             {
                 txtStudentNumber.Text = users.StudentNumber;
                 txtFullName.Text = users.FullName;
@@ -98,7 +98,7 @@ namespace ClubManagement
         private void btnSearch_Email_Click(object sender, RoutedEventArgs e)
         {
             string email = this.txtEmailSearch.Text;
-            if (!email.IsNullOrEmpty()) 
+            if (!email.IsNullOrEmpty())
             {
                 adminService = new AdminService();
                 var user = adminService.SearchUserByEmail(email);
@@ -122,7 +122,7 @@ namespace ClubManagement
             string fullName = this.txtFullName.Text;
             string email = this.txtEmail.Text;
             string passwordDefault = "Nbn@m11345";
-            int roleId =(int)cbRole.SelectedValue;
+            int roleId = (int)cbRole.SelectedValue;
             string studentNumber = this.txtStudentNumber.Text;
             string userName = this.txtUserName.Text;
             User user = new User()
@@ -142,7 +142,7 @@ namespace ClubManagement
                 LoadDataGridUser();
             }
 
-            else 
+            else
             {
                 MessageBox.Show("Thêm user thất bại!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -154,11 +154,11 @@ namespace ClubManagement
             int roleId = (int)cbRole.SelectedValue;
             string studentNumber = this.txtStudentNumber.Text;
             string status = "";
-            if(rbActive.IsChecked == true)
+            if (rbActive.IsChecked == true)
             {
                 status = "active";
             }
-            if (rbInactive.IsChecked == true) 
+            if (rbInactive.IsChecked == true)
             {
                 status = "inactive";
             }
