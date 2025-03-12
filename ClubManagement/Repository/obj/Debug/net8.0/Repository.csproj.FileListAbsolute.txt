@@ -32,6 +32,7 @@ C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Repository\obj\
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\refint\Repository.dll
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.pdb
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\ref\Repository.dll
+D:\ClubManagement01\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\appsettings.json
 D:\ClubManagement01\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.deps.json
 D:\ClubManagement01\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.dll
 D:\ClubManagement01\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.pdb
@@ -48,4 +49,3 @@ D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Re
 D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\refint\Repository.dll
 D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.pdb
 D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\ref\Repository.dll
-D:\ClubManagement01\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\appsettings.json

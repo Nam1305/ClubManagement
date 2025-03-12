@@ -22,7 +22,7 @@ namespace Services
             var user = repo.GetByUsernameandPassword(username, password);
             if (user != null && user.UserClubs.Any())
             {
-                int clubId = user.UserClubs.First().ClubId; // Lấy ClubId đầu tiên từ UserClubs
+                int? clubId = user.UserClubs.First().ClubId; // Lấy ClubId đầu tiên từ UserClubs
                 user.UserClubs = new List<UserClub> { new UserClub { ClubId = clubId } }; // Cập nhật danh sách UserClubs
             }
 

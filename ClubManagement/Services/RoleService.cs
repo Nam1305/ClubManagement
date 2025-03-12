@@ -23,5 +23,10 @@ namespace Services
         {
             return RoleRepo.Roles();
         }
+
+        public List<Role> GetRoleOfChairman()
+        {
+            return RoleRepo.RolesForChairman();
+        }
     }
 }

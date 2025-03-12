@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DataAccess.Models;
 using Microsoft.IdentityModel.Tokens;
+using Repository;
 using Services;
 
 namespace ClubManagement
@@ -45,7 +46,7 @@ namespace ClubManagement
             this.cbRole.ItemsSource = roles;
             this.cbRole.DisplayMemberPath = "RoleName";
             this.cbRole.SelectedValuePath = "RoleId";
-            this.cbRole.SelectedIndex = 0;
+            //this.cbRole.SelectedIndex = 0;
 
         }
 
@@ -74,7 +75,7 @@ namespace ClubManagement
 
         private void btnSearch_StudentNumber_Click(object sender, RoutedEventArgs e)
         {
-            string studentNumberSearch = this.txtStudentNumber.Text;
+            string studentNumberSearch = this.txtStudentNumberSearch.Text;
             if (!studentNumberSearch.IsNullOrEmpty())
             {
                 adminService = new AdminService();
@@ -85,7 +86,7 @@ namespace ClubManagement
 
         private void btnSearch_FullName_Click(object sender, RoutedEventArgs e)
         {
-            string fullNameSearch = this.txtFullName.Text;
+            string fullNameSearch = this.txtFullNameSearch.Text;
             if (!fullNameSearch.IsNullOrEmpty())
             {
                 adminService = new AdminService();
@@ -96,7 +97,7 @@ namespace ClubManagement
 
         private void btnSearch_Email_Click(object sender, RoutedEventArgs e)
         {
-            string email = this.txtEmail.Text;
+            string email = this.txtEmailSearch.Text;
             if (!email.IsNullOrEmpty()) 
             {
                 adminService = new AdminService();
@@ -107,7 +108,7 @@ namespace ClubManagement
 
         private void btnSearch_UserName_Click(object sender, RoutedEventArgs e)
         {
-            string userName = this.txtUserName.Text;
+            string userName = this.txtUserNameSearch.Text;
             if (!userName.IsNullOrEmpty())
             {
                 adminService = new AdminService();
@@ -149,12 +150,73 @@ namespace ClubManagement
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            
+            string fullName = this.txtFullName.Text;
+            int roleId = (int)cbRole.SelectedValue;
+            string studentNumber = this.txtStudentNumber.Text;
+            string status = "";
+            if(rbActive.IsChecked == true)
+            {
+                status = "active";
+            }
+            if (rbInactive.IsChecked == true) 
+            {
+                status = "inactive";
+            }
+            User updatedUser = new User()
+            {
+                FullName = fullName,
+                RoleId = roleId,
+                StudentNumber = studentNumber,
+                Status = status
+            };
+
+            if (adminService.UpdateUser(updatedUser))
+            {
+                MessageBox.Show("Update user thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                LoadDataGridUser();
+            }
+
+            else
+            {
+                MessageBox.Show("Update user thất bại!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            string studentNumber = this.txtStudentNumber.Text;
+            if (adminService.DeleteUser(studentNumber))
+            {
+                MessageBox.Show("Delete user thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                LoadDataGridUser();
+            }
+            else
+            {
+                MessageBox.Show("Delete user thất bại!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
 
+        private void cbRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int roleId = (int)cbRole.SelectedValue;
+            var users = adminService.GetUsersByCbRoleChanged(roleId);
+            this.dgDataUser.ItemsSource = users;
+
+        }
+
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            txtStudentNumber.Text = "";
+            txtFullName.Text = "";
+            txtEmail.Text = "";
+            txtUserName.Text = "";
+            rbActive.IsChecked = false;
+            rbInactive.IsChecked = false;
+            txtStudentNumberSearch.Text = "";
+            txtEmailSearch.Text = "";
+            txtFullNameSearch.Text = "";
+            txtUserNameSearch.Text = "";
+            LoadDataGridUser();
         }
     }
 }
