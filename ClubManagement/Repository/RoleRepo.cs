@@ -19,5 +19,10 @@ namespace Repository
         {
             return context.Roles.ToList();
         }
+
+        public List<Role> RolesForChairman()
+        {
+            return context.Roles.Where(x => x.RoleId == 3 || x.RoleId == 4 || x.RoleId == 5).ToList();
+        }
     }
 }

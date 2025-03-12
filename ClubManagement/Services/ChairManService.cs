@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Models;
 using Repository;
+using Repository.DTO;
 
 namespace Services
 {
@@ -17,8 +18,12 @@ namespace Services
             repo = new ChairmanRepo();
         }
 
-        public List<object> GetUsers(int ?clubId) {
+        public List<UserDTO> GetUsers(int ?clubId) {
             return repo.GetUsers(clubId);
+        }
+
+        public void AddUser(User user , int? clubId) { 
+            repo.AddUser(user , clubId);
         }
 
 
