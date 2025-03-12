@@ -97,5 +97,64 @@ namespace Repository
         {
             return context.Roles.FirstOrDefault(r => r.RoleName.ToLower() == roleName.ToLower());
         }
+
+        //Code cua Pham Hoang Nam
+        public List<User> GetAllUsers()
+        {
+            return context.Users
+                .Include(x => x.Role)
+                .ToList();
+        }
+
+        public List<User> SearchByStudentNumber(string studentNumber)
+        {
+            return context.Users
+                .Include(x => x.Role)
+                .Where(u => u.StudentNumber == studentNumber).ToList();
+        }
+
+        public List<User> SearchByFullName(string fullName)
+        {
+            return context.Users
+                .Include(x => x.Role)
+                .Where(u => u.FullName == fullName).ToList();
+        }
+
+        public List<User> SearchByEmail(string email)
+        {
+            return context.Users
+                .Include(x => x.Role)
+                .Where(u => u.Email == email).ToList();
+        }
+
+        public List<User> SearchByUserName(string userName)
+        {
+            return context.Users
+                .Include(x => x.Role)
+                .Where(u => u.Username == userName).ToList();
+        }
+
+        public bool AddNewUser(User user)
+        {
+            try
+            {
+                context.Users.Add(user);
+                return context.SaveChanges() > 0; // Trả về true nếu có ít nhất 1 bản ghi được thêm
+            }
+            catch (Exception ex)
+            {
+                // Ghi log lỗi nếu cần
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+
+
+
+
+
+
+
     }
 }

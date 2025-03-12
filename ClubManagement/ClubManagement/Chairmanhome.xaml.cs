@@ -40,6 +40,7 @@ namespace ClubManagement
             this.clubId = clubId;
             GetAllUserByClubId(1);
         }
+
         private void GetAllUserByClubId(int? ClubId)
         {
             ChairManService = new ChairManService();
@@ -86,5 +87,6 @@ namespace ClubManagement
 
 
         }
+
     }
 }
