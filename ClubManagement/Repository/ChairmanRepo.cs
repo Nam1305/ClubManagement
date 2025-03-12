@@ -16,27 +16,6 @@ namespace Repository
            clubManagementContext  = new ClubManagementContext();
         }
 
-        //public List<object> GetUsers(int? clubId)
-        //{
-        //    return clubManagementContext.Users
-        //        .Include(x => x.Role)
-        //        .Include(x => x.UserClubs).ThenInclude(x => x.Club)
-        //        .Where(x => x.UserClubs.Any(uc => uc.ClubId == clubId && (x.Role.RoleId == 3 || x.Role.RoleId == 4 || x.Role.RoleId == 5))) // Lọc User có ClubId khớp
-        //        .Select(user => new
-        //        {
-        //            user.UserId,
-        //            user.FullName,
-        //            user.Email,
-        //            RoleName = user.Role != null ? user.Role.RoleName : "No Role",
-        //            user.StudentNumber,
-        //            user.Username,
-        //            ClubName = user.UserClubs.FirstOrDefault().Club.ClubName, // Lấy ClubName
-        //            AppliedAt = user.UserClubs.FirstOrDefault().AppliedAt,
-        //            ApprovedAt = user.UserClubs.FirstOrDefault().ApprovedAt
-        //        })
-        //        .ToList<object>(); // Ép kiểu List<object> để dùng được với DataGrid
-        //}
-
         public List<UserDTO> GetUsers(int? clubId)
         {
             return clubManagementContext.Users
@@ -75,8 +54,11 @@ namespace Repository
 
         }
 
+        public void UpdateUser(User user)
+        {
+            clubManagementContext.Update(user);
 
-
+        }
 
     }
 }
