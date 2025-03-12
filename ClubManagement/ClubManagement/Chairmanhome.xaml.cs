@@ -38,7 +38,7 @@ namespace ClubManagement
             LoadCbRole();
             this.userId = userId;
             this.clubId = clubId;
-            GetAllUserByClubId(1);
+            GetAllUserByClubId(clubId);
         }
 
         private void GetAllUserByClubId(int ClubId)
@@ -101,6 +101,13 @@ namespace ClubManagement
             ChairManService = new ChairManService();
 
             ChairManService.UpdateUser(user, clubId);
+            GetAllUserByClubId(1);
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            int userId = Int32.Parse(txtUserId.Text);
+            ChairManService.DeleteUser(userId);
             GetAllUserByClubId(1);
         }
     }

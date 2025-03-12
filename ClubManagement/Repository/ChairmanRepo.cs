@@ -32,7 +32,7 @@ namespace Repository
                     Username = user.Username,
                     Status = user.Status,
                     ClubName = user.UserClubs.FirstOrDefault().Club.ClubName,
-                    
+
                     //AppliedAt = user.UserClubs.FirstOrDefault().AppliedAt,
                     //ApprovedAt = user.UserClubs.FirstOrDefault().ApprovedAt
                 })
@@ -69,6 +69,25 @@ namespace Repository
             //clubManagementContext.UserClubs.Update(userClub);
             //clubManagementContext.SaveChanges();
         }
+
+        public void DeleteUser(int userId)
+        {
+            // Xóa tất cả các bản ghi UserClub liên quan trước
+            var userClubs = clubManagementContext.UserClubs
+                .Where(uc => uc.UserId == userId).ToList();
+
+            clubManagementContext.UserClubs.RemoveRange(userClubs);
+            clubManagementContext.SaveChanges(); // Lưu lại trước khi xóa User
+
+            // Sau đó xóa User
+            var user = clubManagementContext.Users.FirstOrDefault(u => u.UserId == userId);
+            if (user != null)
+            {
+                clubManagementContext.Users.Remove(user);
+                clubManagementContext.SaveChanges();
+            }
+        }
+
 
     }
 }

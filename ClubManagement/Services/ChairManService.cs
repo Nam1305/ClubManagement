@@ -29,6 +29,8 @@ namespace Services
         public void UpdateUser(User user, int? clubId) {
             repo.UpdateUser(user , clubId);
         }
-
+        public void DeleteUser(int userId ) { 
+            repo.DeleteUser(userId);
+        }
     }
 }
