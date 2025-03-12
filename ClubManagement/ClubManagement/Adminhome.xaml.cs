@@ -149,7 +149,7 @@ namespace ClubManagement
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
