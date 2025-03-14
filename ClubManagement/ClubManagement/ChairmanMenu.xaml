@@ -12,8 +12,8 @@
 
             <Button Content="Manage Members" Width="200" Height="50" Name="btnMembers" Click="btnMembers_Click" />
             <Button Content="Manage Events" Width="200" Height="50" />
+            <Button Content="Assign Task" Width="200" Height="50" Name="btnTask" Click="btnTask_Click"/>
             <Button Content="Finance Reports" Width="200" Height="50" />
-            <Button Content="Settings" Width="200" Height="50" />
             <Button Content="Logout" Width="200" Height="50" Background="Blue" Foreground="White" />
         </StackPanel>
     </Grid>

@@ -55,8 +55,6 @@ namespace ClubManagement
                     break;
                 case "chairman":
                     targetWindow = new ChairmanMenu(account.UserId , clubId);
-                        //new Chairmanhome(account.UserId, clubId);
-
                     break;
                 case "vicechairman":
                     targetWindow = new ViceChairmanhome(account.UserId); // Chỉ truyền UserId

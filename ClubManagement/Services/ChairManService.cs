@@ -32,5 +32,13 @@ namespace Services
         public void DeleteUser(int userId ) { 
             repo.DeleteUser(userId);
         }
+
+        public void AddTask(Mission mission) {
+            repo.AddTask(mission);
+        }
+
+        public List<Mission> GetMissions() {
+            return repo.GetAllTask();
+        }
     }
 }

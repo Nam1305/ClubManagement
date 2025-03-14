@@ -37,5 +37,12 @@ namespace ClubManagement
             menu.Show();
             this.Close();
         }
+
+        private void btnTask_Click(object sender, RoutedEventArgs e)
+        {
+            Window task = new ChairmanTask(userId , clubId);
+            task.Show();
+            this.Close();
+        }
     }
 }

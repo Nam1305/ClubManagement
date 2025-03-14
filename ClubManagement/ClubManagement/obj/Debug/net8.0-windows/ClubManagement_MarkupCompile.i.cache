@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\App.xaml
-11-414939241
+12-1928695357
 
-16691720590
+171155783993
 248-1077108811
-Adminhome.xaml;Chairmanhome.xaml;ChairmanMenu.xaml;ClubManageForAdminWindow.xaml;LoginWindow.xaml;MainWindow.xaml;Memberhome.xaml;RegisterWindow.xaml;ResetPasswordWindow .xaml;TeamLeaderhome.xaml;ViceChairmanhome.xaml;
+Adminhome.xaml;Chairmanhome.xaml;ChairmanMenu.xaml;ChairmanTask.xaml;ClubManageForAdminWindow.xaml;LoginWindow.xaml;MainWindow.xaml;Memberhome.xaml;RegisterWindow.xaml;ResetPasswordWindow .xaml;TeamLeaderhome.xaml;ViceChairmanhome.xaml;
 
-True
+False
 

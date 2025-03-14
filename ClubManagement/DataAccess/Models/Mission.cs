@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataAccess.Models;
 
-public partial class Task
+public partial class Mission
 {
     public int TaskId { get; set; }
 

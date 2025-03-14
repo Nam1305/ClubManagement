@@ -88,6 +88,17 @@ namespace Repository
             }
         }
 
+        public List<Mission> GetAllTask()
+        {
+            return clubManagementContext.Missions.ToList();
+        }
+
+        public void AddTask(Mission m)
+        {
+            clubManagementContext.Missions.Add(m);
+            clubManagementContext.SaveChanges();
+        }
+
 
     }
 }

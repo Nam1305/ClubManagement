@@ -23,11 +23,11 @@ public partial class User
 
     public virtual ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
 
+    public virtual ICollection<Mission> MissionAssignedByNavigations { get; set; } = new List<Mission>();
+
+    public virtual ICollection<Mission> MissionAssignedToNavigations { get; set; } = new List<Mission>();
+
     public virtual Role? Role { get; set; }
-
-    public virtual ICollection<Task> TaskAssignedByNavigations { get; set; } = new List<Task>();
-
-    public virtual ICollection<Task> TaskAssignedToNavigations { get; set; } = new List<Task>();
 
     public virtual ICollection<UserClub> UserClubs { get; set; } = new List<UserClub>();
 }
