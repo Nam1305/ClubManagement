@@ -13,6 +13,9 @@
     <Compile Update="Chairmanhome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ChairmanMenu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ClubManageForAdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -40,6 +43,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Chairmanhome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ChairmanMenu.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ClubManageForAdminWindow.xaml">

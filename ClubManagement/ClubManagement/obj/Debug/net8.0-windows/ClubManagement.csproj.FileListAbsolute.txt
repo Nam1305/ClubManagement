@@ -667,3 +667,5 @@ D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManageForAdminWindow.baml
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManageForAdminWindow.g.cs
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManageForAdminWindow.baml
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanMenu.g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanMenu.baml
