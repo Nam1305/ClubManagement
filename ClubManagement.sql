@@ -81,6 +81,19 @@ CREATE TABLE Users (
   status nvarchar(50) null,
   FOREIGN KEY (roleId) REFERENCES Roles(roleId) ,
   PRIMARY KEY (userId));
+  CREATE TABLE Tasks (
+    taskId INT IDENTITY PRIMARY KEY,
+    taskName NVARCHAR(255) NOT NULL,
+    description NVARCHAR(255) NULL,
+    assignedTo INT NOT NULL, -- FK tới Users.userId
+    assignedBy INT NOT NULL, -- FK tới Users.userId
+    clubId INT NOT NULL,     -- FK tới Clubs.clubId
+    status NVARCHAR(50) NULL, -- pending, in_progress, completed
+    dueDate DATE NULL,
+    FOREIGN KEY (assignedTo) REFERENCES Users(userId),
+    FOREIGN KEY (assignedBy) REFERENCES Users(userId),
+    FOREIGN KEY (clubId) REFERENCES Clubs(clubId)
+); 
 
 ALTER TABLE userClubs ADD CONSTRAINT FKuserClubs595478 FOREIGN KEY (userId) REFERENCES Users (userId);
 ALTER TABLE userClubs ADD CONSTRAINT FKuserClubs901847 FOREIGN KEY (clubId) REFERENCES Clubs (clubId);
