@@ -50,5 +50,24 @@ namespace Services
         {
             repo.DeleteTask(ct);
         }
+
+        public void AddEvent(Event e)
+        {
+            repo.AddEvent(e);
+        }
+
+        public List<Event> GetAllEvent(int clubId)
+        {
+            return repo.GetAllEvents(clubId);
+        }
+
+        public void UpdateEvent(Event e) { 
+            repo.UpdateEvent(e);
+        }
+
+        public void DeleteEvent(Event e)
+        {
+            repo.DeleteEvent(e);
+        }
     }
 }

@@ -117,5 +117,27 @@ namespace Repository
                 clubManagementContext.SaveChanges();
             }
         }
+
+        public List<Event> GetAllEvents(int clubId)
+        {
+            return clubManagementContext.Events.Where(x => x.ClubId == clubId).ToList();
+        }
+
+        public void AddEvent(Event e)
+        {
+            clubManagementContext.Events.Add(e);
+            clubManagementContext.SaveChanges();
+        }
+
+        public void UpdateEvent(Event e) { 
+            clubManagementContext.Events.Update(e);
+            clubManagementContext.SaveChanges();
+        }
+
+        public void DeleteEvent(Event e)
+        {
+            clubManagementContext.Events.Remove(e);
+            clubManagementContext.SaveChanges();
+        }
     }
 }

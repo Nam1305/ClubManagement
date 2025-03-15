@@ -47,7 +47,7 @@ namespace ClubManagement
 
         private void btnEvents_Click(object sender, RoutedEventArgs e)
         {
-            Window events = new Window();
+            Window events = new ChairmanEvent(userId , clubId); 
             events.Show();
             this.Close();
         }
