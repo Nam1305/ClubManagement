@@ -15,9 +15,11 @@ public partial class Club
 
     public string? Status { get; set; }
 
+    public virtual ICollection<ClubTask> ClubTasks { get; set; } = new List<ClubTask>();
+
     public virtual ICollection<Event> Events { get; set; } = new List<Event>();
 
-    public virtual ICollection<Mission> Missions { get; set; } = new List<Mission>();
+    public virtual ICollection<Group> Groups { get; set; } = new List<Group>();
 
     public virtual ICollection<Report> Reports { get; set; } = new List<Report>();
 

@@ -44,5 +44,12 @@ namespace ClubManagement
             task.Show();
             this.Close();
         }
+
+        private void btnEvents_Click(object sender, RoutedEventArgs e)
+        {
+            Window events = new Window();
+            events.Show();
+            this.Close();
+        }
     }
 }

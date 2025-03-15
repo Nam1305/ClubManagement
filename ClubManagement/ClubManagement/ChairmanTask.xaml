@@ -24,36 +24,33 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <DataGrid x:Name="dgTask" Grid.Column="2" Grid.RowSpan="8" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid x:Name="dgTask" Grid.Column="2" Grid.RowSpan="8" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgTask_SelectionChanged_1" >
             <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Header="Task ID" Binding="{Binding }"/>
-                <DataGridTextColumn Width="*" Header="Task Name" Binding="{Binding LastName}"/>
-                <DataGridTextColumn Width="*" Header="Description" Binding="{Binding FirstName}"/>
-                <DataGridTextColumn Width="*" Header="Assign to" Binding="{Binding Birthday}"/>
-                <DataGridTextColumn Width="*" Header="Assigned by" Binding="{Binding Gender}"/>
-                <DataGridTextColumn Width="*" Header="Club Id" Binding="{Binding Spec.SpecName}"/>
-                <DataGridTextColumn Width="*" Header="Status" Binding="{Binding EnglishDisplay}"/>
-                <DataGridTextColumn Width="*" Header="Due Date" Binding="{Binding EnglishDisplay}"/>
+                <DataGridTextColumn Width="*" Header="Task ID" Binding="{Binding TaskId}"/>
+                <DataGridTextColumn Width="*" Header="Task Name" Binding="{Binding TaskName}"/>
+                <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
+                <DataGridTextColumn Width="*" Header="Assign to" Binding="{Binding AssignedTo}"/>
+                <DataGridTextColumn Width="*" Header="Assigned by" Binding="{Binding AssignedBy}"/>
+                <DataGridTextColumn Width="*" Header="Club Id" Binding="{Binding ClubId}"/>
+                <DataGridTextColumn Width="*" Header="Status" Binding="{Binding Status}"/>
+                <DataGridTextColumn Width="*" Header="Due Date" Binding="{Binding DueDate}"/>
 
             </DataGrid.Columns>
         </DataGrid>
 
         <Label Grid.Row="0" Grid.Column="1" Content="Assign Task" Foreground="Red" HorizontalAlignment="Center" FontSize="25"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Task ID:"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtTaskId" IsReadOnly="True"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtTaskId" IsReadOnly="True" Visibility="Collapsed"></TextBox>
         <Label Grid.Row="2" Grid.Column="0" Content="Task Title:"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Description:"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Assign to:"/>
-        <Label Grid.Row="5" Grid.Column="0" Content="Assign by:"/>
-        <Label Grid.Row="6" Grid.Column="0" Content="Club Id:"/>
         <Label Grid.Row="7" Grid.Column="0" Content="Status:"/>
         <Label Grid.Row="8" Grid.Column="0" Content="Due date:"/>
         <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtTaskName"></TextBox>
         <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtDescription" Height="100" AcceptsReturn="True" TextWrapping="Wrap"/>
-        <Button Content="Assign Task" Width="80" Height="30" Grid.Row="4" Grid.Column="1" Margin="3" HorizontalAlignment="Left" Name="btnAssign" />
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtAssignedTo" IsReadOnly="True"></TextBox>
         <StackPanel Grid.Row="7" Grid.Column="1" Margin="3" HorizontalAlignment="Left">
             <CheckBox x:Name="cbPending">Pending</CheckBox>
             <CheckBox  x:Name="cbInprocess">In Process</CheckBox>
@@ -62,8 +59,8 @@
         <DatePicker Grid.Row="8" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="dpDueDate"></DatePicker>
         <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="1">
             <Button MinWidth="80" Height="30" Margin="3" Content="Create" Name="btnAdd" Click="btnAdd_Click"/>
-            <Button x:Name="btnUpdate"  MinWidth="80" Height="30" Margin="3" Content="Update"/>
-            <Button x:Name="btnDelete" MinWidth="80" Height="30" Margin="3" Content="Delete"/>
+            <Button x:Name="btnUpdate"  MinWidth="80" Height="30" Margin="3" Content="Update" Click="btnUpdate_Click_1" />
+            <Button x:Name="btnDelete" MinWidth="80" Height="30" Margin="3" Content="Delete" Click="btnDelete_Click" />
         </StackPanel>
     </Grid>
 </Window>

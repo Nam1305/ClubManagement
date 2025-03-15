@@ -33,27 +33,90 @@ namespace ClubManagement
             InitializeComponent();
             this.userId = userId;
             this.clubId = clubId;
+            GetAll();
         }
 
         private void GetAll()
         {
-           dgTask.ItemsSource = ChairManService.GetMissions();
+            ChairManService = new ChairManService();
+            dgTask.ItemsSource = ChairManService.GetMissions(clubId);
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Mission m = new Mission();
-            m.TaskName = txtTaskName.Text;
-            m.Description = txtDescription.Text;
-            m.Status = null;
-            m.AssignedTo = 0;
-            m.AssignedBy = userId;
-            m.ClubId = clubId;
+            ClubTask ct = new ClubTask();
+            ct.TaskName = txtTaskName.Text;
+            ct.Description = txtDescription.Text;
+            ct.Status = null;
 
-            m.DueDate = DateOnly.FromDateTime(dpDueDate.SelectedDate.Value);
+            ct.AssignedTo = Int32.Parse(txtAssignedTo.Text);
+            ct.AssignedBy = userId;
+            ct.ClubId = clubId;
 
+            ct.DueDate = DateOnly.FromDateTime(dpDueDate.SelectedDate.Value);
 
-            ChairManService.AddTask(m);
+            ChairManService = new ChairManService();
+            ChairManService.AddTask(ct);
             GetAll();
+        }
+
+
+
+
+
+        private void btnUpdate_Click_1(object sender, RoutedEventArgs e)
+        {
+            ChairManService = new ChairManService();
+            ClubTask ct = new ClubTask();
+            ct.TaskId = Int32.Parse(txtTaskId.Text);
+            ct.TaskName = txtTaskName.Text;
+            ct.Description = txtDescription.Text;
+            ct.Status = null;
+            ct.AssignedTo = Int32.Parse(txtAssignedTo.Text);
+            ct.AssignedBy = userId;
+            ct.ClubId = clubId;
+            ct.DueDate = DateOnly.FromDateTime(dpDueDate.SelectedDate.Value);
+            ChairManService.UpdateTask(ct);
+            GetAll();
+        }
+
+        private void dgTask_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            ClubTask ct = dgTask.SelectedItem as ClubTask;
+            if (ct != null)
+            {
+                txtTaskId.Text = ct.TaskId.ToString();
+                txtTaskName.Text = ct.TaskName;
+                txtDescription.Text = ct.Description;
+                txtAssignedTo.Text = ct.AssignedTo.ToString();
+                dpDueDate.Text = ct.DueDate.Value.ToString();
+            }
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(
+            "Bạn có chắc chắn muốn xóa nhiệm vụ này không?",
+            "Xác nhận xóa",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Warning
+            );
+
+            if (result == MessageBoxResult.Yes)
+            {
+                ChairManService = new ChairManService();
+                ClubTask ct = new ClubTask();
+                ct.TaskId = Int32.Parse(txtTaskId.Text);
+                ct.TaskName = txtTaskName.Text;
+                ct.Description = txtDescription.Text;
+                ct.Status = null;
+                ct.AssignedTo = Int32.Parse(txtAssignedTo.Text);
+                ct.AssignedBy = userId;
+                ct.ClubId = clubId;
+                ct.DueDate = DateOnly.FromDateTime(dpDueDate.SelectedDate.Value);
+
+                ChairManService.DeleteTask(ct);
+                GetAll(); 
+            }
         }
     }
 }

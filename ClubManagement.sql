@@ -81,18 +81,39 @@ CREATE TABLE Users (
   status nvarchar(50) null,
   FOREIGN KEY (roleId) REFERENCES Roles(roleId) ,
   PRIMARY KEY (userId));
-  CREATE TABLE Tasks (
+
+CREATE TABLE Groups (
+    groupId INT IDENTITY PRIMARY KEY,
+    groupName NVARCHAR(255) NOT NULL,
+    clubId INT NOT NULL,
+    leaderId INT, -- Trưởng nhóm
+    createdAt DATE NOT NULL,
+    FOREIGN KEY (clubId) REFERENCES Clubs(clubId),
+    FOREIGN KEY (leaderId) REFERENCES Users(userId)
+);-- Tạo bảng GroupMembers (Thành viên trong nhóm)
+CREATE TABLE GroupMembers (
+    groupMemberId INT IDENTITY PRIMARY KEY,
+    groupId INT NOT NULL,
+    userId INT NOT NULL,
+    joinedAt DATE NOT NULL,
+    FOREIGN KEY (groupId) REFERENCES Groups(groupId),
+    FOREIGN KEY (userId) REFERENCES Users(userId)
+);-- Tạo bảng Tasks (Nhiệm vụ)
+
+CREATE TABLE ClubTask (
     taskId INT IDENTITY PRIMARY KEY,
     taskName NVARCHAR(255) NOT NULL,
-    description NVARCHAR(255) NULL,
-    assignedTo INT NOT NULL, -- FK tới Users.userId
-    assignedBy INT NOT NULL, -- FK tới Users.userId
-    clubId INT NOT NULL,     -- FK tới Clubs.clubId
-    status NVARCHAR(50) NULL, -- pending, in_progress, completed
-    dueDate DATE NULL,
+    description NVARCHAR(255),
+    assignedTo INT NOT NULL, -- Người được giao (có thể là Leader)
+    assignedBy INT NOT NULL, -- Người giao (Vice Chairman)
+    clubId INT NOT NULL,
+    groupId INT, -- Nhiệm vụ thuộc nhóm nào
+    status NVARCHAR(50), -- pending, in_progress, completed
+    dueDate DATE,
     FOREIGN KEY (assignedTo) REFERENCES Users(userId),
     FOREIGN KEY (assignedBy) REFERENCES Users(userId),
-    FOREIGN KEY (clubId) REFERENCES Clubs(clubId)
+    FOREIGN KEY (clubId) REFERENCES Clubs(clubId),
+    FOREIGN KEY (groupId) REFERENCES Groups(groupId)
 ); 
 
 ALTER TABLE userClubs ADD CONSTRAINT FKuserClubs595478 FOREIGN KEY (userId) REFERENCES Users (userId);

@@ -88,17 +88,34 @@ namespace Repository
             }
         }
 
-        public List<Mission> GetAllTask()
+        public List<ClubTask> GetAllTask(int clubId)
         {
-            return clubManagementContext.Missions.ToList();
+            return clubManagementContext.ClubTasks.Where(x => x.ClubId == clubId).ToList();
         }
 
-        public void AddTask(Mission m)
+        public void AddTask(ClubTask ct)
         {
-            clubManagementContext.Missions.Add(m);
+            clubManagementContext.ClubTasks.Add(ct);
             clubManagementContext.SaveChanges();
         }
 
+        public void UpdateTask(ClubTask ct)
+        {
+            if (ct != null)
+            {
+                clubManagementContext.ClubTasks.Update(ct);
+                clubManagementContext.SaveChanges();
+            }
+        }
 
+        public void DeleteTask(ClubTask ct)
+        {
+            //ClubTask find = clubManagementContext.ClubTasks.Where(x => x.TaskId == ct.TaskId).FirstOrDefault();
+            if (ct != null)
+            {
+                clubManagementContext.ClubTasks.Remove(ct);
+                clubManagementContext.SaveChanges();
+            }
+        }
     }
 }

@@ -10,6 +10,9 @@
     <Compile Update="Adminhome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ChairmanEvent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Chairmanhome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Adminhome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ChairmanEvent.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Chairmanhome.xaml">

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataAccess.Models;
 
-public partial class Mission
+public partial class ClubTask
 {
     public int TaskId { get; set; }
 
@@ -17,6 +17,8 @@ public partial class Mission
 
     public int ClubId { get; set; }
 
+    public int? GroupId { get; set; }
+
     public string? Status { get; set; }
 
     public DateOnly? DueDate { get; set; }
@@ -26,4 +28,6 @@ public partial class Mission
     public virtual User AssignedToNavigation { get; set; } = null!;
 
     public virtual Club Club { get; set; } = null!;
+
+    public virtual Group? Group { get; set; }
 }

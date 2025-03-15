@@ -33,12 +33,22 @@ namespace Services
             repo.DeleteUser(userId);
         }
 
-        public void AddTask(Mission mission) {
-            repo.AddTask(mission);
+        public void AddTask(ClubTask ct) {
+            repo.AddTask(ct);
         }
 
-        public List<Mission> GetMissions() {
-            return repo.GetAllTask();
+        public List<ClubTask> GetMissions(int clubId) {
+            return repo.GetAllTask(clubId);
+        }
+
+        public void UpdateTask(ClubTask ct)
+        {
+            repo.UpdateTask(ct);
+        }
+
+        public void DeleteTask(ClubTask ct)
+        {
+            repo.DeleteTask(ct);
         }
     }
 }

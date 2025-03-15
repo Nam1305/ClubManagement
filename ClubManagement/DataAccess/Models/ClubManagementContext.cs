@@ -17,11 +17,15 @@ public partial class ClubManagementContext : DbContext
 
     public virtual DbSet<Club> Clubs { get; set; }
 
+    public virtual DbSet<ClubTask> ClubTasks { get; set; }
+
     public virtual DbSet<Event> Events { get; set; }
 
     public virtual DbSet<EventParticipant> EventParticipants { get; set; }
 
-    public virtual DbSet<Mission> Missions { get; set; }
+    public virtual DbSet<Group> Groups { get; set; }
+
+    public virtual DbSet<GroupMember> GroupMembers { get; set; }
 
     public virtual DbSet<Report> Reports { get; set; }
 
@@ -39,7 +43,7 @@ public partial class ClubManagementContext : DbContext
     {
         modelBuilder.Entity<Club>(entity =>
         {
-            entity.HasKey(e => e.ClubId).HasName("PK__Clubs__DF4AEAB27C5A6265");
+            entity.HasKey(e => e.ClubId).HasName("PK__Clubs__DF4AEAB26857C28F");
 
             entity.Property(e => e.ClubId).HasColumnName("clubId");
             entity.Property(e => e.ClubName)
@@ -54,9 +58,51 @@ public partial class ClubManagementContext : DbContext
                 .HasColumnName("status");
         });
 
+        modelBuilder.Entity<ClubTask>(entity =>
+        {
+            entity.HasKey(e => e.TaskId).HasName("PK__ClubTask__DD5D5A42A5D7373B");
+
+            entity.ToTable("ClubTask");
+
+            entity.Property(e => e.TaskId).HasColumnName("taskId");
+            entity.Property(e => e.AssignedBy).HasColumnName("assignedBy");
+            entity.Property(e => e.AssignedTo).HasColumnName("assignedTo");
+            entity.Property(e => e.ClubId).HasColumnName("clubId");
+            entity.Property(e => e.Description)
+                .HasMaxLength(255)
+                .HasColumnName("description");
+            entity.Property(e => e.DueDate).HasColumnName("dueDate");
+            entity.Property(e => e.GroupId).HasColumnName("groupId");
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .HasColumnName("status");
+            entity.Property(e => e.TaskName)
+                .HasMaxLength(255)
+                .HasColumnName("taskName");
+
+            entity.HasOne(d => d.AssignedByNavigation).WithMany(p => p.ClubTaskAssignedByNavigations)
+                .HasForeignKey(d => d.AssignedBy)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__ClubTask__assign__4F7CD00D");
+
+            entity.HasOne(d => d.AssignedToNavigation).WithMany(p => p.ClubTaskAssignedToNavigations)
+                .HasForeignKey(d => d.AssignedTo)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__ClubTask__assign__4E88ABD4");
+
+            entity.HasOne(d => d.Club).WithMany(p => p.ClubTasks)
+                .HasForeignKey(d => d.ClubId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__ClubTask__clubId__5070F446");
+
+            entity.HasOne(d => d.Group).WithMany(p => p.ClubTasks)
+                .HasForeignKey(d => d.GroupId)
+                .HasConstraintName("FK__ClubTask__groupI__5165187F");
+        });
+
         modelBuilder.Entity<Event>(entity =>
         {
-            entity.HasKey(e => e.EventId).HasName("PK__Events__2DC7BD09F6B2297C");
+            entity.HasKey(e => e.EventId).HasName("PK__Events__2DC7BD095F68C07D");
 
             entity.Property(e => e.EventId).HasColumnName("eventId");
             entity.Property(e => e.ClubId).HasColumnName("clubId");
@@ -82,7 +128,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<EventParticipant>(entity =>
         {
-            entity.HasKey(e => e.EventParticipantId).HasName("PK__EventPar__29D5D90BB879AF37");
+            entity.HasKey(e => e.EventParticipantId).HasName("PK__EventPar__29D5D90BFB759176");
 
             entity.Property(e => e.EventParticipantId).HasColumnName("eventParticipantId");
             entity.Property(e => e.EventId).HasColumnName("eventId");
@@ -102,46 +148,51 @@ public partial class ClubManagementContext : DbContext
                 .HasConstraintName("FKEventParti840496");
         });
 
-        modelBuilder.Entity<Mission>(entity =>
+        modelBuilder.Entity<Group>(entity =>
         {
-            entity.HasKey(e => e.TaskId).HasName("PK__Mission__DD5D5A4269BFD698");
+            entity.HasKey(e => e.GroupId).HasName("PK__Groups__88C1034D90D2FFF7");
 
-            entity.ToTable("Mission");
-
-            entity.Property(e => e.TaskId).HasColumnName("taskId");
-            entity.Property(e => e.AssignedBy).HasColumnName("assignedBy");
-            entity.Property(e => e.AssignedTo).HasColumnName("assignedTo");
+            entity.Property(e => e.GroupId).HasColumnName("groupId");
             entity.Property(e => e.ClubId).HasColumnName("clubId");
-            entity.Property(e => e.Description)
+            entity.Property(e => e.CreatedAt).HasColumnName("createdAt");
+            entity.Property(e => e.GroupName)
                 .HasMaxLength(255)
-                .HasColumnName("description");
-            entity.Property(e => e.DueDate).HasColumnName("dueDate");
-            entity.Property(e => e.Status)
-                .HasMaxLength(50)
-                .HasColumnName("status");
-            entity.Property(e => e.TaskName)
-                .HasMaxLength(255)
-                .HasColumnName("taskName");
+                .HasColumnName("groupName");
+            entity.Property(e => e.LeaderId).HasColumnName("leaderId");
 
-            entity.HasOne(d => d.AssignedByNavigation).WithMany(p => p.MissionAssignedByNavigations)
-                .HasForeignKey(d => d.AssignedBy)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Mission__assigne__47DBAE45");
-
-            entity.HasOne(d => d.AssignedToNavigation).WithMany(p => p.MissionAssignedToNavigations)
-                .HasForeignKey(d => d.AssignedTo)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Mission__assigne__46E78A0C");
-
-            entity.HasOne(d => d.Club).WithMany(p => p.Missions)
+            entity.HasOne(d => d.Club).WithMany(p => p.Groups)
                 .HasForeignKey(d => d.ClubId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Mission__clubId__48CFD27E");
+                .HasConstraintName("FK__Groups__clubId__46E78A0C");
+
+            entity.HasOne(d => d.Leader).WithMany(p => p.Groups)
+                .HasForeignKey(d => d.LeaderId)
+                .HasConstraintName("FK__Groups__leaderId__47DBAE45");
+        });
+
+        modelBuilder.Entity<GroupMember>(entity =>
+        {
+            entity.HasKey(e => e.GroupMemberId).HasName("PK__GroupMem__2E09DC74E83B9718");
+
+            entity.Property(e => e.GroupMemberId).HasColumnName("groupMemberId");
+            entity.Property(e => e.GroupId).HasColumnName("groupId");
+            entity.Property(e => e.JoinedAt).HasColumnName("joinedAt");
+            entity.Property(e => e.UserId).HasColumnName("userId");
+
+            entity.HasOne(d => d.Group).WithMany(p => p.GroupMembers)
+                .HasForeignKey(d => d.GroupId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__GroupMemb__group__4AB81AF0");
+
+            entity.HasOne(d => d.User).WithMany(p => p.GroupMembers)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__GroupMemb__userI__4BAC3F29");
         });
 
         modelBuilder.Entity<Report>(entity =>
         {
-            entity.HasKey(e => e.ReportId).HasName("PK__Report__1C9B4E2D8A805E3F");
+            entity.HasKey(e => e.ReportId).HasName("PK__Report__1C9B4E2D07047EAC");
 
             entity.ToTable("Report");
 
@@ -165,9 +216,9 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.RoleId).HasName("PK__Roles__CD98462AAA58C825");
+            entity.HasKey(e => e.RoleId).HasName("PK__Roles__CD98462AE3805767");
 
-            entity.HasIndex(e => e.RoleName, "UQ__Roles__B1947861F9BA7DB9").IsUnique();
+            entity.HasIndex(e => e.RoleName, "UQ__Roles__B19478610DA8DA64").IsUnique();
 
             entity.Property(e => e.RoleId).HasColumnName("roleId");
             entity.Property(e => e.RoleName)
@@ -177,7 +228,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFF63920AFC");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFF7C2F2708");
 
             entity.Property(e => e.UserId).HasColumnName("userId");
             entity.Property(e => e.Email)
@@ -208,7 +259,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<UserClub>(entity =>
         {
-            entity.HasKey(e => e.UserClubId).HasName("PK__userClub__C5E838BDE1CA383A");
+            entity.HasKey(e => e.UserClubId).HasName("PK__userClub__C5E838BD534FAF11");
 
             entity.ToTable("userClubs");
 
