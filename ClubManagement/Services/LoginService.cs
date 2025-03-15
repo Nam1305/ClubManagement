@@ -1,16 +1,15 @@
-﻿// Trong Services/LoginService.cs
-using DataAccess.Models;
+﻿using DataAccess.Models;
 using Repository;
 
 namespace Services
 {
     public class LoginService
     {
-        private readonly UserRepo repo;
+        private readonly UserRepo _repo;
 
         public LoginService()
         {
-            repo = new UserRepo();
+            _repo = new UserRepo();
         }
 
         public User Login(string username, string password)
@@ -19,15 +18,17 @@ namespace Services
             {
                 return null;
             }
-            var user = repo.GetByUsernameandPassword(username, password);
-            if (user != null && user.UserClubs.Any())
+
+            var user = _repo.GetByUsernameAndPassword(username, password); // Sửa typo
+            if (user == null)
             {
-                int clubId = user.UserClubs.First().ClubId; // Lấy ClubId đầu tiên từ UserClubs
-                user.UserClubs = new List<UserClub> { new UserClub { ClubId = clubId } }; // Cập nhật danh sách UserClubs
+                return null;
             }
 
-            return user;
+            // Cập nhật CurrentUser sau khi đăng nhập thành công
+            CurrentUser.SetUser(user);
 
+            return user;
         }
     }
 }

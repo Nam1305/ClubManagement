@@ -51,7 +51,7 @@ namespace ClubManagement
                     targetWindow = new Chairmanhome(account.UserId, clubId); // Chỉ truyền UserId
                     break;
                 case "vicechairman":
-                    targetWindow = new ViceChairmanhome(account.UserId); // Chỉ truyền UserId
+                    targetWindow = new ViceChairmanhome(); // Chỉ truyền UserId
                     break;
                 case "teamleader":
                     targetWindow = new TeamLeaderhome(account.UserId); // Chỉ truyền UserId

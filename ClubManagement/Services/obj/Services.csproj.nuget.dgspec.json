@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\Services.csproj": {}
+    "D:\\prnproject\\ClubManagement\\ClubManagement\\Services\\Services.csproj": {}
   },
   "projects": {
-    "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
+    "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\thang\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\DataAccess\\obj\\",
+        "projectPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\emkob\\.nuget\\packages\\",
+        "outputPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\thang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\emkob\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -89,20 +89,20 @@
         }
       }
     },
-    "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {
+    "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
+        "projectUniqueName": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
-        "packagesPath": "C:\\Users\\thang\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Repository\\obj\\",
+        "projectPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\emkob\\.nuget\\packages\\",
+        "outputPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\thang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\emkob\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -117,8 +117,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj"
+              "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj"
               }
             }
           }
@@ -164,20 +164,20 @@
         }
       }
     },
-    "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\Services.csproj": {
+    "D:\\prnproject\\ClubManagement\\ClubManagement\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\Services.csproj",
+        "projectUniqueName": "D:\\prnproject\\ClubManagement\\ClubManagement\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\Services.csproj",
-        "packagesPath": "C:\\Users\\thang\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\obj\\",
+        "projectPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\Services\\Services.csproj",
+        "packagesPath": "C:\\Users\\emkob\\.nuget\\packages\\",
+        "outputPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\thang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\emkob\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -192,8 +192,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {
-                "projectPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj"
+              "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {
+                "projectPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj"
               }
             }
           }

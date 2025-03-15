@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
 
 namespace DataAccess.Models;
 
@@ -19,9 +17,15 @@ public partial class ClubManagementContext : DbContext
 
     public virtual DbSet<Club> Clubs { get; set; }
 
+    public virtual DbSet<ClubTask> ClubTasks { get; set; }
+
     public virtual DbSet<Event> Events { get; set; }
 
     public virtual DbSet<EventParticipant> EventParticipants { get; set; }
+
+    public virtual DbSet<Group> Groups { get; set; }
+
+    public virtual DbSet<GroupMember> GroupMembers { get; set; }
 
     public virtual DbSet<Report> Reports { get; set; }
 
@@ -32,21 +36,14 @@ public partial class ClubManagementContext : DbContext
     public virtual DbSet<UserClub> UserClubs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var builder = new ConfigurationBuilder();
-        builder.SetBasePath(Directory.GetCurrentDirectory());
-        builder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-        var configuration = builder.Build();
-        optionsBuilder.UseSqlServer(configuration.GetConnectionString("Default"));
-    }
-    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-    //        => optionsBuilder.UseSqlServer("Server=LAPTOP-O6NI576I\\SQLEXPRESS;uid=sa;password=123;database=ClubManagement;Encrypt=True;TrustServerCertificate=True");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-Q1O37LP\\DAITNA;Database=ClubManagement;User Id=sa;Password=sa;TrustServerCertificate=true;Trusted_Connection=SSPI;Encrypt=false;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Club>(entity =>
         {
-            entity.HasKey(e => e.ClubId).HasName("PK__Clubs__DF4AEAB2C6036AC0");
+            entity.HasKey(e => e.ClubId).HasName("PK__Clubs__DF4AEAB2A246BABA");
 
             entity.Property(e => e.ClubId).HasColumnName("clubId");
             entity.Property(e => e.ClubName)
@@ -61,9 +58,51 @@ public partial class ClubManagementContext : DbContext
                 .HasColumnName("status");
         });
 
+        modelBuilder.Entity<ClubTask>(entity =>
+        {
+            entity.HasKey(e => e.TaskId).HasName("PK__ClubTask__DD5D5A42C767FA04");
+
+            entity.ToTable("ClubTask");
+
+            entity.Property(e => e.TaskId).HasColumnName("taskId");
+            entity.Property(e => e.AssignedBy).HasColumnName("assignedBy");
+            entity.Property(e => e.AssignedTo).HasColumnName("assignedTo");
+            entity.Property(e => e.ClubId).HasColumnName("clubId");
+            entity.Property(e => e.Description)
+                .HasMaxLength(255)
+                .HasColumnName("description");
+            entity.Property(e => e.DueDate).HasColumnName("dueDate");
+            entity.Property(e => e.GroupId).HasColumnName("groupId");
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .HasColumnName("status");
+            entity.Property(e => e.TaskName)
+                .HasMaxLength(255)
+                .HasColumnName("taskName");
+
+            entity.HasOne(d => d.AssignedByNavigation).WithMany(p => p.ClubTaskAssignedByNavigations)
+                .HasForeignKey(d => d.AssignedBy)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__ClubTask__assign__5535A963");
+
+            entity.HasOne(d => d.AssignedToNavigation).WithMany(p => p.ClubTaskAssignedToNavigations)
+                .HasForeignKey(d => d.AssignedTo)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__ClubTask__assign__5441852A");
+
+            entity.HasOne(d => d.Club).WithMany(p => p.ClubTasks)
+                .HasForeignKey(d => d.ClubId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__ClubTask__clubId__5629CD9C");
+
+            entity.HasOne(d => d.Group).WithMany(p => p.ClubTasks)
+                .HasForeignKey(d => d.GroupId)
+                .HasConstraintName("FK__ClubTask__groupI__571DF1D5");
+        });
+
         modelBuilder.Entity<Event>(entity =>
         {
-            entity.HasKey(e => e.EventId).HasName("PK__Events__2DC7BD09EEC1B394");
+            entity.HasKey(e => e.EventId).HasName("PK__Events__2DC7BD097531EE11");
 
             entity.Property(e => e.EventId).HasColumnName("eventId");
             entity.Property(e => e.ClubId).HasColumnName("clubId");
@@ -89,7 +128,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<EventParticipant>(entity =>
         {
-            entity.HasKey(e => e.EventParticipantId).HasName("PK__EventPar__29D5D90B106521AA");
+            entity.HasKey(e => e.EventParticipantId).HasName("PK__EventPar__29D5D90BDEE1BBB3");
 
             entity.Property(e => e.EventParticipantId).HasColumnName("eventParticipantId");
             entity.Property(e => e.EventId).HasColumnName("eventId");
@@ -109,9 +148,51 @@ public partial class ClubManagementContext : DbContext
                 .HasConstraintName("FKEventParti840496");
         });
 
+        modelBuilder.Entity<Group>(entity =>
+        {
+            entity.HasKey(e => e.GroupId).HasName("PK__Groups__88C1034D2B994E9B");
+
+            entity.Property(e => e.GroupId).HasColumnName("groupId");
+            entity.Property(e => e.ClubId).HasColumnName("clubId");
+            entity.Property(e => e.CreatedAt).HasColumnName("createdAt");
+            entity.Property(e => e.GroupName)
+                .HasMaxLength(255)
+                .HasColumnName("groupName");
+            entity.Property(e => e.LeaderId).HasColumnName("leaderId");
+
+            entity.HasOne(d => d.Club).WithMany(p => p.Groups)
+                .HasForeignKey(d => d.ClubId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Groups__clubId__4CA06362");
+
+            entity.HasOne(d => d.Leader).WithMany(p => p.Groups)
+                .HasForeignKey(d => d.LeaderId)
+                .HasConstraintName("FK__Groups__leaderId__4D94879B");
+        });
+
+        modelBuilder.Entity<GroupMember>(entity =>
+        {
+            entity.HasKey(e => e.GroupMemberId).HasName("PK__GroupMem__2E09DC7434201CEB");
+
+            entity.Property(e => e.GroupMemberId).HasColumnName("groupMemberId");
+            entity.Property(e => e.GroupId).HasColumnName("groupId");
+            entity.Property(e => e.JoinedAt).HasColumnName("joinedAt");
+            entity.Property(e => e.UserId).HasColumnName("userId");
+
+            entity.HasOne(d => d.Group).WithMany(p => p.GroupMembers)
+                .HasForeignKey(d => d.GroupId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__GroupMemb__group__5070F446");
+
+            entity.HasOne(d => d.User).WithMany(p => p.GroupMembers)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__GroupMemb__userI__5165187F");
+        });
+
         modelBuilder.Entity<Report>(entity =>
         {
-            entity.HasKey(e => e.ReportId).HasName("PK__Report__1C9B4E2D74BFA0D7");
+            entity.HasKey(e => e.ReportId).HasName("PK__Report__1C9B4E2DFF05E917");
 
             entity.ToTable("Report");
 
@@ -135,9 +216,9 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.RoleId).HasName("PK__Roles__CD98462AB181124E");
+            entity.HasKey(e => e.RoleId).HasName("PK__Roles__CD98462AE3EE97DE");
 
-            entity.HasIndex(e => e.RoleName, "UQ__Roles__B19478610524638B").IsUnique();
+            entity.HasIndex(e => e.RoleName, "UQ__Roles__B19478611CB272A1").IsUnique();
 
             entity.Property(e => e.RoleId).HasColumnName("roleId");
             entity.Property(e => e.RoleName)
@@ -147,7 +228,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFF52EB6095");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFF25D3BCB2");
 
             entity.Property(e => e.UserId).HasColumnName("userId");
             entity.Property(e => e.Email)
@@ -178,7 +259,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<UserClub>(entity =>
         {
-            entity.HasKey(e => e.UserClubId).HasName("PK__userClub__C5E838BDD01572D0");
+            entity.HasKey(e => e.UserClubId).HasName("PK__userClub__C5E838BD060BCF50");
 
             entity.ToTable("userClubs");
 

@@ -1,22 +1,62 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\",
+  "WorkspaceRootPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\repository\\chairmanrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|solutionrelative:repository\\chairmanrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\repository\\grouprepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|solutionrelative:repository\\grouprepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\clubmanagement\\chairmanhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\chairmanhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\clubmanagement\\vicechairmanhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\vicechairmanhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{461C5FC1-FEE2-4535-B680-4F622116E9D1}|Services\\Services.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\services\\chairmanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{461C5FC1-FEE2-4535-B680-4F622116E9D1}|Services\\Services.csproj|solutionrelative:services\\chairmanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\clubmanagement\\vicechairmanhome.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\vicechairmanhome.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|c:\\users\\thang\\downloads\\prn clone\\clubmanagement\\clubmanagement\\clubmanagement\\chairmanhome.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\chairmanhome.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\clubmanagement\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\dataaccess\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\dataaccess\\models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\repository\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|solutionrelative:repository\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\dataaccess\\models\\groupmember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\models\\groupmember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\repository\\taskrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|solutionrelative:repository\\taskrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\dataaccess\\models\\clubtask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\models\\clubtask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\dataaccess\\models\\clubmanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BBBF258-C9DA-42E9-B71F-3EBDADBB344D}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\models\\clubmanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\clubmanagement\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\repository\\userclubrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|solutionrelative:repository\\userclubrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{461C5FC1-FEE2-4535-B680-4F622116E9D1}|Services\\Services.csproj|d:\\prnproject\\clubmanagement\\clubmanagement\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{461C5FC1-FEE2-4535-B680-4F622116E9D1}|Services\\Services.csproj|solutionrelative:services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,54 +82,177 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ChairManService.cs",
-              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\ChairManService.cs",
-              "RelativeDocumentMoniker": "Services\\ChairManService.cs",
-              "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\ChairManService.cs",
-              "RelativeToolTip": "Services\\ChairManService.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwCAAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T17:08:27.014Z",
+              "DocumentIndex": 3,
+              "Title": "Styles.xaml",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\ClubManagement\\Styles.xaml",
+              "RelativeDocumentMoniker": "ClubManagement\\Styles.xaml",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\ClubManagement\\Styles.xaml",
+              "RelativeToolTip": "ClubManagement\\Styles.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-15T12:26:08.903Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Chairmanhome.xaml",
-              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\Chairmanhome.xaml",
-              "RelativeDocumentMoniker": "ClubManagement\\Chairmanhome.xaml",
-              "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\Chairmanhome.xaml",
-              "RelativeToolTip": "ClubManagement\\Chairmanhome.xaml",
+              "DocumentIndex": 2,
+              "Title": "ViceChairmanhome.xaml",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\ClubManagement\\ViceChairmanhome.xaml",
+              "RelativeDocumentMoniker": "ClubManagement\\ViceChairmanhome.xaml",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\ClubManagement\\ViceChairmanhome.xaml",
+              "RelativeToolTip": "ClubManagement\\ViceChairmanhome.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-12T17:05:29.651Z",
+              "WhenOpened": "2025-03-15T12:16:23.894Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Group.cs",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\Models\\Group.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Models\\Group.cs",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\Models\\Group.cs",
+              "RelativeToolTip": "DataAccess\\Models\\Group.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T11:18:22.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Event.cs",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\Models\\Event.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Models\\Event.cs",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\Models\\Event.cs",
+              "RelativeToolTip": "DataAccess\\Models\\Event.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T11:09:51.073Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ChairmanRepo.cs",
-              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Repository\\ChairmanRepo.cs",
-              "RelativeDocumentMoniker": "Repository\\ChairmanRepo.cs",
-              "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Repository\\ChairmanRepo.cs",
-              "RelativeToolTip": "Repository\\ChairmanRepo.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAkwFkAAAAAAAAAAAAAAA==",
+              "Title": "GroupRepo.cs",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\GroupRepo.cs",
+              "RelativeDocumentMoniker": "Repository\\GroupRepo.cs",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\GroupRepo.cs",
+              "RelativeToolTip": "Repository\\GroupRepo.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAAAD0AAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T17:02:56.128Z",
+              "WhenOpened": "2025-03-15T11:00:04.23Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Chairmanhome.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\Chairmanhome.xaml.cs",
-              "RelativeDocumentMoniker": "ClubManagement\\Chairmanhome.xaml.cs",
-              "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\Chairmanhome.xaml.cs",
-              "RelativeToolTip": "ClubManagement\\Chairmanhome.xaml.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAqwG0AAAAtAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "TaskRepo.cs",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\TaskRepo.cs",
+              "RelativeDocumentMoniker": "Repository\\TaskRepo.cs",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\TaskRepo.cs",
+              "RelativeToolTip": "Repository\\TaskRepo.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAQwFoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T16:53:05.869Z",
+              "WhenOpened": "2025-03-15T08:00:16.076Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ViceChairmanhome.xaml.cs",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\ClubManagement\\ViceChairmanhome.xaml.cs",
+              "RelativeDocumentMoniker": "ClubManagement\\ViceChairmanhome.xaml.cs",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\ClubManagement\\ViceChairmanhome.xaml.cs",
+              "RelativeToolTip": "ClubManagement\\ViceChairmanhome.xaml.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAewCYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T07:37:15.327Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ClubTask.cs",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\Models\\ClubTask.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Models\\ClubTask.cs",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\Models\\ClubTask.cs",
+              "RelativeToolTip": "DataAccess\\Models\\ClubTask.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAowBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T08:04:51.379Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserRepo.cs",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\UserRepo.cs",
+              "RelativeDocumentMoniker": "Repository\\UserRepo.cs",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\UserRepo.cs",
+              "RelativeToolTip": "Repository\\UserRepo.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAMwCoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T07:31:47.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GroupMember.cs",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\Models\\GroupMember.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Models\\GroupMember.cs",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\Models\\GroupMember.cs",
+              "RelativeToolTip": "DataAccess\\Models\\GroupMember.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T11:18:36.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ClubManagementContext.cs",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\Models\\ClubManagementContext.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Models\\ClubManagementContext.cs",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\Models\\ClubManagementContext.cs",
+              "RelativeToolTip": "DataAccess\\Models\\ClubManagementContext.cs",
+              "ViewState": "AgIAAP4AAAAAAAAAAAAAwBUBAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T08:02:45.747Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "LoginWindow.xaml.cs",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\ClubManagement\\LoginWindow.xaml.cs",
+              "RelativeDocumentMoniker": "ClubManagement\\LoginWindow.xaml.cs",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\ClubManagement\\LoginWindow.xaml.cs",
+              "RelativeToolTip": "ClubManagement\\LoginWindow.xaml.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAAAE8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T07:34:59.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UserClubRepo.cs",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\UserClubRepo.cs",
+              "RelativeDocumentMoniker": "Repository\\UserClubRepo.cs",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\UserClubRepo.cs",
+              "RelativeToolTip": "Repository\\UserClubRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T07:31:46.487Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LoginService.cs",
+              "DocumentMoniker": "D:\\prnproject\\ClubManagement\\ClubManagement\\Services\\LoginService.cs",
+              "RelativeDocumentMoniker": "Services\\LoginService.cs",
+              "ToolTip": "D:\\prnproject\\ClubManagement\\ClubManagement\\Services\\LoginService.cs",
+              "RelativeToolTip": "Services\\LoginService.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T07:31:20.841Z"
             }
           ]
         }

@@ -41,27 +41,48 @@ namespace Repository
             context.SaveChanges();
         }
 
-        public User GetByUsernameandPassword(string username, string password)
+    
+        public User GetByUsernameAndPassword(string username, string password)
         {
-            var find = context.Users
-                .Include(u => u.Role).Include(u => u.UserClubs)
-                .FirstOrDefault(u => u.Username == username);
-            if (find == null || !BCrypt.Net.BCrypt.Verify(password, find.Password))
+            try
             {
+                var find = context.Users
+                    .Include(u => u.Role)
+                    .Include(u => u.UserClubs)
+                    .ThenInclude(uc => uc.Club) 
+                    .FirstOrDefault(u => u.Username == username);
+
+                if (find == null || !BCrypt.Net.BCrypt.Verify(password, find.Password))
+                {
+                    return null;
+                }
+                CurrentUser.SetUser(find);
+                return find;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi đăng nhập: " + ex.Message);
                 return null;
             }
-            return new User
-            {
-                UserId = find.UserId,
-                Username = find.Username,
-                FullName = find.FullName,
-                Email = find.Email,
-                RoleId = find.RoleId,
-                Role = find.Role,
-                StudentNumber = find.StudentNumber,
-                Status = find.Status,
-                UserClubs = find.UserClubs.ToList() // Trả về danh sách UserClubs
-            };
+        }
+
+        public List<User> GetGroupMembersForLeader(int groupId)
+        {
+            if (CurrentUser.RoleId != 4) 
+                throw new UnauthorizedAccessException("Only Group Leader can view group members.");
+
+            var group = context.Groups.FirstOrDefault(g => g.GroupId == groupId && g.LeaderId == CurrentUser.UserId);
+            if (group == null)
+                throw new UnauthorizedAccessException("You are not the leader of this group.");
+
+            return context.Users
+                .Join(context.GroupMembers,
+                    u => u.UserId,
+                    gm => gm.UserId,
+                    (u, gm) => new { User = u, GroupMember = gm })
+                .Where(x => x.GroupMember.GroupId == groupId)
+                .Select(x => x.User)
+                .ToList();
         }
 
         public User GetByEmail(string email)
@@ -97,7 +118,23 @@ namespace Repository
         {
             return context.Roles.FirstOrDefault(r => r.RoleName.ToLower() == roleName.ToLower());
         }
+        public List<User> GetClubMembers(int clubId)
+        {
+            return context.Users
+                .Join(context.UserClubs,
+                    u => u.UserId,
+                    uc => uc.UserId,
+                    (u, uc) => new { User = u, UserClub = uc })
+                .Where(x => x.UserClub.ClubId == clubId && x.UserClub.Status == "approved")
+                .Select(x => x.User)
+                .ToList();
+        }
 
+        public void UpdateUserByRole(User user)
+        {
+            context.Users.Update(user);
+            context.SaveChanges();
+        }
 
 
         //Code cua Pham Hoang Nam

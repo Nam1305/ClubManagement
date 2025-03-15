@@ -9,7 +9,7 @@ public partial class Event
 
     public string? EventName { get; set; }
 
-    public string? Status { get; set; }
+    public string? Status { get; set; } = "Upcoming";
 
     public string? Description { get; set; }
 

@@ -21,7 +21,15 @@ public partial class User
 
     public string? Status { get; set; }
 
+    public virtual ICollection<ClubTask> ClubTaskAssignedByNavigations { get; set; } = new List<ClubTask>();
+
+    public virtual ICollection<ClubTask> ClubTaskAssignedToNavigations { get; set; } = new List<ClubTask>();
+
     public virtual ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
+
+    public virtual ICollection<GroupMember> GroupMembers { get; set; } = new List<GroupMember>();
+
+    public virtual ICollection<Group> Groups { get; set; } = new List<Group>();
 
     public virtual Role? Role { get; set; }
 

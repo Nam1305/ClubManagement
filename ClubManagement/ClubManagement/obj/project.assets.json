@@ -4606,23 +4606,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\thang\\.nuget\\packages\\": {},
+    "C:\\Users\\emkob\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\ClubManagement.csproj",
+      "projectUniqueName": "D:\\prnproject\\ClubManagement\\ClubManagement\\ClubManagement\\ClubManagement.csproj",
       "projectName": "ClubManagement",
-      "projectPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\ClubManagement.csproj",
-      "packagesPath": "C:\\Users\\thang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\obj\\",
+      "projectPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\ClubManagement\\ClubManagement.csproj",
+      "packagesPath": "C:\\Users\\emkob\\.nuget\\packages\\",
+      "outputPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\ClubManagement\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\thang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\emkob\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4637,8 +4637,8 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Services\\Services.csproj"
+            "D:\\prnproject\\ClubManagement\\ClubManagement\\Services\\Services.csproj": {
+              "projectPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\Services\\Services.csproj"
             }
           }
         }

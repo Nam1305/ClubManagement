@@ -60,6 +60,9 @@
     <Page Update="ResetPasswordWindow .xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="TeamLeaderhome.xaml">
       <SubType>Designer</SubType>
     </Page>
