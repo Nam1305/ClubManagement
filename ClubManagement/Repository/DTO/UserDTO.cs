@@ -16,6 +16,7 @@ namespace Repository.DTO
         public string StudentNumber { get; set; }
         public string Username { get; set; }
         public string ClubName { get; set; }
+        public string Status { get; set; }
         public DateTime? AppliedAt { get; set; }
         public DateTime? ApprovedAt { get; set; }
     }

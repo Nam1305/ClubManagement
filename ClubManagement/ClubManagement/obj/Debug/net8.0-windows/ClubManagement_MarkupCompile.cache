@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\
 ClubManagement
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\App.xaml
-10-834913241
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\App.xaml
+151726409933
 
-13-1338221892
-248-127891208
-Adminhome.xaml;Chairmanhome.xaml;ClubManageForAdminWindow.xaml;LoginWindow.xaml;MainWindow.xaml;Memberhome.xaml;RegisterWindow.xaml;ResetPasswordWindow .xaml;TeamLeaderhome.xaml;ViceChairmanhome.xaml;
+18-561388400
+248-1077108811
+Adminhome.xaml;ChairmanApprove.xaml;ChairmanEvent.xaml;Chairmanhome.xaml;ChairmanMenu.xaml;ChairmanReport.xaml;ChairmanTask.xaml;ClubManageForAdminWindow.xaml;LoginWindow.xaml;MainWindow.xaml;Memberhome.xaml;RegisterWindow.xaml;ResetPasswordWindow .xaml;TeamLeaderhome.xaml;ViceChairmanhome.xaml;
 
 False
 

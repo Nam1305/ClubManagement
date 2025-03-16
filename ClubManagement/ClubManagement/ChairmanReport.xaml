@@ -1,0 +1,57 @@
+﻿<Window x:Class="ClubManagement.ChairmanReport"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClubManagement"
+        mc:Ignorable="d"
+        Title="ChairmanReport" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition  Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+
+        </Grid.RowDefinitions>
+
+        <DataGrid x:Name="dgReports" Grid.Column="2" Grid.RowSpan="8" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgReports_SelectionChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Created Date" Binding="{Binding CreatedDate}"/>
+                <DataGridTextColumn Width="*" Header="Report Id" Binding="{Binding ReportId}"/>
+                <DataGridTextColumn Width="*" Header="Semester" Binding="{Binding Semester}"/>
+                <DataGridTextColumn Width="*" Header="Member Changes" Binding="{Binding MemberChanges}"/>
+                <DataGridTextColumn Width="*" Header="Event Summary" Binding="{Binding EventSummary}"/>
+                <DataGridTextColumn Width="*" Header="Participation status" Binding="{Binding ParticipationStatus}"/>
+                <DataGridTextColumn Width="*" Header="ClubId" Binding="{Binding ClubId}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <Label Grid.Row="0" Grid.Column="1" Content="View Reports" Foreground="Red" HorizontalAlignment="Center" FontSize="25"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Report Id:"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtReportId" IsReadOnly="True"></TextBox>
+        <Label Grid.Row="2" Grid.Column="0" Content="Create Date:"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Semester:"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Member changes:"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Event summary:"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="Participation status:"/>
+        <Label Grid.Row="7" Grid.Column="0" Content="Club Id:"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtCreateDate" IsReadOnly="True"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtSemester" IsReadOnly="True"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtMemberChanges" IsReadOnly="True"></TextBox>
+        <TextBox Grid.Row="5" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtEventSummary" IsReadOnly="True"></TextBox>
+        <TextBox Grid.Row="6" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtParticipationStatus" IsReadOnly="True"></TextBox>
+        <TextBox Grid.Row="7" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtClubId" IsReadOnly="True"></TextBox>
+
+    </Grid>
+</Window>

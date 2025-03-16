@@ -213,7 +213,7 @@ namespace ClubManagement {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ClubManagement;component/adminhome.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ClubManagement;V1.0.0.0;component/adminhome.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Adminhome.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

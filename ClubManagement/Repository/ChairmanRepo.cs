@@ -30,7 +30,9 @@ namespace Repository
                     RoleName = user.Role != null ? user.Role.RoleName : "No Role",
                     StudentNumber = user.StudentNumber,
                     Username = user.Username,
+                    Status = user.Status,
                     ClubName = user.UserClubs.FirstOrDefault().Club.ClubName,
+
                     //AppliedAt = user.UserClubs.FirstOrDefault().AppliedAt,
                     //ApprovedAt = user.UserClubs.FirstOrDefault().ApprovedAt
                 })
@@ -54,11 +56,97 @@ namespace Repository
 
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(User user , int? clubId)
         {
-            clubManagementContext.Update(user);
+            clubManagementContext.Users.Update(user);
+            clubManagementContext.SaveChanges();
 
+            //UserClub userClub = new UserClub
+            //{
+            //    UserId = user.UserId,
+            //    ClubId = clubId,
+            //};
+            //clubManagementContext.UserClubs.Update(userClub);
+            //clubManagementContext.SaveChanges();
         }
 
+        public void DeleteUser(int userId)
+        {
+            // Xóa tất cả các bản ghi UserClub liên quan trước
+            var userClubs = clubManagementContext.UserClubs
+                .Where(uc => uc.UserId == userId).ToList();
+
+            clubManagementContext.UserClubs.RemoveRange(userClubs);
+            clubManagementContext.SaveChanges(); // Lưu lại trước khi xóa User
+
+            // Sau đó xóa User
+            var user = clubManagementContext.Users.FirstOrDefault(u => u.UserId == userId);
+            if (user != null)
+            {
+                clubManagementContext.Users.Remove(user);
+                clubManagementContext.SaveChanges();
+            }
+        }
+
+        public List<ClubTask> GetAllTask(int clubId)
+        {
+            return clubManagementContext.ClubTasks.Where(x => x.ClubId == clubId).ToList();
+        }
+
+        public void AddTask(ClubTask ct)
+        {
+            clubManagementContext.ClubTasks.Add(ct);
+            clubManagementContext.SaveChanges();
+        }
+
+        public void UpdateTask(ClubTask ct)
+        {
+            if (ct != null)
+            {
+                clubManagementContext.ClubTasks.Update(ct);
+                clubManagementContext.SaveChanges();
+            }
+        }
+
+        public void DeleteTask(ClubTask ct)
+        {
+            //ClubTask find = clubManagementContext.ClubTasks.Where(x => x.TaskId == ct.TaskId).FirstOrDefault();
+            if (ct != null)
+            {
+                clubManagementContext.ClubTasks.Remove(ct);
+                clubManagementContext.SaveChanges();
+            }
+        }
+
+        public List<Event> GetAllEvents(int clubId)
+        {
+            return clubManagementContext.Events.Where(x => x.ClubId == clubId).ToList();
+        }
+
+        public void AddEvent(Event e)
+        {
+            clubManagementContext.Events.Add(e);
+            clubManagementContext.SaveChanges();
+        }
+
+        public void UpdateEvent(Event e) { 
+            clubManagementContext.Events.Update(e);
+            clubManagementContext.SaveChanges();
+        }
+
+        public void DeleteEvent(Event e)
+        {
+            clubManagementContext.Events.Remove(e);
+            clubManagementContext.SaveChanges();
+        }
+
+        public List<Report> GetAllReport(int clubId) { 
+            return clubManagementContext.Reports.Where(x => x.ClubId==clubId).ToList();
+        }
+
+        public List<UserClub> GetAllUserClub(int clubId)
+        {
+            return clubManagementContext.UserClubs.Where(x => x.ClubId == clubId).ToList();
+        }
     }
 }

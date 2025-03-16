@@ -27,7 +27,7 @@ namespace ClubManagement
 
         ChairManService ChairManService;
         RoleService RoleService;
-        public Chairmanhome()  // Truyền giá trị mặc định (0, null)
+        public Chairmanhome() 
         {
         }
 
@@ -38,7 +38,7 @@ namespace ClubManagement
             LoadCbRole();
             this.userId = userId;
             this.clubId = clubId;
-            GetAllUserByClubId(1);
+            GetAllUserByClubId(clubId);
         }
 
         private void GetAllUserByClubId(int ClubId)
@@ -78,6 +78,7 @@ namespace ClubManagement
             UserDTO user = dgMembers.SelectedItem as UserDTO;
             if (user != null)
             {
+                txtUserId.Text = user.UserId.ToString();
                 txtFullname.Text = user.FullName;
                 txtEmail.Text = user.Email;
                 txtStudentNumber.Text = user.StudentNumber;
@@ -90,7 +91,24 @@ namespace ClubManagement
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            
+            User user = new User();
+            user.UserId = Int32.Parse(txtUserId.Text);
+            user.FullName = txtFullname.Text;
+            user.Email = txtEmail.Text;
+            user.RoleId = (int)cbRole.SelectedValue;
+            user.StudentNumber = txtStudentNumber.Text;
+            user.Username = txtUsername.Text;
+            ChairManService = new ChairManService();
+
+            ChairManService.UpdateUser(user, clubId);
+            GetAllUserByClubId(clubId);
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            int userId = Int32.Parse(txtUserId.Text);
+            ChairManService.DeleteUser(userId);
+            GetAllUserByClubId(clubId);
         }
     }
 }

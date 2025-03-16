@@ -38,8 +38,14 @@ namespace ClubManagement
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            if (account.UserClubs == null || !account.UserClubs.Any())
+            {
+                MessageBox.Show("Chairman không thuộc câu lạc bộ nào!", "Lỗi đăng nhập",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             int clubId = account.UserClubs.FirstOrDefault().ClubId; // Lấy ClubId đầu tiên
-
+           
             Window targetWindow = null;
             // Kiểm tra vai trò dựa trên Role.RoleName
             switch (account.Role?.RoleName?.ToLower())
@@ -48,7 +54,7 @@ namespace ClubManagement
                     targetWindow = new Adminhome();
                     break;
                 case "chairman":
-                    targetWindow = new Chairmanhome(account.UserId, clubId); // Chỉ truyền UserId
+                    targetWindow = new ChairmanMenu(account.UserId , clubId);
                     break;
                 case "vicechairman":
                     targetWindow = new ViceChairmanhome(account.UserId); // Chỉ truyền UserId
