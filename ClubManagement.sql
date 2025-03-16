@@ -88,9 +88,11 @@ CREATE TABLE Groups (
     clubId INT NOT NULL,
     leaderId INT, -- Trưởng nhóm
     createdAt DATE NOT NULL,
+    status NVARCHAR(50) NOT NULL DEFAULT N'Active', -- Trạng thái nhóm
     FOREIGN KEY (clubId) REFERENCES Clubs(clubId),
     FOREIGN KEY (leaderId) REFERENCES Users(userId)
-);-- Tạo bảng GroupMembers (Thành viên trong nhóm)
+); 
+
 CREATE TABLE GroupMembers (
     groupMemberId INT IDENTITY PRIMARY KEY,
     groupId INT NOT NULL,
