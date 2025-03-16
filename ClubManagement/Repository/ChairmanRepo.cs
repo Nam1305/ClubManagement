@@ -139,5 +139,14 @@ namespace Repository
             clubManagementContext.Events.Remove(e);
             clubManagementContext.SaveChanges();
         }
+
+        public List<Report> GetAllReport(int clubId) { 
+            return clubManagementContext.Reports.Where(x => x.ClubId==clubId).ToList();
+        }
+
+        public List<UserClub> GetAllUserClub(int clubId)
+        {
+            return clubManagementContext.UserClubs.Where(x => x.ClubId == clubId).ToList();
+        }
     }
 }

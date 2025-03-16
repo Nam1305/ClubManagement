@@ -69,5 +69,14 @@ namespace Services
         {
             repo.DeleteEvent(e);
         }
+
+        public List<Report> Reports(int clubId) { 
+            return repo.GetAllReport(clubId);
+        }
+
+        public List<UserClub> UserClubs(int clubId)
+        {
+            return repo.GetAllUserClub(clubId);
+        }
     }
 }

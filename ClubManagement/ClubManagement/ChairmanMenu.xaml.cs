@@ -51,5 +51,26 @@ namespace ClubManagement
             events.Show();
             this.Close();
         }
+
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            Window reports = new ChairmanReport(userId, clubId);
+            reports.Show();
+            this.Close();
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            Window login = new LoginWindow();
+            login.Show();
+            this.Close();
+        }
+
+        private void btnApprove_Click(object sender, RoutedEventArgs e)
+        {
+            Window approve = new ChairmanApprove(userId , clubId);
+            approve.Show();
+            this.Close();
+        }
     }
 }

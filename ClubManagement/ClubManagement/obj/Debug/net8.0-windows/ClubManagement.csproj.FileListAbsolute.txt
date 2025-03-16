@@ -673,3 +673,7 @@ C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanTask.baml
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanEvent.g.cs
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanEvent.baml
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanReport.g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanReport.baml
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanApprove.g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanApprove.baml

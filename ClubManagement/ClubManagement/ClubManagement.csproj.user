@@ -10,6 +10,9 @@
     <Compile Update="Adminhome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ChairmanApprove.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ChairmanEvent.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -17,6 +20,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ChairmanMenu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ChairmanReport.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ChairmanTask.xaml.cs">
@@ -48,6 +54,9 @@
     <Page Update="Adminhome.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="ChairmanApprove.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="ChairmanEvent.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -55,6 +64,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ChairmanMenu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ChairmanReport.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ChairmanTask.xaml">

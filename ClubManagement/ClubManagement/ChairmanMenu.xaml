@@ -10,11 +10,12 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Welcome to Club Management" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
 
+            <Button Content="Approve Membership" Width="200" Height="50" Name="btnApprove" Click="btnApprove_Click" />
             <Button Content="Manage Members" Width="200" Height="50" Name="btnMembers" Click="btnMembers_Click" />
             <Button Content="Manage Events" Width="200" Height="50" Name="btnEvents" Click="btnEvents_Click" />
             <Button Content="Assign Task" Width="200" Height="50" Name="btnTask" Click="btnTask_Click"/>
-            <Button Content="View Reports" Width="200" Height="50" />
-            <Button Content="Logout" Width="200" Height="50" Background="Blue" Foreground="White" />
+            <Button Content="View Reports" Width="200" Height="50" Name="btnReport" Click="btnReport_Click" />
+            <Button Content="Logout" Width="200" Height="50" Background="Blue" Foreground="White" Name="btnLogout" Click="btnLogout_Click" />
         </StackPanel>
     </Grid>
 </Window>
