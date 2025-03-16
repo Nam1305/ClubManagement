@@ -49,8 +49,7 @@
               "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\ClubManagement\\ChairmanMenu.xaml",
               "RelativeToolTip": "ClubManagement\\ChairmanMenu.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-15T16:06:14.91Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-15T16:06:14.91Z"
             },
             {
               "$type": "Document",
@@ -62,8 +61,7 @@
               "RelativeToolTip": "ClubManagement\\ChairmanEvent.xaml.cs",
               "ViewState": "AgIAAE8AAAAAAAAAAAAAAHEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T14:50:49.862Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-15T14:50:49.862Z"
             },
             {
               "$type": "Document",
@@ -75,8 +73,7 @@
               "RelativeToolTip": "Services\\ChairManService.cs",
               "ViewState": "AgIAADgAAAAAAAAAAAAUwEUAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T12:29:29.769Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-15T12:29:29.769Z"
             },
             {
               "$type": "Document",
@@ -86,7 +83,7 @@
               "RelativeDocumentMoniker": "Repository\\ChairmanRepo.cs",
               "ToolTip": "C:\\Users\\thang\\Downloads\\prn clone\\ClubManagement\\ClubManagement\\Repository\\ChairmanRepo.cs",
               "RelativeToolTip": "Repository\\ChairmanRepo.cs",
-              "ViewState": "AgIAAHgAAAAAAAAAAAAuwIsAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAHgAAAAAAAAAAAA+wIsAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-14T15:30:23.301Z",
               "EditorCaption": ""
