@@ -498,6 +498,18 @@ C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement.pdb
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement.genruntimeconfig.cache
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ref\ClubManagement.dll
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManageForAdminWindow.g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManageForAdminWindow.baml
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanMenu.g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanMenu.baml
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanTask.g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanTask.baml
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanEvent.g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanEvent.baml
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanReport.g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanReport.baml
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanApprove.g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanApprove.baml
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\ClubManagement.exe
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\appsettings.json
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\ClubManagement.deps.json
@@ -631,7 +643,13 @@ D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\Repository.pdb
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement.csproj.AssemblyReference.cache
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\Adminhome.g.cs
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanApprove.g.cs
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanEvent.g.cs
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\Chairmanhome.g.cs
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanMenu.g.cs
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanReport.g.cs
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanTask.g.cs
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManageForAdminWindow.g.cs
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\LoginWindow.g.cs
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\MainWindow.g.cs
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\Memberhome.g.cs
@@ -643,7 +661,13 @@ D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement_MarkupCompile.cache
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement_MarkupCompile.lref
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\Adminhome.baml
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanApprove.baml
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanEvent.baml
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\Chairmanhome.baml
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanMenu.baml
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanReport.baml
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanTask.baml
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManageForAdminWindow.baml
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\LoginWindow.baml
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\MainWindow.baml
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\Memberhome.baml
@@ -663,17 +687,7 @@ D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement.pdb
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement.genruntimeconfig.cache
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ref\ClubManagement.dll
-D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManageForAdminWindow.g.cs
-D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManageForAdminWindow.baml
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManageForAdminWindow.g.cs
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManageForAdminWindow.baml
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanMenu.g.cs
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanMenu.baml
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanTask.g.cs
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanTask.baml
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanEvent.g.cs
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanEvent.baml
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanReport.g.cs
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanReport.baml
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanApprove.g.cs
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanApprove.baml
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\UpdateMemeberProfile.g.cs
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\UpdateMemeberProfile.baml
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ListAllClub.g.cs
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ListAllClub.baml

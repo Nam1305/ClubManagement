@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DataAccess.Models;
+using Repository;
+
+namespace Services
+{
+    public class UserService
+    {
+        UserRepo userRepo;
+        ClubRepo clubRepo;
+        public UserService()
+        {
+            userRepo = new UserRepo();
+            clubRepo = new ClubRepo();
+        }
+
+        public User GetUserByUserId(int userId)
+        {
+            return userRepo.GetUserByUserId(userId);
+        }
+
+        public bool UpdateMemberInformation(User user)
+        {
+            return userRepo.UpdateMember(user);
+        }
+
+        public List<Club> SearchClubByName(string name) 
+        {
+            return clubRepo.SearchClubByName(name);
+        }
+
+        public bool JoinClub(int userId, int clubId)
+        {
+            return userRepo.JoinClub(userId, clubId);
+        }
+    }
+}

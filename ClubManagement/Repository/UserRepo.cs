@@ -198,6 +198,65 @@ namespace Repository
             return context.Users.Where(u => u.RoleId == roleId).ToList();
         }
 
+        //Code cua Nam
+        //GetUserByUserId include Role
+        public User GetUserByUserId(int userId)
+        {
+            return context.Users
+                .Include(u => u.Role)
+                .Where(u => u.UserId == userId).FirstOrDefault();
+        }
+
+        public bool UpdateMember(User member)
+        {
+            try
+            {
+                var existingUser = context.Users.FirstOrDefault(u => u.StudentNumber == member.StudentNumber);
+                if (existingUser == null)
+                {
+                    return false; // Không tìm thấy user để cập nhật
+                }
+                existingUser.FullName = member.FullName;
+                existingUser.Email = member.Email;
+                existingUser.RoleId = member.RoleId;
+                existingUser.StudentNumber = member.StudentNumber;
+                existingUser.Username = member.Username;
+                existingUser.Status = member.Status;
+
+                return context.SaveChanges() > 0;
+            }
+            catch (Exception ex)
+            {
+                // Ghi log lỗi nếu cần
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public bool JoinClub(int userId, int clubId)
+        {
+
+            bool alreadyJoined = context.UserClubs.Any(uc => uc.UserId == userId && uc.ClubId == clubId);
+            if (alreadyJoined)
+            {
+                return false; // Người dùng đã xin vào CLB này trước đó
+            }
+            var userClub = new UserClub() 
+            {
+                UserId = userId,
+                ClubId = clubId,
+                Status = "pending",
+                AppliedAt = DateOnly.FromDateTime(DateTime.Now),
+                ApprovedAt = null
+            };
+
+            context.UserClubs.Add(userClub);
+            context.SaveChanges();
+            return true;
+        }
+
+
+
 
 
 

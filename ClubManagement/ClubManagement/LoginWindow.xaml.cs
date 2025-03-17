@@ -1,5 +1,6 @@
 ﻿// Trong ClubManagement/LoginWindow.xaml.cs
 using System.Windows;
+using DataAccess.Models;
 using Services;
 
 namespace ClubManagement
@@ -63,7 +64,7 @@ namespace ClubManagement
                     targetWindow = new TeamLeaderhome(account.UserId); // Chỉ truyền UserId
                     break;
                 case "member":
-                    targetWindow = new Memberhome();
+                    targetWindow = new Memberhome(account.UserId);
                     break;
                 default:
                     MessageBox.Show("Role không hợp lệ!", "Lỗi",
