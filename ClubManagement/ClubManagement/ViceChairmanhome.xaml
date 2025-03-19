@@ -21,16 +21,18 @@
                     <ListView x:Name="GroupsListView">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Group Name" DisplayMemberBinding="{Binding GroupName}" Width="200" />
-                                <GridViewColumn Header="Leader" DisplayMemberBinding="{Binding Leader.FullName}" Width="150" />
+                                <GridViewColumn Header="Group Name" DisplayMemberBinding="{Binding GroupName}" Width="150" />
+                                <GridViewColumn Header="Event" DisplayMemberBinding="{Binding Event.EventName}" Width="150" />
+                                <!-- Thêm cột Event -->
+                                <GridViewColumn Header="Leader" DisplayMemberBinding="{Binding Leader.FullName}" Width="120" />
                                 <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt, StringFormat={}{0:dd/MM/yyyy}}" Width="100" />
-                                <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="100" />
-                                <GridViewColumn Header="Actions">
+                                <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="80" />
+                                <GridViewColumn Header="Actions" Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
                                                 <Button Content="Assign Leader" Tag="{Binding GroupId}" Click="AssignLeader_Click" Margin="0,0,5,0" />
-                                                <Button Content="Update Status" Tag="{Binding GroupId}" Click="UpdateGroupStatus_Click" />
+                                                <Button Content="Update Status" Tag="{Binding GroupId}" Click="UpdateGroupStatus_Click" Margin="0,0,5,0" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -39,7 +41,7 @@
                         </ListView.View>
                     </ListView>
 
-                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Top">
                         <Button x:Name="CreateGroupButton" Content="Create New Group" Click="CreateGroupButton_Click" Width="120" Margin="0,0,0,10" />
                         <TextBlock Text="Assign Task to Group" FontWeight="Bold" Margin="0,20,0,5" />
                         <TextBox x:Name="TaskNameTextBox" Width="150" Margin="0,0,0,5" Text="Enter task name" />
@@ -64,7 +66,7 @@
                                 <GridViewColumn Header="Date" DisplayMemberBinding="{Binding EventDate, StringFormat={}{0:dd/MM/yyyy}}" Width="100" />
                                 <GridViewColumn Header="Location" DisplayMemberBinding="{Binding Location}" Width="150" />
                                 <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="100" />
-                                <GridViewColumn Header="Actions">
+                                <GridViewColumn Header="Actions" Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
@@ -79,7 +81,7 @@
                         </ListView.View>
                     </ListView>
 
-                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Top">
                         <Button x:Name="CreateEventButton" Content="Create New Event" Click="CreateEventButton_Click" Width="120" Margin="0,0,0,10" />
                     </StackPanel>
                 </Grid>

@@ -59,10 +59,10 @@ namespace ClubManagement
 
             try
             {
-                var members = _userRepo.GetClubMembers(CurrentUser.ClubId.Value);
-                if (members == null || !members.Any())
+                var events = _context.Events.Where(e => e.ClubId == CurrentUser.ClubId.Value).ToList();
+                if (events == null || !events.Any())
                 {
-                    MessageBox.Show("No members available in the club!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("No events available in the club!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -76,54 +76,76 @@ namespace ClubManagement
 
                 var grid = new Grid { Margin = new Thickness(10) };
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
-                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
 
-                var lblMembers = new Label { Content = "Select Members:", Style = (Style)FindResource("FormLabelStyle") };
-                Grid.SetRow(lblMembers, 0);
+                var lblEvent = new Label { Content = "Select Event:", VerticalAlignment = VerticalAlignment.Center };
+                Grid.SetRow(lblEvent, 0);
+                var eventComboBox = new ComboBox
+                {
+                    ItemsSource = events,
+                    DisplayMemberPath = "EventName"
+                };
+                Grid.SetRow(eventComboBox, 1);
 
+                var lblMembers = new Label { Content = "Select Members:", VerticalAlignment = VerticalAlignment.Center };
+                Grid.SetRow(lblMembers, 2);
                 var membersListBox = new ListBox
                 {
-                    ItemsSource = members,
-                    DisplayMemberPath = "FullName",
                     SelectionMode = SelectionMode.Multiple,
-                    Style = (Style)FindResource("ListBoxStyle")
+                    Height = 150
                 };
-                Grid.SetRow(membersListBox, 1);
+                Grid.SetRow(membersListBox, 3);
 
-                var lblLeader = new Label { Content = "Select Leader:", Style = (Style)FindResource("FormLabelStyle") };
-                Grid.SetRow(lblLeader, 2);
-
-                var leaderComboBox = new ComboBox
+                eventComboBox.SelectionChanged += (s, args) =>
                 {
-                    DisplayMemberPath = "FullName",
-                    Style = (Style)FindResource("FormInputStyle")
+                    if (eventComboBox.SelectedItem is Event selectedEvent)
+                    {
+                        var participants = _context.EventParticipants
+                            .Where(ep => ep.EventId == selectedEvent.EventId)
+                            .Include(ep => ep.User)
+                            .Select(ep => ep.User)
+                            .ToList();
+                        if (!participants.Any())
+                        {
+                            MessageBox.Show("No participants registered for this event!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            membersListBox.ItemsSource = null;
+                            return;
+                        }
+                        membersListBox.ItemsSource = participants;
+                        membersListBox.DisplayMemberPath = "FullName";
+                    }
+                    else
+                    {
+                        membersListBox.ItemsSource = null; // Xóa danh sách nếu chưa chọn sự kiện
+                    }
                 };
-                Grid.SetRow(leaderComboBox, 3);
 
-                membersListBox.SelectionChanged += (s, args) =>
-                {
-                    var selectedMembers = membersListBox.SelectedItems.Cast<User>().ToList();
-                    leaderComboBox.ItemsSource = selectedMembers;
-                    if (selectedMembers.Any()) leaderComboBox.SelectedIndex = 0;
-                };
-
-                var confirmButton = new Button { Content = "Create Group", Style = (Style)FindResource("ConfirmButtonStyle") };
+                var confirmButton = new Button { Content = "Create Group", Width = 100, Background = System.Windows.Media.Brushes.Green, Foreground = System.Windows.Media.Brushes.White };
                 bool isConfirmed = false;
-                confirmButton.Click += (s, args) => { isConfirmed = true; selectWindow.Close(); };
+                confirmButton.Click += (s, args) =>
+                {
+                    if (eventComboBox.SelectedItem == null || !membersListBox.SelectedItems.Cast<User>().Any())
+                    {
+                        MessageBox.Show("Please select an event and at least one member!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                    isConfirmed = true;
+                    selectWindow.Close();
+                };
 
-                var cancelButton = new Button { Content = "Cancel", Style = (Style)FindResource("CancelButtonStyle") };
+                var cancelButton = new Button { Content = "Cancel", Width = 100, Background = System.Windows.Media.Brushes.Red, Foreground = System.Windows.Media.Brushes.White };
                 cancelButton.Click += (s, args) => selectWindow.Close();
 
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
 
+                grid.Children.Add(lblEvent);
+                grid.Children.Add(eventComboBox);
                 grid.Children.Add(lblMembers);
                 grid.Children.Add(membersListBox);
-                grid.Children.Add(lblLeader);
-                grid.Children.Add(leaderComboBox);
                 grid.Children.Add(confirmButton);
                 grid.Children.Add(cancelButton);
                 Grid.SetRow(confirmButton, 4);
@@ -136,39 +158,117 @@ namespace ClubManagement
 
                 if (!isConfirmed) return;
 
+                var selectedEvent = eventComboBox.SelectedItem as Event;
                 var selectedMembers = membersListBox.SelectedItems.Cast<User>().ToList();
-                if (!selectedMembers.Any())
-                {
-                    MessageBox.Show("Please select at least one member for the group!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-
-                var selectedLeader = leaderComboBox.SelectedItem as User;
-                if (selectedLeader == null)
-                {
-                    MessageBox.Show("Please select a leader for the group!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
 
                 var newGroup = new Group
                 {
                     GroupName = groupName,
                     ClubId = CurrentUser.ClubId.Value,
+                    EventId = selectedEvent.EventId,
                     CreatedAt = DateOnly.FromDateTime(DateTime.Now),
-                    LeaderId = selectedLeader.UserId,
+                    LeaderId = null,
                     Status = "Active"
                 };
-                _groupRepo.CreateGroup(newGroup); // Tạo nhóm
+                _groupRepo.CreateGroup(newGroup);
                 var memberIds = selectedMembers.Select(m => m.UserId).ToList();
-                _groupRepo.AddMembersToGroup(newGroup.GroupId, memberIds); // Thêm thành viên vào nhóm
+                _groupRepo.AddMembersToGroup(newGroup.GroupId, memberIds);
 
-                // Đảm bảo làm mới dữ liệu từ cơ sở dữ liệu
+                AssignLeaderAfterCreation(newGroup.GroupId, selectedMembers);
                 LoadGroups();
-                MessageBox.Show($"Group '{groupName}' created successfully with {selectedLeader.FullName} as leader and {selectedMembers.Count} members!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Group '{groupName}' created successfully for event '{selectedEvent.EventName}' with {selectedMembers.Count} members! Leader assigned.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void AssignLeaderAfterCreation(int groupId, List<User> members)
+        {
+            var leaderWindow = new Window
+            {
+                Title = "Assign Leader to Group",
+                Width = 300,
+                Height = 200,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
+
+            var grid = new Grid { Margin = new Thickness(10) };
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+
+            var lblLeader = new Label { Content = "Select Leader:", VerticalAlignment = VerticalAlignment.Center };
+            Grid.SetRow(lblLeader, 0);
+
+            var leaderComboBox = new ComboBox
+            {
+                ItemsSource = members,
+                DisplayMemberPath = "FullName",
+                SelectedIndex = 0
+            };
+            Grid.SetRow(leaderComboBox, 1);
+
+            var buttonPanel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+            var confirmButton = new Button { Content = "Confirm", Width = 100, Background = System.Windows.Media.Brushes.Green, Foreground = System.Windows.Media.Brushes.White };
+            var cancelButton = new Button { Content = "Cancel", Width = 100, Background = System.Windows.Media.Brushes.Red, Foreground = System.Windows.Media.Brushes.White };
+
+            bool isConfirmed = false;
+            confirmButton.Click += (s, args) =>
+            {
+                if (leaderComboBox.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a leader!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                isConfirmed = true;
+                leaderWindow.Close();
+            };
+            cancelButton.Click += (s, args) => leaderWindow.Close();
+
+            buttonPanel.Children.Add(confirmButton);
+            buttonPanel.Children.Add(cancelButton);
+            Grid.SetRow(buttonPanel, 2);
+
+            grid.Children.Add(lblLeader);
+            grid.Children.Add(leaderComboBox);
+            grid.Children.Add(buttonPanel);
+
+            leaderWindow.Content = grid;
+            leaderWindow.ShowDialog();
+
+            if (!isConfirmed) return;
+
+            var selectedLeader = leaderComboBox.SelectedItem as User;
+            if (selectedLeader != null)
+            {
+                try
+                {
+                    // Cập nhật LeaderId cho nhóm
+                    var group = _context.Groups.FirstOrDefault(g => g.GroupId == groupId);
+                    if (group != null)
+                    {
+                        group.LeaderId = selectedLeader.UserId;
+                        _context.Groups.Update(group);
+
+                        // Cập nhật roleId thành 4 (TeamLeader) nếu chưa phải
+                        if (selectedLeader.RoleId != 4)
+                        {
+                            selectedLeader.RoleId = 4;
+                            _context.Users.Update(selectedLeader);
+                        }
+                        _context.SaveChanges();
+                        MessageBox.Show($"Leader {selectedLeader.FullName} assigned successfully and promoted to Team Leader!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
@@ -289,7 +389,6 @@ namespace ClubManagement
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         private int GetAssignedToUserId(int groupId)
         {
             var members = _groupRepo.GetGroupMembers(groupId);

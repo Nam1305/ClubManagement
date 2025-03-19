@@ -15,17 +15,27 @@ namespace Repository
             _context = new ClubManagementContext();
         }
 
+      public List<User> GetEventParticipants(int eventId)
+{
+    using (var context = new ClubManagementContext())
+    {
+        return context.EventParticipants
+            .Where(ep => ep.EventId == eventId)
+            .Select(ep => ep.User)
+            .ToList();
+    }
+}
         public List<Group> GetGroupsByClubId(int clubId)
         {
             using (var context = new ClubManagementContext())
             {
                 return context.Groups
-                    .Include(g => g.Leader) // Đảm bảo tải thông tin Leader
+                    .Include(g => g.Leader) // Load Leader navigation property
+                    .Include(g => g.Event)  // Load Event navigation property
                     .Where(g => g.ClubId == clubId)
                     .ToList();
             }
         }
-
         public List<User> GetGroupMembers(int groupId)
         {
             return _context.Users

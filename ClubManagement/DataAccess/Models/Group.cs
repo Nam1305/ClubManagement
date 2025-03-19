@@ -13,7 +13,7 @@ public partial class Group
 
     public int? LeaderId { get; set; }
     public string Status { get; set; } = "Active"; // Mặc định là "Active"
-
+    public int? EventId { get; set; }
     public DateOnly CreatedAt { get; set; }
 
     public virtual Club Club { get; set; } = null!;
@@ -23,4 +23,5 @@ public partial class Group
     public virtual ICollection<GroupMember> GroupMembers { get; set; } = new List<GroupMember>();
 
     public virtual User? Leader { get; set; }
+    public virtual Event? Event { get; set; } 
 }
