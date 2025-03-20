@@ -11,10 +11,6 @@
       "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\clubmanageforadminwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\clubmanagement01\\clubmanagement\\clubmanagement\\clubmanagement\\listjoinedclub.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\listjoinedclub.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|d:\\clubmanagement01\\clubmanagement\\clubmanagement\\repository\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|solutionrelative:repository\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -56,14 +52,14 @@
               "RelativeDocumentMoniker": "ClubManagement\\ListJoinedClub.xaml.cs",
               "ToolTip": "D:\\ClubManagement01\\ClubManagement\\ClubManagement\\ClubManagement\\ListJoinedClub.xaml.cs",
               "RelativeToolTip": "ClubManagement\\ListJoinedClub.xaml.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAowFUAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAA7wFUAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-18T15:32:00.45Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "UserRepo.cs",
               "DocumentMoniker": "D:\\ClubManagement01\\ClubManagement\\ClubManagement\\Repository\\UserRepo.cs",
               "RelativeDocumentMoniker": "Repository\\UserRepo.cs",
@@ -75,7 +71,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "ClubRepo.cs",
               "DocumentMoniker": "D:\\ClubManagement01\\ClubManagement\\ClubManagement\\Repository\\ClubRepo.cs",
               "RelativeDocumentMoniker": "Repository\\ClubRepo.cs",
@@ -87,7 +83,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "UserService.cs",
               "DocumentMoniker": "D:\\ClubManagement01\\ClubManagement\\ClubManagement\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "Services\\UserService.cs",
@@ -96,39 +92,6 @@
               "ViewState": "AgIAAAkAAAAAAAAAAAAvwBQAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-18T15:38:02.199Z"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "c0ab9521-0396-44b5-ad39-b2954d178165",
-        "Display": 0,
-        "X": 32,
-        "Y": 74,
-        "Width": 1142,
-        "Height": 594,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ListJoinedClub.xaml",
-              "DocumentMoniker": "D:\\ClubManagement01\\ClubManagement\\ClubManagement\\ClubManagement\\ListJoinedClub.xaml",
-              "RelativeDocumentMoniker": "ClubManagement\\ListJoinedClub.xaml",
-              "ToolTip": "D:\\ClubManagement01\\ClubManagement\\ClubManagement\\ClubManagement\\ListJoinedClub.xaml",
-              "RelativeToolTip": "ClubManagement\\ListJoinedClub.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-18T14:53:32.199Z",
-              "EditorCaption": ""
             }
           ]
         }
