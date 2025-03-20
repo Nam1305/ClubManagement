@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:ClubManagement"
         mc:Ignorable="d"
         Title="Chairmanhome" Height="450" Width="800">
-    <Grid Background="LightBlue">
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -42,10 +44,13 @@
             <Button Margin="3" MinWidth="80" Content="Update" Name="btnUpdate" Click="btnUpdate_Click" />
             <Button Margin="3" MinWidth="80" Content="Delete" Name="btnDelete" Click="btnDelete_Click" />
         </StackPanel>
+        <Label Grid.Row="7" Grid.Column="0" Content=""/>
+        <Label Grid.Row="8" Grid.Column="0" Content="Search:"/>
+        <TextBox Grid.Row="8" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtSearch" TextChanged="txtSearch_TextChanged"></TextBox>
 
-        <DataGrid Grid.Row="8" Grid.ColumnSpan="2" Name="dgMembers" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgMembers_SelectionChanged"  >
+        <DataGrid Grid.Row="10" Grid.ColumnSpan="2" Name="dgMembers" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgMembers_SelectionChanged"  >
             <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Header="Fullname" Binding="{Binding UserId}"/>
+                <DataGridTextColumn Width="*" Header="User Id" Binding="{Binding UserId}"/>
                 <DataGridTextColumn Width="*" Header="Fullname" Binding="{Binding FullName}"/>
                 <DataGridTextColumn Width="*" Header="Email" Binding="{Binding Email}"/>
                 <DataGridTextColumn Width="*" Header="Role" Binding="{Binding RoleName}"/>

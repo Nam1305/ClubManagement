@@ -27,7 +27,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <DataGrid x:Name="dgTask" Grid.Column="2" Grid.RowSpan="8" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgTask_SelectionChanged_1" >
+        <DataGrid x:Name="dgTask" Grid.Column="2" Grid.Row="0" Grid.RowSpan="4" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgTask_SelectionChanged_1" >
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Task ID" Binding="{Binding TaskId}"/>
                 <DataGridTextColumn Width="*" Header="Task Name" Binding="{Binding TaskName}"/>
@@ -40,7 +40,20 @@
 
             </DataGrid.Columns>
         </DataGrid>
+        <DataGrid x:Name="dgMember" Grid.Column="2" Grid.Row="5" Grid.RowSpan="5" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgMember_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="User Id" Binding="{Binding UserId}"/>
+                <DataGridTextColumn Width="*" Header="Fullname" Binding="{Binding FullName}"/>
+                <DataGridTextColumn Width="*" Header="Email" Binding="{Binding Email}"/>
+                <DataGridTextColumn Width="*" Header="Role" Binding="{Binding RoleName}"/>
+                <DataGridTextColumn Width="*" Header="StudentNumber" Binding="{Binding StudentNumber}"/>
+                <DataGridTextColumn Width="*" Header="Username" Binding="{Binding Username}"/>
+                <DataGridTextColumn Width="*" Header="Club Name" Binding="{Binding ClubName}"/>
+                <DataGridTextColumn Width="*" Header="Applied At" Binding="{Binding AppliedAt, StringFormat={}{0:dd/MM/yyyy}}"/>
+                <DataGridTextColumn Width="*" Header="Approved At" Binding="{Binding ApprovedAt, StringFormat={}{0:dd/MM/yyyy}}"/>
 
+            </DataGrid.Columns>
+        </DataGrid>
         <Label Grid.Row="0" Grid.Column="1" Content="Assign Task" Foreground="Red" HorizontalAlignment="Center" FontSize="25"/>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtTaskId" IsReadOnly="True" Visibility="Collapsed"></TextBox>
         <Label Grid.Row="2" Grid.Column="0" Content="Task Title:"/>

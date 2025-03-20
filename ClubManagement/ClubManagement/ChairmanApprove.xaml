@@ -15,24 +15,28 @@
 
                 <!-- Danh sách yêu cầu -->
                 <ScrollViewer Height="300">
-                    <DataGrid Name="dgApprove" AutoGenerateColumns="False" SelectionMode="Single" >
+                    <DataGrid Name="dgApprove" AutoGenerateColumns="False" SelectionMode="Single" SelectionChanged="dgApprove_SelectionChanged" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding UserClubId}" Width="100"/>
-                            <DataGridTextColumn Header="ID Thành viên" Binding="{Binding UserId}" Width="100"/>
-                            <DataGridTextColumn Header="ID CLB" Binding="{Binding ClubId}" Width="100"/>
-                            <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="150"/>
-                            <DataGridTextColumn Header="Ngày đăng ký" Binding="{Binding AppliedAt, StringFormat='dd/MM/yyyy'}" Width="150"/>
-                            <DataGridTextColumn Header="Ngày phê duyệt" Binding="{Binding ApprovedAt, StringFormat='dd/MM/yyyy'}" Width="150"/>
+                            <DataGridTextColumn Header="Full Name" Binding="{Binding User.FullName}" Width="100"/>
+                            <DataGridTextColumn Header="Club" Binding="{Binding Club.ClubName}" Width="100"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="150"/>
+                            <DataGridTextColumn Header="Apply Date" Binding="{Binding AppliedAt, StringFormat='dd/MM/yyyy'}" Width="150"/>
+                            <DataGridTextColumn Header="Approve Date" Binding="{Binding ApprovedAt, StringFormat='dd/MM/yyyy'}" Width="150"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </ScrollViewer>
+                <TextBox Grid.Row="0" Grid.Column="2" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUserId" Height="30" Visibility="Collapsed"></TextBox>
+                <TextBox Grid.Row="0" Grid.Column="3" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUserClubId" Height="30" Visibility="Collapsed"></TextBox>
+                <DatePicker Grid.Row="3" Grid.Column="4" Margin="3" Width="300" HorizontalAlignment="Left" Name="dpAppliedAt" Visibility="Collapsed"></DatePicker>
 
-                <!-- Nút hành động -->
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                    <Button Content="✔ Phê duyệt" IsEnabled="{Binding CanApprove}" Background="Green" Foreground="White" Padding="10,5" Margin="5"/>
-                    <Button Content="❌ Từ chối" IsEnabled="{Binding CanApprove}" Background="Red" Foreground="White" Padding="10,5" Margin="5" />
+                    <Button Content="✔ Accept" IsEnabled="{Binding CanApprove}" Background="Green" Foreground="White" Padding="10,5" Margin="5" Name="btnAccept" Click="btnAccept_Click"/>
+                    <Button Content="❌ Decline" IsEnabled="{Binding CanApprove}" Background="Red" Foreground="White" Padding="10,5" Margin="5" Name="btnDecline" Click="btnDecline_Click" />
                 </StackPanel>
-
+                
+                
             </StackPanel>
         </Border>
     </Grid>

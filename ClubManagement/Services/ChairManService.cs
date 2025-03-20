@@ -22,6 +22,15 @@ namespace Services
             return repo.GetUsers(clubId);
         }
 
+        public List<UserDTO> GetViceChairmanAndTeamLeader(int clubId)
+        {
+            return repo.GetViceChairmanAndTeamLeader(clubId);
+        }
+
+        public List<UserDTO> SearchUser(int clubId , string txt)
+        {
+            return repo.SearchUsers(clubId,txt);
+        }
         public void AddUser(User user , int clubId) { 
             repo.AddUser(user , clubId);
         }
@@ -61,6 +70,11 @@ namespace Services
             return repo.GetAllEvents(clubId);
         }
 
+        public List<Event> SearchEvent(int clubId , string txt)
+        {
+            return repo.SearchEvents(clubId , txt);
+        }
+
         public void UpdateEvent(Event e) { 
             repo.UpdateEvent(e);
         }
@@ -77,6 +91,11 @@ namespace Services
         public List<UserClub> UserClubs(int clubId)
         {
             return repo.GetAllUserClub(clubId);
+        }
+
+        public void UpdateUserClub(UserClub club)
+        {
+            repo.UpdateStatus(club);
         }
     }
 }

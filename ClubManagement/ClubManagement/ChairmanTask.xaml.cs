@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DataAccess.Models;
 using Microsoft.IdentityModel.Tokens;
+using Repository.DTO;
 using Services;
 
 namespace ClubManagement
@@ -35,12 +36,28 @@ namespace ClubManagement
             this.userId = userId;
             this.clubId = clubId;
             GetAll();
+            GetAllMemeber();
         }
 
         private void GetAll()
         {
             ChairManService = new ChairManService();
             dgTask.ItemsSource = ChairManService.GetMissions(clubId);
+        }
+
+        private void GetAllMemeber()
+        {
+            ChairManService = new ChairManService();
+            dgMember.ItemsSource = ChairManService.GetViceChairmanAndTeamLeader(clubId);
+        }
+
+        private void dgMember_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UserDTO user = dgMember.SelectedItem as UserDTO;
+            if (user != null) {
+                this.txtAssignedTo.Text = user.UserId.ToString();
+            }
+            
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -231,5 +248,7 @@ namespace ClubManagement
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+       
     }
 }

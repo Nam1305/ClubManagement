@@ -50,35 +50,30 @@ namespace ClubManagement
                 service = new ChairManService();
                 Event ev = new Event();
 
-                // Kiểm tra EventName
                 if (string.IsNullOrWhiteSpace(txtEventName.Text))
                 {
                     throw new Exception("Event Name cannot be empty.");
                 }
                 ev.EventName = txtEventName.Text;
 
-                // Kiểm tra Status
                 if (cbStatus.SelectedItem == null)
                 {
                     throw new Exception("Please select an event status.");
                 }
                 ev.Status = cbStatus.Text;
 
-                // Kiểm tra Description
                 if (string.IsNullOrWhiteSpace(txtDescription.Text))
                 {
                     throw new Exception("Description cannot be empty.");
                 }
                 ev.Description = txtDescription.Text;
 
-                // Kiểm tra EventDate
                 if (dpdate.SelectedDate == null)
                 {
                     throw new Exception("Event Date cannot be empty.");
                 }
                 ev.EventDate = DateOnly.FromDateTime(dpdate.SelectedDate.Value);
 
-                // Kiểm tra Location
                 if (string.IsNullOrWhiteSpace(txtLocation.Text))
                 {
                     throw new Exception("Location cannot be empty.");
@@ -87,7 +82,6 @@ namespace ClubManagement
 
                 ev.ClubId = clubId;
 
-                // Thêm sự kiện vào database
                 service.AddEvent(ev);
                 GetAll();
 
@@ -106,7 +100,6 @@ namespace ClubManagement
                 service = new ChairManService();
                 Event ev = new Event();
 
-                // Kiểm tra EventId
                 if (string.IsNullOrWhiteSpace(txtEventId.Text))
                 {
                     throw new Exception("Event ID cannot be empty.");
@@ -117,35 +110,30 @@ namespace ClubManagement
                 }
                 ev.EventId = eventId;
 
-                // Kiểm tra EventName
                 if (string.IsNullOrWhiteSpace(txtEventName.Text))
                 {
                     throw new Exception("Event Name cannot be empty.");
                 }
                 ev.EventName = txtEventName.Text;
 
-                // Kiểm tra Status
                 if (cbStatus.SelectedItem == null)
                 {
                     throw new Exception("Please select an event status.");
                 }
                 ev.Status = cbStatus.Text;
 
-                // Kiểm tra Description
                 if (string.IsNullOrWhiteSpace(txtDescription.Text))
                 {
                     throw new Exception("Description cannot be empty.");
                 }
                 ev.Description = txtDescription.Text;
 
-                // Kiểm tra EventDate
                 if (dpdate.SelectedDate == null)
                 {
                     throw new Exception("Event Date cannot be empty.");
                 }
                 ev.EventDate = DateOnly.FromDateTime(dpdate.SelectedDate.Value);
 
-                // Kiểm tra Location
                 if (string.IsNullOrWhiteSpace(txtLocation.Text))
                 {
                     throw new Exception("Location cannot be empty.");
@@ -154,7 +142,6 @@ namespace ClubManagement
 
                 ev.ClubId = clubId;
 
-                // Gọi hàm update
                 service.UpdateEvent(ev);
                 GetAll();
 
@@ -186,7 +173,6 @@ namespace ClubManagement
         {
             try
             {
-                // Hỏi xác nhận trước khi xóa
                 MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this event?",
                                                           "Confirm Delete",
                                                           MessageBoxButton.YesNo,
@@ -194,13 +180,12 @@ namespace ClubManagement
 
                 if (result == MessageBoxResult.No)
                 {
-                    return; // Nếu chọn "No", thoát khỏi hàm
+                    return; 
                 }
 
                 service = new ChairManService();
                 Event ev = new Event();
 
-                // Kiểm tra EventId
                 if (string.IsNullOrWhiteSpace(txtEventId.Text))
                 {
                     throw new Exception("Event ID cannot be empty.");
@@ -211,7 +196,6 @@ namespace ClubManagement
                 }
                 ev.EventId = eventId;
 
-                // Gọi hàm xóa sự kiện
                 service.DeleteEvent(ev);
                 GetAll();
 
@@ -221,6 +205,13 @@ namespace ClubManagement
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void txtSearchEvent_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            service = new ChairManService();
+            string search = txtSearchEvent.Text;
+            dgEvents.ItemsSource = service.SearchEvent(clubId, search);
         }
     }
 }

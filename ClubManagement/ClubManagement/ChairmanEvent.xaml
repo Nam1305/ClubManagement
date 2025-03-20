@@ -10,6 +10,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition  Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -23,10 +24,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <DataGrid x:Name="dgEvents" Grid.Column="2" Grid.RowSpan="8" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgEvents_SelectionChanged" >
+        <DataGrid x:Name="dgEvents" Grid.Column="2" Grid.Row="2" Grid.RowSpan="9" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgEvents_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="EventId ID" Binding="{Binding EventId}"/>
                 <DataGridTextColumn Width="*" Header="Event Name" Binding="{Binding EventName}"/>
@@ -38,7 +41,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-
+        <TextBox Grid.Row="0" Grid.Column="2" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtSearchEvent" Height="30" TextChanged="txtSearchEvent_TextChanged"></TextBox>
+        
         <Label Grid.Row="0" Grid.Column="1" Content="Manage Event" Foreground="Red" HorizontalAlignment="Center" FontSize="25"/>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtEventId" IsReadOnly="True" Visibility="Collapsed"></TextBox>
         <Label Grid.Row="2" Grid.Column="0" Content="Event Name:"/>
@@ -53,7 +57,7 @@
             <ComboBoxItem Content="taking place" />
             <ComboBoxItem Content="Ended" />
         </ComboBox>
-        
+
         <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtDescription" Height="100" AcceptsReturn="True" TextWrapping="Wrap"/>
         <DatePicker Grid.Row="5" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="dpdate"></DatePicker>
         <TextBox Grid.Row="6" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtLocation"></TextBox>

@@ -21,7 +21,7 @@ namespace Repository
             return clubManagementContext.Users
                 .Include(x => x.Role)
                 .Include(x => x.UserClubs).ThenInclude(x => x.Club)
-                .Where(x => x.UserClubs.Any(uc => uc.ClubId == clubId && (x.Role.RoleId == 3 || x.Role.RoleId == 4 || x.Role.RoleId == 5))) // Chỉ lấy user thuộc club đó
+                .Where(x => x.UserClubs.Any(uc => uc.ClubId == clubId && (x.Role.RoleId == 3 || x.Role.RoleId == 4 || x.Role.RoleId == 5)))
                 .Select(user => new UserDTO
                 {
                     UserId = user.UserId,
@@ -33,11 +33,62 @@ namespace Repository
                     Status = user.Status,
                     ClubName = user.UserClubs.FirstOrDefault().Club.ClubName,
 
-                    //AppliedAt = user.UserClubs.FirstOrDefault().AppliedAt,
+                    //AppliedAt = user.UserClubs.FirstOrDefault().AppliedAt.ToDateTime(TimeOnly.MinValue),
                     //ApprovedAt = user.UserClubs.FirstOrDefault().ApprovedAt
+
                 })
-                .ToList(); // Trả về danh sách UserDTO
+                .ToList(); 
         }
+
+        public List<UserDTO> GetViceChairmanAndTeamLeader(int? clubId)
+        {
+            return clubManagementContext.Users
+                .Include(x => x.Role)
+                .Include(x => x.UserClubs).ThenInclude(x => x.Club)
+                .Where(x => x.UserClubs.Any(uc => uc.ClubId == clubId && (x.Role.RoleId == 3 || x.Role.RoleId == 4)))
+                .Select(user => new UserDTO
+                {
+                    UserId = user.UserId,
+                    FullName = user.FullName,
+                    Email = user.Email,
+                    RoleName = user.Role != null ? user.Role.RoleName : "No Role",
+                    StudentNumber = user.StudentNumber,
+                    Username = user.Username,
+                    Status = user.Status,
+                    ClubName = user.UserClubs.FirstOrDefault().Club.ClubName,
+
+                    //AppliedAt = user.UserClubs.FirstOrDefault().AppliedAt.ToDateTime(TimeOnly.MinValue),
+                    //ApprovedAt = user.UserClubs.FirstOrDefault().ApprovedAt
+
+                })
+                .ToList();
+        }
+
+        public List<UserDTO> SearchUsers(int? clubId , string txt)
+        {
+            return clubManagementContext.Users
+                .Include(x => x.Role)
+                .Include(x => x.UserClubs).ThenInclude(x => x.Club)
+                .Where(x => x.UserClubs.Any(uc => uc.ClubId == clubId && (x.Role.RoleId == 3 || x.Role.RoleId == 4 || x.Role.RoleId == 5) && (x.FullName.Contains(txt)
+                || x.StudentNumber.Contains(txt)))) // Chỉ lấy user thuộc club đó
+                .Select(user => new UserDTO
+                {
+                    UserId = user.UserId,
+                    FullName = user.FullName,
+                    Email = user.Email,
+                    RoleName = user.Role != null ? user.Role.RoleName : "No Role",
+                    StudentNumber = user.StudentNumber,
+                    Username = user.Username,
+                    Status = user.Status,
+                    ClubName = user.UserClubs.FirstOrDefault().Club.ClubName,
+
+                    //AppliedAt = user.UserClubs.FirstOrDefault().AppliedAt.,
+                    //ApprovedAt = user.UserClubs.FirstOrDefault().ApprovedAt
+
+                })
+                .ToList(); 
+        }
+
 
 
         public void AddUser(User user , int clubId)
@@ -120,6 +171,11 @@ namespace Repository
             return clubManagementContext.Events.Where(x => x.ClubId == clubId).ToList();
         }
 
+        public List<Event> SearchEvents(int clubId , string txt)
+        {
+            return clubManagementContext.Events.Where(x => x.ClubId == clubId && (x.EventName.Contains(txt) || x.Location.Contains(txt))).ToList();
+        }
+
         public void AddEvent(Event e)
         {
             clubManagementContext.Events.Add(e);
@@ -143,7 +199,14 @@ namespace Repository
 
         public List<UserClub> GetAllUserClub(int clubId)
         {
-            return clubManagementContext.UserClubs.Where(x => x.ClubId == clubId).ToList();
+            return clubManagementContext.UserClubs.Include(x => x.User).Include(x => x.Club).Where(x => x.ClubId == clubId).ToList();
+        }
+
+        public void UpdateStatus(UserClub uc)
+        {
+
+            clubManagementContext.UserClubs.Update(uc);
+            clubManagementContext.SaveChanges();
         }
     }
 }

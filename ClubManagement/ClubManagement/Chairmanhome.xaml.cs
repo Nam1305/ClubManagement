@@ -27,7 +27,7 @@ namespace ClubManagement
 
         ChairManService ChairManService;
         RoleService RoleService;
-        public Chairmanhome() 
+        public Chairmanhome()
         {
         }
 
@@ -47,21 +47,6 @@ namespace ClubManagement
             dgMembers.ItemsSource = ChairManService.GetUsers(ClubId);
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            ChairManService = new ChairManService();
-            User user = new User();
-            user.FullName = txtFullname.Text;
-            user.Email = txtEmail.Text;
-            user.Password = "1234";
-            user.StudentNumber = txtStudentNumber.Text;
-            user.RoleId = (int)cbRole.SelectedValue;
-            user.Username = txtUsername.Text;
-            user.UserClubs.Add(new UserClub { UserId = user.UserId, ClubId = clubId });
-            ChairManService.AddUser(user, clubId);
-            GetAllUserByClubId(clubId);
-        }
-
         private void LoadCbRole()
         {
             RoleService = new RoleService();
@@ -73,7 +58,7 @@ namespace ClubManagement
 
         private void dgMembers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-          
+
 
             UserDTO user = dgMembers.SelectedItem as UserDTO;
             if (user != null)
@@ -91,6 +76,13 @@ namespace ClubManagement
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtUserId.Text) || string.IsNullOrWhiteSpace(txtFullname.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtStudentNumber.Text) ||
+                string.IsNullOrWhiteSpace(txtUsername.Text) || cbRole.SelectedValue == null)
+            {
+                MessageBox.Show("Bạn chưa chọn người dùng nào!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             User user = new User();
             user.UserId = Int32.Parse(txtUserId.Text);
             user.FullName = txtFullname.Text;
@@ -106,10 +98,19 @@ namespace ClubManagement
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (string.IsNullOrWhiteSpace(txtUserId.Text)){
+                MessageBox.Show("Bạn chưa chọn người dùng nào!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             int userId = Int32.Parse(txtUserId.Text);
             ChairManService.DeleteUser(userId);
             GetAllUserByClubId(clubId);
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ChairManService = new ChairManService();
+            dgMembers.ItemsSource = ChairManService.SearchUser(clubId, txtSearch.Text);
         }
     }
 }

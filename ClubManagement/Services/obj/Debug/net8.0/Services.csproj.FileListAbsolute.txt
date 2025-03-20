@@ -91,3 +91,4 @@ D:\ClubManagement01\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\Serv
 D:\ClubManagement01\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\refint\Services.dll
 D:\ClubManagement01\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\Services.pdb
 D:\ClubManagement01\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\ref\Services.dll
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Services\bin\Debug\net8.0\appsettings.json
