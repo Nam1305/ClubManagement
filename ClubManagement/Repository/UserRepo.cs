@@ -255,6 +255,40 @@ namespace Repository
             return true;
         }
 
+        public List<UserClub> GetAllClubJoinedByUserId(int userId) 
+        {
+            return context.UserClubs
+                .Include(uc => uc.User)
+                .Where(uc => uc.UserId == userId)
+                .Where (uc => uc.Status.Equals("approved"))
+                .Include(uc => uc.Club)
+                .ToList();
+        }
+
+        public List<UserClub> GetAllClubApprovingByUserId(int userId)
+        {
+            return context.UserClubs
+                .Include(uc => uc.User)
+                .Where(uc => uc.UserId == userId)
+                .Where(uc => uc.Status.Equals("pending"))
+                .Include(uc => uc.Club)
+                .ToList();
+        }
+
+        public List<UserClub> SearchUserClub(int userId, string name)
+        {
+            return context.UserClubs
+                .Include(uc => uc.User)
+                .Where(uc => uc.UserId == userId)
+                .Where(uc => uc.Status.Equals("pending"))
+                .Include(uc => uc.Club)
+                .Where(uc => uc.Club.ClubName.Contains(name))
+                .ToList();
+        }
+
+
+
+
 
 
 

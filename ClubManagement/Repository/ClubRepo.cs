@@ -25,7 +25,7 @@ namespace Repository
 
         public List<Club> SearchClubByName(string clubName) 
         {
-            return context.Clubs.Where(c => c.ClubName == clubName).ToList();
+            return context.Clubs.Where(c => c.ClubName.Contains(clubName)).ToList();
         }
 
         public bool AddNewClub(Club club)

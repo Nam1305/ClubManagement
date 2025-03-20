@@ -25,7 +25,7 @@
         <TextBlock Text="Click to button Notification to see your notification" TextWrapping="Wrap" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0" Foreground="Red" FontSize="20"/>
 
         <Button x:Name="btnEditProfile" MinWidth="80" Margin="3" Content="Edit Profile" Grid.Row="1" Grid.Column="0" Click="btnEditProfile_Click" />
-        <Button MinWidth="80" Margin="3" Content="View list Club Joined" Grid.Row="1" Grid.Column="1"/>
+        <Button x:Name="btnViewClubJoined" MinWidth="80" Margin="3" Content="View list Club Joined" Grid.Row="1" Grid.Column="1" Click="btnViewClubJoined_Click" />
         <Button x:Name="btnListAllClub" MinWidth="80" Margin="3" Content="View all Club" Grid.Row="1" Grid.Column="2" Click="btnListAllClub_Click" />
         <Button MinWidth="80" Margin="3" Content="Notification" Grid.Row="1" Grid.Column="3"/>
     </Grid>

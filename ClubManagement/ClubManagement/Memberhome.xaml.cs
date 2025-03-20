@@ -49,5 +49,12 @@ namespace ClubManagement
             ListALlClub.Show();
             this.Close();
         }
+
+        private void btnViewClubJoined_Click(object sender, RoutedEventArgs e)
+        {
+            Window ViewClubJoined = new ListJoinedClub(userId);
+            ViewClubJoined.Show();  
+            this.Close();
+        }
     }
 }

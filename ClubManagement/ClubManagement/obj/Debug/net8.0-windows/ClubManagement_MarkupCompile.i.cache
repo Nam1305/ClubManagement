@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\App.xaml
-17277802778
+18923221721
 
-22-331280357
+23-639471016
 248-127891208
-Adminhome.xaml;ChairmanApprove.xaml;ChairmanEvent.xaml;Chairmanhome.xaml;ChairmanMenu.xaml;ChairmanReport.xaml;ChairmanTask.xaml;ClubManageForAdminWindow.xaml;ListAllClub.xaml;LoginWindow.xaml;MainWindow.xaml;Memberhome.xaml;RegisterWindow.xaml;ResetPasswordWindow .xaml;TeamLeaderhome.xaml;UpdateMemeberProfile.xaml;ViceChairmanhome.xaml;
+Adminhome.xaml;ChairmanApprove.xaml;ChairmanEvent.xaml;Chairmanhome.xaml;ChairmanMenu.xaml;ChairmanReport.xaml;ChairmanTask.xaml;ClubManageForAdminWindow.xaml;ListAllClub.xaml;ListJoinedClub.xaml;LoginWindow.xaml;MainWindow.xaml;Memberhome.xaml;RegisterWindow.xaml;ResetPasswordWindow .xaml;TeamLeaderhome.xaml;UpdateMemeberProfile.xaml;ViceChairmanhome.xaml;
 
 True
 

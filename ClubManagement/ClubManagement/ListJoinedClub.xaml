@@ -1,0 +1,85 @@
+﻿<Window x:Class="ClubManagement.ListJoinedClub"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClubManagement"
+        mc:Ignorable="d"
+        Title="ListJoinedClub" Height="800" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition  Width="*"/>
+            <ColumnDefinition  Width="auto"/>
+            <ColumnDefinition  Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Member information:" Foreground="Red" FontSize="15"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Student Number"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="150" HorizontalAlignment="Left" Name="txtStudentNumber"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Student Name"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="150" HorizontalAlignment="Left" Name="txtStudentName"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Email"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Width="150" HorizontalAlignment="Left" Name="txtEmail"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="List club joined:" Foreground="Red" FontSize="13"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Search"/>
+        
+        <TextBox Grid.Row="5" Grid.Column="1" Margin="3" Width="100" HorizontalAlignment="Left" Name="txtSearch" TextChanged="txtSearch_TextChanged"/>
+
+        <DataGrid Name="dgClubJoined" Margin="3" Grid.Row="6" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgClubJoined_SelectionChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Club Name" Binding="{Binding Club.ClubName}"/>
+                <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Club.Description}"/>
+                <DataGridTextColumn Width="*" Header="Establish Date" Binding="{Binding Club.EstablishedDate}"/>
+                <DataGridTextColumn Width="*" Header="Status" Binding="{Binding Club.Status}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Grid.Row="0" Grid.Column="3" Content="Club information:" Foreground="Red" FontSize="15"/>
+        <Label Grid.Row="2" Grid.Column="2" Content="Club Name:"/>
+        <Label Grid.Row="3" Grid.Column="2" Content="Description:"/>
+        <Label Grid.Row="4" Grid.Column="2" Content="Establish Date:"/>
+        <TextBox Grid.Row="2" Grid.Column="3" Margin="3" Width="100" HorizontalAlignment="Left" Name="txtClubName"/>
+        <TextBox Grid.Row="3" Grid.Column="3" Margin="3" Width="230" HorizontalAlignment="Left" Name="txtDescription"/>
+        <TextBox Grid.Row="4" Grid.Column="3" Margin="3" Width="100" HorizontalAlignment="Left" Name="txtEstablishDate"/>
+        <Label Grid.Row="5" Grid.Column="2" Content="List club wait for approve:" Foreground="Red" FontSize="15"/>
+
+        <DataGrid Name="dgClubApproving" Margin="3" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgClubApproving_SelectionChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Club Name" Binding="{Binding Club.ClubName}"/>
+                <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Club.Description}"/>
+                <DataGridTextColumn Width="*" Header="Establish Date" Binding="{Binding Club.EstablishedDate}"/>
+                <DataGridTextColumn Width="*" Header="Status" Binding="{Binding Club.Status}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </Grid>
+</Window>

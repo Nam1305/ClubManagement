@@ -28,7 +28,7 @@ namespace Services
             return userRepo.UpdateMember(user);
         }
 
-        public List<Club> SearchClubByName(string name) 
+        public List<Club> SearchClubByName(string name)
         {
             return clubRepo.SearchClubByName(name);
         }
@@ -37,5 +37,23 @@ namespace Services
         {
             return userRepo.JoinClub(userId, clubId);
         }
+
+        public List<UserClub> GetClubJoinedByUserId(int userId)
+        {
+            return userRepo.GetAllClubJoinedByUserId(userId);
+        }
+
+        public List<UserClub> GetClubApprovingByUserId(int userId)
+        {
+            return userRepo.GetAllClubApprovingByUserId(userId);
+        }
+
+        public List<UserClub> SearchUserClub(int userId, string name)
+        {
+            return userRepo.SearchUserClub(userId, name);
+        }
+
+
+
     }
 }

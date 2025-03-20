@@ -691,3 +691,5 @@ D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\UpdateMemeberProfile.baml
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ListAllClub.g.cs
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ListAllClub.baml
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ListJoinedClub.g.cs
+D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ListJoinedClub.baml
