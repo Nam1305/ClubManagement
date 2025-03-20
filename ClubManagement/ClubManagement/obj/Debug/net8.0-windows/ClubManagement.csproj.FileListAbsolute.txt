@@ -346,7 +346,6 @@ C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement_MarkupCompile.cache
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement_MarkupCompile.lref
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\ClubManagement.exe
-C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\appsettings.json
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\ClubManagement.deps.json
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\ClubManagement.runtimeconfig.json
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\ClubManagement.dll
@@ -693,3 +692,10 @@ D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ListAllClub.baml
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ListJoinedClub.g.cs
 D:\ClubManagement01\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ListJoinedClub.baml
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ListAllClub.g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ListJoinedClub.g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\UpdateMemeberProfile.g.cs
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ListAllClub.baml
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ListJoinedClub.baml
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\UpdateMemeberProfile.baml
+C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\bin\Debug\net8.0-windows\appsettings.json

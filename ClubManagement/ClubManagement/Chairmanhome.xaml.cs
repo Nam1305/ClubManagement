@@ -106,6 +106,7 @@ namespace ClubManagement
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+
             int userId = Int32.Parse(txtUserId.Text);
             ChairManService.DeleteUser(userId);
             GetAllUserByClubId(clubId);

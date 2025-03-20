@@ -73,19 +73,16 @@ namespace Repository
         public void DeleteUser(int userId)
         {
             // Xóa tất cả các bản ghi UserClub liên quan trước
-            var userClubs = clubManagementContext.UserClubs
-                .Where(uc => uc.UserId == userId).ToList();
-
+            UserClub userClubs = clubManagementContext.UserClubs
+                .Where(uc => uc.UserId == userId).FirstOrDefault();
+            User user = clubManagementContext.Users
+                .Where(uc => uc.UserId == userId).FirstOrDefault();
+            user.RoleId = 5;
             clubManagementContext.UserClubs.RemoveRange(userClubs);
-            clubManagementContext.SaveChanges(); // Lưu lại trước khi xóa User
+            clubManagementContext.Users.Update(user);
+            clubManagementContext.SaveChanges(); 
 
-            // Sau đó xóa User
-            var user = clubManagementContext.Users.FirstOrDefault(u => u.UserId == userId);
-            if (user != null)
-            {
-                clubManagementContext.Users.Remove(user);
-                clubManagementContext.SaveChanges();
-            }
+           
         }
 
         public List<ClubTask> GetAllTask(int clubId)

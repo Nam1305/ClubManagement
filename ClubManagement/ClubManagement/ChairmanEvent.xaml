@@ -46,10 +46,9 @@
         <Label Grid.Row="4" Grid.Column="0" Content="Description:"/>
         <Label Grid.Row="5" Grid.Column="0" Content="Event Date:"/>
         <Label Grid.Row="6" Grid.Column="0" Content="Location:"/>
-        <Label Grid.Row="7" Grid.Column="0" Content="Club Id:"/>
         <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtEventName"></TextBox>
         <ComboBox Grid.Row="3" Grid.Column="1" Margin="3" Width="300"
-          HorizontalAlignment="Left" Name="cbStatus">
+          HorizontalAlignment="Left" Name="cbStatus" SelectedIndex="0">
             <ComboBoxItem Content="Coming soon" />
             <ComboBoxItem Content="taking place" />
             <ComboBoxItem Content="Ended" />
@@ -58,7 +57,7 @@
         <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtDescription" Height="100" AcceptsReturn="True" TextWrapping="Wrap"/>
         <DatePicker Grid.Row="5" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="dpdate"></DatePicker>
         <TextBox Grid.Row="6" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtLocation"></TextBox>
-        <TextBox Grid.Row="7" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtClubId"></TextBox>
+        <TextBox Grid.Row="7" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtClubId" Visibility="Collapsed"></TextBox>
 
         <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1">
             <Button MinWidth="80" Height="30" Margin="3" Content="Create" Name="btnAdd" Click="btnAdd_Click" />

@@ -31,15 +31,14 @@
 
         <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUserId" IsReadOnly="True"></TextBox>
 
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtFullname"></TextBox>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtEmail"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtFullname" IsReadOnly="True"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtEmail" IsReadOnly="True"></TextBox>
         <ComboBox Grid.Row="3" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="cbRole"></ComboBox>
 
-        <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtStudentNumber"></TextBox>
-        <TextBox Grid.Row="5" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUsername"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtStudentNumber" IsReadOnly="True"></TextBox>
+        <TextBox Grid.Row="5" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtUsername" IsReadOnly="True"></TextBox>
 
         <StackPanel Grid.Row="6" Grid.Column="2" Margin="3" Width="300" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Margin="3" MinWidth="80" Content="Add" Name="btnAdd" Click="btnAdd_Click" />
             <Button Margin="3" MinWidth="80" Content="Update" Name="btnUpdate" Click="btnUpdate_Click" />
             <Button Margin="3" MinWidth="80" Content="Delete" Name="btnDelete" Click="btnDelete_Click" />
         </StackPanel>

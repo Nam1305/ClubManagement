@@ -24,7 +24,7 @@ namespace ClubManagement
         public ChairmanMenu()
         {
         }
-        public ChairmanMenu(int userId , int clubId)
+        public ChairmanMenu(int userId, int clubId)
         {
             InitializeComponent();
             this.userId = userId;
@@ -33,30 +33,31 @@ namespace ClubManagement
 
         private void btnMembers_Click(object sender, RoutedEventArgs e)
         {
-            Window menu = new Chairmanhome(userId , clubId);
+            Window menu = new Chairmanhome(userId, clubId);
+            menu.WindowState = WindowState.Maximized;
+
             menu.Show();
-            this.Close();
         }
 
         private void btnTask_Click(object sender, RoutedEventArgs e)
         {
-            Window task = new ChairmanTask(userId , clubId);
+            Window task = new ChairmanTask(userId, clubId);
+            task.WindowState = WindowState.Maximized;
             task.Show();
-            this.Close();
         }
 
         private void btnEvents_Click(object sender, RoutedEventArgs e)
         {
-            Window events = new ChairmanEvent(userId , clubId); 
+            Window events = new ChairmanEvent(userId, clubId);
+            events.WindowState = WindowState.Maximized;
             events.Show();
-            this.Close();
         }
 
         private void btnReport_Click(object sender, RoutedEventArgs e)
         {
             Window reports = new ChairmanReport(userId, clubId);
+            reports.WindowState = WindowState.Maximized;
             reports.Show();
-            this.Close();
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
@@ -68,9 +69,9 @@ namespace ClubManagement
 
         private void btnApprove_Click(object sender, RoutedEventArgs e)
         {
-            Window approve = new ChairmanApprove(userId , clubId);
+            Window approve = new ChairmanApprove(userId, clubId);
+            approve.WindowState = WindowState.Maximized;
             approve.Show();
-            this.Close();
         }
     }
 }

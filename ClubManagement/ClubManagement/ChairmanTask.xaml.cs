@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DataAccess.Models;
+using Microsoft.IdentityModel.Tokens;
 using Services;
 
 namespace ClubManagement
@@ -43,20 +44,43 @@ namespace ClubManagement
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            ClubTask ct = new ClubTask();
-            ct.TaskName = txtTaskName.Text;
-            ct.Description = txtDescription.Text;
-            ct.Status = null;
+            try
+            {
+                ClubTask ct = new ClubTask();
+                ct.TaskName = txtTaskName.Text;
+                ct.Description = txtDescription.Text;
+                ct.Status = null;
 
-            ct.AssignedTo = Int32.Parse(txtAssignedTo.Text);
-            ct.AssignedBy = userId;
-            ct.ClubId = clubId;
+                string AssignedTo = txtAssignedTo.Text;
+                if (string.IsNullOrEmpty(AssignedTo))
+                {
+                    throw new Exception("You must assign the task to someone.");
+                }
+                if (!int.TryParse(AssignedTo, out int assignedToId))
+                {
+                    throw new Exception("AssignedTo must be a valid number.");
+                }
+                ct.AssignedTo = assignedToId;
 
-            ct.DueDate = DateOnly.FromDateTime(dpDueDate.SelectedDate.Value);
+                ct.AssignedBy = userId;
+                ct.ClubId = clubId;
 
-            ChairManService = new ChairManService();
-            ChairManService.AddTask(ct);
-            GetAll();
+                if (dpDueDate.SelectedDate == null)
+                {
+                    throw new Exception("Due Date cannot be empty.");
+                }
+                ct.DueDate = DateOnly.FromDateTime(dpDueDate.SelectedDate.Value);
+
+                ChairManService = new ChairManService();
+                ChairManService.AddTask(ct);
+                GetAll();
+
+                MessageBox.Show("Task added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
 
@@ -65,18 +89,57 @@ namespace ClubManagement
 
         private void btnUpdate_Click_1(object sender, RoutedEventArgs e)
         {
-            ChairManService = new ChairManService();
-            ClubTask ct = new ClubTask();
-            ct.TaskId = Int32.Parse(txtTaskId.Text);
-            ct.TaskName = txtTaskName.Text;
-            ct.Description = txtDescription.Text;
-            ct.Status = null;
-            ct.AssignedTo = Int32.Parse(txtAssignedTo.Text);
-            ct.AssignedBy = userId;
-            ct.ClubId = clubId;
-            ct.DueDate = DateOnly.FromDateTime(dpDueDate.SelectedDate.Value);
-            ChairManService.UpdateTask(ct);
-            GetAll();
+            try
+            {
+                ChairManService = new ChairManService();
+                ClubTask ct = new ClubTask();
+
+                string TaskId = txtTaskId.Text;
+                if (string.IsNullOrEmpty(TaskId) || !int.TryParse(TaskId, out int taskId))
+                {
+                    throw new Exception("TaskId is invalid. Please enter a valid number.");
+                }
+                ct.TaskId = taskId;
+
+                if (string.IsNullOrWhiteSpace(txtTaskName.Text))
+                {
+                    throw new Exception("Task Name cannot be empty.");
+                }
+                ct.TaskName = txtTaskName.Text;
+
+                if (string.IsNullOrWhiteSpace(txtDescription.Text))
+                {
+                    throw new Exception("Description cannot be empty.");
+                }
+                ct.Description = txtDescription.Text;
+
+                ct.Status = null;
+
+                string AssignedTo = txtAssignedTo.Text;
+                if (string.IsNullOrEmpty(AssignedTo) || !int.TryParse(AssignedTo, out int assignedToId))
+                {
+                    throw new Exception("AssignedTo is invalid. Please enter a valid number.");
+                }
+                ct.AssignedTo = assignedToId;
+
+                ct.AssignedBy = userId;
+                ct.ClubId = clubId;
+
+                if (dpDueDate.SelectedDate == null)
+                {
+                    throw new Exception("Due Date cannot be empty.");
+                }
+                ct.DueDate = DateOnly.FromDateTime(dpDueDate.SelectedDate.Value);
+
+                ChairManService.UpdateTask(ct);
+                GetAll();
+
+                MessageBox.Show("Task updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void dgTask_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -94,28 +157,78 @@ namespace ClubManagement
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show(
-            "Bạn có chắc chắn muốn xóa nhiệm vụ này không?",
-            "Xác nhận xóa",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Warning
-            );
-
-            if (result == MessageBoxResult.Yes)
+            try
             {
+                // Hỏi xác nhận trước khi xóa
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this task?",
+                                                          "Confirm Delete",
+                                                          MessageBoxButton.YesNo,
+                                                          MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.No)
+                {
+                    return; // Nếu chọn "No", thoát khỏi hàm
+                }
+
                 ChairManService = new ChairManService();
                 ClubTask ct = new ClubTask();
-                ct.TaskId = Int32.Parse(txtTaskId.Text);
+
+                // Kiểm tra TaskId
+                if (string.IsNullOrWhiteSpace(txtTaskId.Text))
+                {
+                    throw new Exception("Task ID cannot be empty.");
+                }
+                if (!int.TryParse(txtTaskId.Text, out int taskId))
+                {
+                    throw new Exception("Task ID must be a number.");
+                }
+                ct.TaskId = taskId;
+
+                // Kiểm tra AssignedTo
+                if (string.IsNullOrWhiteSpace(txtAssignedTo.Text))
+                {
+                    throw new Exception("AssignedTo cannot be empty.");
+                }
+                if (!int.TryParse(txtAssignedTo.Text, out int assignedTo))
+                {
+                    throw new Exception("AssignedTo must be a number.");
+                }
+                ct.AssignedTo = assignedTo;
+
+                // Kiểm tra TaskName
+                if (string.IsNullOrWhiteSpace(txtTaskName.Text))
+                {
+                    throw new Exception("Task Name cannot be empty.");
+                }
                 ct.TaskName = txtTaskName.Text;
+
+                // Kiểm tra Description
+                if (string.IsNullOrWhiteSpace(txtDescription.Text))
+                {
+                    throw new Exception("Description cannot be empty.");
+                }
                 ct.Description = txtDescription.Text;
-                ct.Status = null;
-                ct.AssignedTo = Int32.Parse(txtAssignedTo.Text);
-                ct.AssignedBy = userId;
-                ct.ClubId = clubId;
+
+                // Kiểm tra DueDate
+                if (dpDueDate.SelectedDate == null)
+                {
+                    throw new Exception("Due Date cannot be empty.");
+                }
                 ct.DueDate = DateOnly.FromDateTime(dpDueDate.SelectedDate.Value);
 
+                ct.Status = null;
+                ct.AssignedBy = userId;
+                ct.ClubId = clubId;
+
+                // Gọi hàm xóa task
                 ChairManService.DeleteTask(ct);
-                GetAll(); 
+                GetAll();
+
+                MessageBox.Show("Task deleted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

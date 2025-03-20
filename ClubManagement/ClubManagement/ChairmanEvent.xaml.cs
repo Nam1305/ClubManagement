@@ -45,32 +45,125 @@ namespace ClubManagement
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            service = new ChairManService();
-            Event ev = new Event();
-            ev.EventName = txtEventName.Text;
-            ev.Status = cbStatus.Text;
-            ev.Description = txtDescription.Text;
-            ev.EventDate = DateOnly.FromDateTime(dpdate.SelectedDate.Value);
-            ev.Location = txtLocation.Text;
-            ev.ClubId = clubId;
+            try
+            {
+                service = new ChairManService();
+                Event ev = new Event();
 
-            service.AddEvent(ev);
-            GetAll();
+                // Kiểm tra EventName
+                if (string.IsNullOrWhiteSpace(txtEventName.Text))
+                {
+                    throw new Exception("Event Name cannot be empty.");
+                }
+                ev.EventName = txtEventName.Text;
+
+                // Kiểm tra Status
+                if (cbStatus.SelectedItem == null)
+                {
+                    throw new Exception("Please select an event status.");
+                }
+                ev.Status = cbStatus.Text;
+
+                // Kiểm tra Description
+                if (string.IsNullOrWhiteSpace(txtDescription.Text))
+                {
+                    throw new Exception("Description cannot be empty.");
+                }
+                ev.Description = txtDescription.Text;
+
+                // Kiểm tra EventDate
+                if (dpdate.SelectedDate == null)
+                {
+                    throw new Exception("Event Date cannot be empty.");
+                }
+                ev.EventDate = DateOnly.FromDateTime(dpdate.SelectedDate.Value);
+
+                // Kiểm tra Location
+                if (string.IsNullOrWhiteSpace(txtLocation.Text))
+                {
+                    throw new Exception("Location cannot be empty.");
+                }
+                ev.Location = txtLocation.Text;
+
+                ev.ClubId = clubId;
+
+                // Thêm sự kiện vào database
+                service.AddEvent(ev);
+                GetAll();
+
+                MessageBox.Show("Event added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            service = new ChairManService();
-            Event ev = new Event();
-            ev.EventId = Int32.Parse(txtEventId.Text);
-            ev.EventName = txtEventName.Text;
-            ev.Status = cbStatus.Text;
-            ev.Description = txtDescription.Text;
-            ev.EventDate = DateOnly.FromDateTime(dpdate.SelectedDate.Value);
-            ev.Location = txtLocation.Text;
-            ev.ClubId = clubId;
-            service.UpdateEvent(ev);
-            GetAll();
+            try
+            {
+                service = new ChairManService();
+                Event ev = new Event();
+
+                // Kiểm tra EventId
+                if (string.IsNullOrWhiteSpace(txtEventId.Text))
+                {
+                    throw new Exception("Event ID cannot be empty.");
+                }
+                if (!int.TryParse(txtEventId.Text, out int eventId))
+                {
+                    throw new Exception("Event ID must be a number.");
+                }
+                ev.EventId = eventId;
+
+                // Kiểm tra EventName
+                if (string.IsNullOrWhiteSpace(txtEventName.Text))
+                {
+                    throw new Exception("Event Name cannot be empty.");
+                }
+                ev.EventName = txtEventName.Text;
+
+                // Kiểm tra Status
+                if (cbStatus.SelectedItem == null)
+                {
+                    throw new Exception("Please select an event status.");
+                }
+                ev.Status = cbStatus.Text;
+
+                // Kiểm tra Description
+                if (string.IsNullOrWhiteSpace(txtDescription.Text))
+                {
+                    throw new Exception("Description cannot be empty.");
+                }
+                ev.Description = txtDescription.Text;
+
+                // Kiểm tra EventDate
+                if (dpdate.SelectedDate == null)
+                {
+                    throw new Exception("Event Date cannot be empty.");
+                }
+                ev.EventDate = DateOnly.FromDateTime(dpdate.SelectedDate.Value);
+
+                // Kiểm tra Location
+                if (string.IsNullOrWhiteSpace(txtLocation.Text))
+                {
+                    throw new Exception("Location cannot be empty.");
+                }
+                ev.Location = txtLocation.Text;
+
+                ev.ClubId = clubId;
+
+                // Gọi hàm update
+                service.UpdateEvent(ev);
+                GetAll();
+
+                MessageBox.Show("Event updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
 
@@ -91,26 +184,42 @@ namespace ClubManagement
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-           MessageBoxResult result = MessageBox.Show(
-           "Bạn có chắc chắn muốn xóa nhiệm vụ này không?",
-           "Xác nhận xóa",
-           MessageBoxButton.YesNo,
-           MessageBoxImage.Warning
-           );
-
-            if (result == MessageBoxResult.Yes)
+            try
             {
+                // Hỏi xác nhận trước khi xóa
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this event?",
+                                                          "Confirm Delete",
+                                                          MessageBoxButton.YesNo,
+                                                          MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.No)
+                {
+                    return; // Nếu chọn "No", thoát khỏi hàm
+                }
+
                 service = new ChairManService();
                 Event ev = new Event();
-                ev.EventId = Int32.Parse(txtEventId.Text);
-                ev.EventName = txtEventName.Text;
-                ev.Status = cbStatus.Text;
-                ev.Description = txtDescription.Text;
-                ev.EventDate = DateOnly.FromDateTime(dpdate.SelectedDate.Value);
-                ev.Location = txtLocation.Text;
-                ev.ClubId = clubId;
+
+                // Kiểm tra EventId
+                if (string.IsNullOrWhiteSpace(txtEventId.Text))
+                {
+                    throw new Exception("Event ID cannot be empty.");
+                }
+                if (!int.TryParse(txtEventId.Text, out int eventId))
+                {
+                    throw new Exception("Event ID must be a number.");
+                }
+                ev.EventId = eventId;
+
+                // Gọi hàm xóa sự kiện
                 service.DeleteEvent(ev);
                 GetAll();
+
+                MessageBox.Show("Event deleted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
