@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DataAccess.Models;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.VisualBasic;
 using Services;
 
@@ -84,7 +85,8 @@ namespace ClubManagement
 
                 service.AddEvent(ev);
                 GetAll();
-
+                service.SendEmailToAllUsers(txtEventName.Text, dpdate.Text, txtLocation.Text , clubId);
+                MessageBox.Show("Event Created & Notifications Sent!");
                 MessageBox.Show("Event added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)

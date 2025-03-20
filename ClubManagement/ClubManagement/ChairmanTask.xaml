@@ -32,9 +32,9 @@
                 <DataGridTextColumn Width="*" Header="Task ID" Binding="{Binding TaskId}"/>
                 <DataGridTextColumn Width="*" Header="Task Name" Binding="{Binding TaskName}"/>
                 <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
-                <DataGridTextColumn Width="*" Header="Assign to" Binding="{Binding AssignedTo}"/>
-                <DataGridTextColumn Width="*" Header="Assigned by" Binding="{Binding AssignedBy}"/>
-                <DataGridTextColumn Width="*" Header="Club Id" Binding="{Binding ClubId}"/>
+                <DataGridTextColumn Width="*" Header="Assign to" Binding="{Binding  AssignedToNavigation.FullName}"/>
+                <DataGridTextColumn Width="*" Header="Assigned by" Binding="{Binding AssignedByNavigation.FullName}"/>
+                <DataGridTextColumn Width="*" Header="Club" Binding="{Binding Club.ClubName}"/>
                 <DataGridTextColumn Width="*" Header="Status" Binding="{Binding Status}"/>
                 <DataGridTextColumn Width="*" Header="Due Date" Binding="{Binding DueDate}"/>
 
@@ -64,10 +64,11 @@
         <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtTaskName"></TextBox>
         <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtDescription" Height="100" AcceptsReturn="True" TextWrapping="Wrap"/>
         <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtAssignedTo" IsReadOnly="True"></TextBox>
-        <StackPanel Grid.Row="7" Grid.Column="1" Margin="3" HorizontalAlignment="Left">
-            <CheckBox x:Name="cbPending">Pending</CheckBox>
-            <CheckBox  x:Name="cbInprocess">In Process</CheckBox>
-            <CheckBox  x:Name="cbCompleted">Completed</CheckBox>
+      
+        <StackPanel Grid.Row="7" Grid.Column="1" Margin="3" Orientation="Horizontal" >
+            <RadioButton x:Name="rbPending" GroupName="gender">Pending</RadioButton>
+            <RadioButton x:Name="rbInprocess" GroupName="gender">In Process</RadioButton>
+            <RadioButton x:Name="rbCompleted" GroupName="gender">Completed</RadioButton>
         </StackPanel>
         <DatePicker Grid.Row="8" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="dpDueDate"></DatePicker>
         <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="1">

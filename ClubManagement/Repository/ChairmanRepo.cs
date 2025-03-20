@@ -138,7 +138,7 @@ namespace Repository
 
         public List<ClubTask> GetAllTask(int clubId)
         {
-            return clubManagementContext.ClubTasks.Where(x => x.ClubId == clubId).ToList();
+            return clubManagementContext.ClubTasks.Include(x => x.AssignedByNavigation).Include(x => x.AssignedToNavigation).Include(x => x.Club).Where(x => x.ClubId == clubId).ToList();
         }
 
         public void AddTask(ClubTask ct)
@@ -207,6 +207,11 @@ namespace Repository
 
             clubManagementContext.UserClubs.Update(uc);
             clubManagementContext.SaveChanges();
+        }
+
+        public List<string> GetEmailByClubId(int clubId) {
+           return clubManagementContext.UserClubs.Include(x => x.User).Include(x => x.Club).Where(x => x.ClubId == clubId).Select(x => x.User.Email).ToList();
+        
         }
     }
 }
