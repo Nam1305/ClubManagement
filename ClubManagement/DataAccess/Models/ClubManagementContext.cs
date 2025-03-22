@@ -113,9 +113,6 @@ public partial class ClubManagementContext : DbContext
             entity.Property(e => e.EventName)
                 .HasMaxLength(255)
                 .HasColumnName("eventName");
-            entity.Property(e => e.Location)
-                .HasMaxLength(255)
-                .HasColumnName("location");
             entity.Property(e => e.Status)
                 .HasMaxLength(255)
                 .HasColumnName("status");
@@ -155,15 +152,24 @@ public partial class ClubManagementContext : DbContext
             entity.Property(e => e.GroupId).HasColumnName("groupId");
             entity.Property(e => e.ClubId).HasColumnName("clubId");
             entity.Property(e => e.CreatedAt).HasColumnName("createdAt");
+            entity.Property(e => e.EventId).HasColumnName("eventId");
             entity.Property(e => e.GroupName)
                 .HasMaxLength(255)
                 .HasColumnName("groupName");
             entity.Property(e => e.LeaderId).HasColumnName("leaderId");
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .HasDefaultValue("Active")
+                .HasColumnName("status");
 
             entity.HasOne(d => d.Club).WithMany(p => p.Groups)
                 .HasForeignKey(d => d.ClubId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Groups__clubId__4CA06362");
+
+            entity.HasOne(d => d.Event).WithMany(p => p.Groups)
+                .HasForeignKey(d => d.EventId)
+                .HasConstraintName("FK__Groups__eventId__01142BA1");
 
             entity.HasOne(d => d.Leader).WithMany(p => p.Groups)
                 .HasForeignKey(d => d.LeaderId)

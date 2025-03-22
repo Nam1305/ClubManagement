@@ -30,8 +30,8 @@ namespace Repository
             using (var context = new ClubManagementContext())
             {
                 return context.Groups
-                    .Include(g => g.Leader) // Load Leader navigation property
-                    .Include(g => g.Event)  // Load Event navigation property
+                    .Include(g => g.Leader) 
+                    .Include(g => g.Event)  
                     .Where(g => g.ClubId == clubId)
                     .ToList();
             }

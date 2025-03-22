@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {}
+    "D:\\prnnnn\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {}
   },
   "projects": {
-    "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
+    "D:\\prnnnn\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "D:\\prnnnn\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
+        "projectPath": "D:\\prnnnn\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\emkob\\.nuget\\packages\\",
-        "outputPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\obj\\",
+        "outputPath": "D:\\prnnnn\\ClubManagement\\ClubManagement\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[4.0.3, )"
             },
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.104.2, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -89,14 +93,14 @@
         }
       }
     },
-    "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {
+    "D:\\prnnnn\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
+        "projectUniqueName": "D:\\prnnnn\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
+        "projectPath": "D:\\prnnnn\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
         "packagesPath": "C:\\Users\\emkob\\.nuget\\packages\\",
-        "outputPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\Repository\\obj\\",
+        "outputPath": "D:\\prnnnn\\ClubManagement\\ClubManagement\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -117,8 +121,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "D:\\prnproject\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj"
+              "D:\\prnnnn\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "D:\\prnnnn\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj"
               }
             }
           }
@@ -142,6 +146,10 @@
             "BCrypt.Net-Next": {
               "target": "Package",
               "version": "[4.0.3, )"
+            },
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.104.2, )"
             }
           },
           "imports": [

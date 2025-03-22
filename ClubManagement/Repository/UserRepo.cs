@@ -2,6 +2,7 @@
 using DataAccess.Models;
 using BCrypt.Net;
 using Microsoft.EntityFrameworkCore;
+using ClubManagement;
 
 namespace Repository
 {
@@ -41,7 +42,7 @@ namespace Repository
             context.SaveChanges();
         }
 
-    
+
         public User GetByUsernameAndPassword(string username, string password)
         {
             try
@@ -49,26 +50,37 @@ namespace Repository
                 var find = context.Users
                     .Include(u => u.Role)
                     .Include(u => u.UserClubs)
-                    .ThenInclude(uc => uc.Club) 
+                    .ThenInclude(uc => uc.Club)
                     .FirstOrDefault(u => u.Username == username);
 
-                if (find == null || !BCrypt.Net.BCrypt.Verify(password, find.Password))
+                if (find == null)
                 {
                     return null;
                 }
-                CurrentUser.SetUser(find);
+
+                // Kiểm tra mật khẩu
+                // Lưu ý: Dữ liệu mẫu cho thấy mật khẩu là plaintext, nên dùng so sánh trực tiếp
+                // Nếu mật khẩu đã được mã hóa bằng BCrypt, dùng dòng sau:
+                bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, find.Password);
+
+                if (!isPasswordValid)
+                {
+                    return null;
+                }
+
+                // Lưu thông tin người dùng vào CurrentUser
+                CurrentUser.User = find; // Sửa từ SetUser thành gán trực tiếp cho thuộc tính User
                 return find;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lỗi đăng nhập: " + ex.Message);
-                return null;
+                throw new Exception("Error during login: " + ex.Message, ex);
             }
         }
 
         public List<User> GetGroupMembersForLeader(int groupId)
         {
-            if (CurrentUser.RoleId != 4) 
+            if (CurrentUser.RoleId != 4)
                 throw new UnauthorizedAccessException("Only Group Leader can view group members.");
 
             var group = context.Groups.FirstOrDefault(g => g.GroupId == groupId && g.LeaderId == CurrentUser.UserId);

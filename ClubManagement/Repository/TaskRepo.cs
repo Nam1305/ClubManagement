@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ClubManagement;
 using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 
