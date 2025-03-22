@@ -1,13 +1,121 @@
 ﻿<Window x:Class="ClubManagement.ViceChairmanhome"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ClubManagement"
-        mc:Ignorable="d"
-        Title="ViceChairmanhome" Height="450" Width="800">
-    <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="324,202,0,0" TextWrapping="Wrap" Text="Đây là trang phó club" VerticalAlignment="Top"/>
+        Title="Vice Chairman Home" Height="600" Width="900">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Margin="10">
+        <TabControl>
+            <!-- Tab Groups -->
+            <TabItem Header="Groups">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
+                    <ListView x:Name="GroupsListView" Height="400" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Group Name" DisplayMemberBinding="{Binding GroupName}" Width="150" />
+                                <GridViewColumn Header="Event" DisplayMemberBinding="{Binding Event.EventName}" Width="150" />
+                                <GridViewColumn Header="Leader" DisplayMemberBinding="{Binding Leader.FullName}" Width="120" />
+                                <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt, StringFormat={}{0:dd/MM/yyyy}}" Width="100" />
+                                <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="80" />
+                                <GridViewColumn Header="Actions" Width="250">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Content="Assign Leader" Tag="{Binding GroupId}" Click="AssignLeader_Click" Margin="0,0,5,0" />
+                                                <Button Content="Update Status" Tag="{Binding GroupId}" Click="UpdateGroupStatus_Click" Margin="0,0,5,0" />
+                                                <Button Content="View Members" Tag="{Binding GroupId}" Click="ViewGroupMembers_Click" Margin="0,0,5,0" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Top">
+                        <Button x:Name="CreateGroupButton" Content="Create New Group" Click="CreateGroupButton_Click" Width="120" Margin="0,0,0,10" />
+                        <TextBlock Text="Assign Task to Group" FontWeight="Bold" Margin="0,20,0,5" />
+                        <TextBox x:Name="TaskNameTextBox" Width="150" Margin="0,0,0,5" Text="Enter task name" />
+                        <ComboBox x:Name="GroupComboBox" DisplayMemberPath="GroupName" Width="150" Margin="0,0,0,5" />
+                        <DatePicker x:Name="DueDatePicker" Width="150" Margin="0,0,0,5" />
+                        <Button x:Name="CreateTaskButton" Content="Create Task" Click="CreateTaskButton_Click" Width="100" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab Events -->
+            <TabItem Header="Events">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ListView x:Name="EventsListView" Height="400" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Event Name" DisplayMemberBinding="{Binding EventName}" Width="200" />
+                                <GridViewColumn Header="Date" DisplayMemberBinding="{Binding EventDate, StringFormat={}{0:dd/MM/yyyy}}" Width="100" />
+                                <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="100" />
+                                <GridViewColumn Header="Actions" Width="250">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Content="Edit" Tag="{Binding EventId}" Click="EditEvent_Click" Margin="0,0,5,0" />
+                                                <Button Content="Update Status" Tag="{Binding EventId}" Click="UpdateEventStatus_Click" Margin="0,0,5,0" />
+                                                <Button Content="View Participants" Tag="{Binding EventId}" Click="ViewParticipants_Click" Margin="0,0,5,0" />
+                                                <Button Content="Delete" Tag="{Binding EventId}" Click="DeleteEvent_Click" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Top">
+                        <Button x:Name="CreateEventButton" Content="Create New Event" Click="CreateEventButton_Click" Width="120" Margin="0,0,0,10" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab Members -->
+            <TabItem Header="Members">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ListView x:Name="MembersListView" Height="400" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Full Name" DisplayMemberBinding="{Binding FullName}" Width="150" />
+                                <GridViewColumn Header="Student Number" DisplayMemberBinding="{Binding StudentNumber}" Width="120" />
+                                <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="200" />
+                                <GridViewColumn Header="Participation (%)" DisplayMemberBinding="{Binding ParticipationPercentage, StringFormat={}{0:F2}%}" Width="100" />
+                                <GridViewColumn Header="Activity Level" DisplayMemberBinding="{Binding ActivityLevel}" Width="120" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Top">
+                        <ComboBox x:Name="TermComboBox" Width="150" Margin="0,0,0,10" SelectionChanged="TermComboBox_SelectionChanged" />
+                        <Button x:Name="RefreshMembersButton" Content="Refresh" Click="RefreshMembersButton_Click" Width="120" Margin="0,0,0,10" />
+                        <Button x:Name="ExportToExcelButton" Content="Export to Excel" Click="ExportToExcelButton_Click" Width="120" Margin="0,0,0,10" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

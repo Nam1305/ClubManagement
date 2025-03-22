@@ -9,9 +9,8 @@ public partial class Report
 
     public int ReportId { get; set; }
 
-    public DateOnly? Semester { get; set; }
-
-    public DateOnly? MemberChanges { get; set; }
+    public string? Semester { get; set; }
+    public string? MemberChanges { get; set; }
 
     public string? EventSummary { get; set; }
 

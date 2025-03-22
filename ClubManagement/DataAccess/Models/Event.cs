@@ -15,13 +15,11 @@ public partial class Event
 
     public DateOnly? EventDate { get; set; }
 
-    public string? Location { get; set; }
-
     public int ClubId { get; set; }
-
-    public int? Column { get; set; }
 
     public virtual Club Club { get; set; } = null!;
 
     public virtual ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
+
+    public virtual ICollection<Group> Groups { get; set; } = new List<Group>();
 }

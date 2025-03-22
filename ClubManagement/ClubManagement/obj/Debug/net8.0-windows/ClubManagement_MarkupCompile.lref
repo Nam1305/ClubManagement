@@ -1,5 +1,6 @@
 ﻿
 
+<<<<<<< HEAD
 FC:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\Adminhome.xaml;;
 FC:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\ChairmanApprove.xaml;;
 FC:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\ChairmanEvent.xaml;;
@@ -18,4 +19,15 @@ FC:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement
 FC:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\TeamLeaderhome.xaml;;
 FC:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\UpdateMemeberProfile.xaml;;
 FC:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\ClubManagement\ViceChairmanhome.xaml;;
+=======
+FD:\prnnnn\ClubManagement\ClubManagement\ClubManagement\Adminhome.xaml;;
+FD:\prnnnn\ClubManagement\ClubManagement\ClubManagement\Chairmanhome.xaml;;
+FD:\prnnnn\ClubManagement\ClubManagement\ClubManagement\ClubManageForAdminWindow.xaml;;
+FD:\prnnnn\ClubManagement\ClubManagement\ClubManagement\LoginWindow.xaml;;
+FD:\prnnnn\ClubManagement\ClubManagement\ClubManagement\MainWindow.xaml;;
+FD:\prnnnn\ClubManagement\ClubManagement\ClubManagement\Memberhome.xaml;;
+FD:\prnnnn\ClubManagement\ClubManagement\ClubManagement\RegisterWindow.xaml;;
+FD:\prnnnn\ClubManagement\ClubManagement\ClubManagement\ResetPasswordWindow .xaml;;
+FD:\prnnnn\ClubManagement\ClubManagement\ClubManagement\TeamLeaderhome.xaml;;
+>>>>>>> dai
 

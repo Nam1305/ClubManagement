@@ -48,4 +48,40 @@ D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Re
 D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\refint\Repository.dll
 D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.pdb
 D:\ClubManagement01\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\ref\Repository.dll
+<<<<<<< HEAD
 C:\Users\thang\Downloads\prn clone\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\appsettings.json
+=======
+D:\prnproject\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.deps.json
+D:\prnproject\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.dll
+D:\prnproject\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.pdb
+D:\prnproject\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\DataAccess.dll
+D:\prnproject\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\DataAccess.pdb
+D:\prnproject\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.csproj.AssemblyReference.cache
+D:\prnproject\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+D:\prnproject\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.AssemblyInfoInputs.cache
+D:\prnproject\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.AssemblyInfo.cs
+D:\prnproject\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.csproj.CoreCompileInputs.cache
+D:\prnproject\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.sourcelink.json
+D:\prnproject\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.csproj.Up2Date
+D:\prnproject\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.dll
+D:\prnproject\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\refint\Repository.dll
+D:\prnproject\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.pdb
+D:\prnproject\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\ref\Repository.dll
+D:\prnproject\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\appsettings.json
+D:\prnnnn\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.deps.json
+D:\prnnnn\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.dll
+D:\prnnnn\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\Repository.pdb
+D:\prnnnn\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\DataAccess.dll
+D:\prnnnn\ClubManagement\ClubManagement\Repository\bin\Debug\net8.0\DataAccess.pdb
+D:\prnnnn\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.csproj.AssemblyReference.cache
+D:\prnnnn\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+D:\prnnnn\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.AssemblyInfoInputs.cache
+D:\prnnnn\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.AssemblyInfo.cs
+D:\prnnnn\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.csproj.CoreCompileInputs.cache
+D:\prnnnn\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.sourcelink.json
+D:\prnnnn\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.csproj.Up2Date
+D:\prnnnn\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.dll
+D:\prnnnn\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\refint\Repository.dll
+D:\prnnnn\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\Repository.pdb
+D:\prnnnn\ClubManagement\ClubManagement\Repository\obj\Debug\net8.0\ref\Repository.dll
+>>>>>>> dai
