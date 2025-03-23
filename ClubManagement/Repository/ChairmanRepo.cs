@@ -194,7 +194,7 @@ namespace Repository
         }
 
         public List<Report> GetAllReport(int clubId) { 
-            return clubManagementContext.Reports.Where(x => x.ClubId==clubId).ToList();
+            return clubManagementContext.Report.Where(x => x.ClubId==clubId).ToList();
         }
 
         public List<UserClub> GetAllUserClub(int clubId)

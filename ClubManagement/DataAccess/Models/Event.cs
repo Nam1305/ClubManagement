@@ -15,7 +15,11 @@ public partial class Event
 
     public DateOnly? EventDate { get; set; }
 
+    public string? Location { get; set; }
+
     public int ClubId { get; set; }
+
+    public int? Column { get; set; }
 
     public virtual Club Club { get; set; } = null!;
 

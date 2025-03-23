@@ -112,7 +112,35 @@
                     <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Top">
                         <ComboBox x:Name="TermComboBox" Width="150" Margin="0,0,0,10" SelectionChanged="TermComboBox_SelectionChanged" />
                         <Button x:Name="RefreshMembersButton" Content="Refresh" Click="RefreshMembersButton_Click" Width="120" Margin="0,0,0,10" />
-                        <Button x:Name="ExportToExcelButton" Content="Export to Excel" Width="120" Margin="0,0,0,10" />
+                        <Button x:Name="ExportToExcelButton" Content="Export to Excel" Click="ExportToExcelButton_Click" Width="120" Margin="0,0,0,10" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab Reports -->
+            <TabItem Header="Reports">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ListView x:Name="ReportsListView" Height="400" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Created Date" DisplayMemberBinding="{Binding CreatedDate, StringFormat={}{0:dd/MM/yyyy}}" Width="100" />
+                                <GridViewColumn Header="Semester" DisplayMemberBinding="{Binding Semester}" Width="100" />
+                                <GridViewColumn Header="Member Changes" DisplayMemberBinding="{Binding MemberChanges}" Width="150" />
+                                <GridViewColumn Header="Event Summary" DisplayMemberBinding="{Binding EventSummary}" Width="200" />
+                                <GridViewColumn Header="Participation Status" DisplayMemberBinding="{Binding ParticipationStatus}" Width="120" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Top">
+                        <ComboBox x:Name="ReportSemesterComboBox" Width="150" Margin="0,0,0,10" SelectionChanged="ReportSemesterComboBox_SelectionChanged" />
+                        <Button x:Name="GenerateReportButton" Content="Generate Report" Click="GenerateReportButton_Click" Width="120" Margin="0,0,0,10" />
+                        <Button x:Name="ExportReportToExcelButton" Content="Export to Excel" Click="ExportReportToExcelButton_Click" Width="120" Margin="0,0,0,10" />
                     </StackPanel>
                 </Grid>
             </TabItem>

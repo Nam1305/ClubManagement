@@ -28,7 +28,7 @@ public partial class ClubManagementContext : DbContext
 
     public virtual DbSet<GroupMember> GroupMembers { get; set; }
 
-    public virtual DbSet<Report> Reports { get; set; }
+    public virtual DbSet<Report> Report { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
 
@@ -51,7 +51,7 @@ public partial class ClubManagementContext : DbContext
     {
         modelBuilder.Entity<Club>(entity =>
         {
-            entity.HasKey(e => e.ClubId).HasName("PK__Clubs__DF4AEAB262E4FBF1");
+            entity.HasKey(e => e.ClubId).HasName("PK__Clubs__DF4AEAB229BA44FB");
 
             entity.Property(e => e.ClubId).HasColumnName("clubId");
             entity.Property(e => e.ClubName)
@@ -68,7 +68,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<ClubTask>(entity =>
         {
-            entity.HasKey(e => e.TaskId).HasName("PK__ClubTask__DD5D5A428E381812");
+            entity.HasKey(e => e.TaskId).HasName("PK__ClubTask__DD5D5A423F0A0718");
 
             entity.ToTable("ClubTask");
 
@@ -91,26 +91,26 @@ public partial class ClubManagementContext : DbContext
             entity.HasOne(d => d.AssignedByNavigation).WithMany(p => p.ClubTaskAssignedByNavigations)
                 .HasForeignKey(d => d.AssignedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ClubTask__assign__628FA481");
+                .HasConstraintName("FK__ClubTask__assign__31B762FC");
 
             entity.HasOne(d => d.AssignedToNavigation).WithMany(p => p.ClubTaskAssignedToNavigations)
                 .HasForeignKey(d => d.AssignedTo)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ClubTask__assign__619B8048");
+                .HasConstraintName("FK__ClubTask__assign__30C33EC3");
 
             entity.HasOne(d => d.Club).WithMany(p => p.ClubTasks)
                 .HasForeignKey(d => d.ClubId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ClubTask__clubId__6383C8BA");
+                .HasConstraintName("FK__ClubTask__clubId__32AB8735");
 
             entity.HasOne(d => d.Group).WithMany(p => p.ClubTasks)
                 .HasForeignKey(d => d.GroupId)
-                .HasConstraintName("FK__ClubTask__groupI__6477ECF3");
+                .HasConstraintName("FK__ClubTask__groupI__339FAB6E");
         });
 
         modelBuilder.Entity<Event>(entity =>
         {
-            entity.HasKey(e => e.EventId).HasName("PK__Events__2DC7BD095E5CC633");
+            entity.HasKey(e => e.EventId).HasName("PK__Events__2DC7BD09D2B317A3");
 
             entity.Property(e => e.EventId).HasColumnName("eventId");
             entity.Property(e => e.ClubId).HasColumnName("clubId");
@@ -121,7 +121,9 @@ public partial class ClubManagementContext : DbContext
             entity.Property(e => e.EventName)
                 .HasMaxLength(255)
                 .HasColumnName("eventName");
-
+            entity.Property(e => e.Location)
+                .HasMaxLength(255)
+                .HasColumnName("location");
             entity.Property(e => e.Status)
                 .HasMaxLength(255)
                 .HasColumnName("status");
@@ -129,12 +131,12 @@ public partial class ClubManagementContext : DbContext
             entity.HasOne(d => d.Club).WithMany(p => p.Events)
                 .HasForeignKey(d => d.ClubId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FKEvents4410");
+                .HasConstraintName("FK__Events__clubId__1DB06A4F");
         });
 
         modelBuilder.Entity<EventParticipant>(entity =>
         {
-            entity.HasKey(e => e.EventParticipantId).HasName("PK__EventPar__29D5D90BF5CCAA26");
+            entity.HasKey(e => e.EventParticipantId).HasName("PK__EventPar__29D5D90B4901688E");
 
             entity.Property(e => e.EventParticipantId).HasColumnName("eventParticipantId");
             entity.Property(e => e.EventId).HasColumnName("eventId");
@@ -146,21 +148,22 @@ public partial class ClubManagementContext : DbContext
             entity.HasOne(d => d.Event).WithMany(p => p.EventParticipants)
                 .HasForeignKey(d => d.EventId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FKEventParti303397");
+                .HasConstraintName("FK__EventPart__event__2180FB33");
 
             entity.HasOne(d => d.User).WithMany(p => p.EventParticipants)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FKEventParti840496");
+                .HasConstraintName("FK__EventPart__userI__208CD6FA");
         });
 
         modelBuilder.Entity<Group>(entity =>
         {
-            entity.HasKey(e => e.GroupId).HasName("PK__Groups__88C1034D604B6CD7");
+            entity.HasKey(e => e.GroupId).HasName("PK__Groups__88C1034D78F7044F");
 
             entity.Property(e => e.GroupId).HasColumnName("groupId");
             entity.Property(e => e.ClubId).HasColumnName("clubId");
             entity.Property(e => e.CreatedAt).HasColumnName("createdAt");
+            entity.Property(e => e.EventId).HasColumnName("eventId");
             entity.Property(e => e.GroupName)
                 .HasMaxLength(255)
                 .HasColumnName("groupName");
@@ -173,16 +176,20 @@ public partial class ClubManagementContext : DbContext
             entity.HasOne(d => d.Club).WithMany(p => p.Groups)
                 .HasForeignKey(d => d.ClubId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Groups__clubId__59FA5E80");
+                .HasConstraintName("FK__Groups__clubId__282DF8C2");
+
+            entity.HasOne(d => d.Event).WithMany(p => p.Groups)
+                .HasForeignKey(d => d.EventId)
+                .HasConstraintName("FK__Groups__eventId__2A164134");
 
             entity.HasOne(d => d.Leader).WithMany(p => p.Groups)
                 .HasForeignKey(d => d.LeaderId)
-                .HasConstraintName("FK__Groups__leaderId__5AEE82B9");
+                .HasConstraintName("FK__Groups__leaderId__29221CFB");
         });
 
         modelBuilder.Entity<GroupMember>(entity =>
         {
-            entity.HasKey(e => e.GroupMemberId).HasName("PK__GroupMem__2E09DC7474BBF06D");
+            entity.HasKey(e => e.GroupMemberId).HasName("PK__GroupMem__2E09DC7459F8ADE7");
 
             entity.Property(e => e.GroupMemberId).HasColumnName("groupMemberId");
             entity.Property(e => e.GroupId).HasColumnName("groupId");
@@ -192,17 +199,17 @@ public partial class ClubManagementContext : DbContext
             entity.HasOne(d => d.Group).WithMany(p => p.GroupMembers)
                 .HasForeignKey(d => d.GroupId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__GroupMemb__group__5DCAEF64");
+                .HasConstraintName("FK__GroupMemb__group__2CF2ADDF");
 
             entity.HasOne(d => d.User).WithMany(p => p.GroupMembers)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__GroupMemb__userI__5EBF139D");
+                .HasConstraintName("FK__GroupMemb__userI__2DE6D218");
         });
 
         modelBuilder.Entity<Report>(entity =>
         {
-            entity.HasKey(e => e.ReportId).HasName("PK__Report__1C9B4E2D84392098");
+            entity.HasKey(e => e.ReportId).HasName("PK__Report__1C9B4E2DCE0AEE6A");
 
             entity.ToTable("Report");
 
@@ -225,14 +232,14 @@ public partial class ClubManagementContext : DbContext
             entity.HasOne(d => d.Club).WithMany(p => p.Reports)
                 .HasForeignKey(d => d.ClubId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FKReport196346");
+                .HasConstraintName("FK__Report__clubId__245D67DE");
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.RoleId).HasName("PK__Roles__CD98462AD9C670EF");
+            entity.HasKey(e => e.RoleId).HasName("PK__Roles__CD98462AC390CE00");
 
-            entity.HasIndex(e => e.RoleName, "UQ__Roles__B19478613CDABB8A").IsUnique();
+            entity.HasIndex(e => e.RoleName, "UQ__Roles__B1947861B1B85AA4").IsUnique();
 
             entity.Property(e => e.RoleId).HasColumnName("roleId");
             entity.Property(e => e.RoleName)
@@ -242,7 +249,7 @@ public partial class ClubManagementContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFF61B33863");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFF8656A1ED");
 
             entity.Property(e => e.UserId).HasColumnName("userId");
             entity.Property(e => e.Email)
@@ -268,12 +275,12 @@ public partial class ClubManagementContext : DbContext
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.RoleId)
-                .HasConstraintName("FK__Users__roleId__5629CD9C");
+                .HasConstraintName("FK__Users__roleId__17036CC0");
         });
 
         modelBuilder.Entity<UserClub>(entity =>
         {
-            entity.HasKey(e => e.UserClubId).HasName("PK__userClub__C5E838BDE55EA23E");
+            entity.HasKey(e => e.UserClubId).HasName("PK__userClub__C5E838BD2FFEDAF1");
 
             entity.ToTable("userClubs");
 
@@ -289,12 +296,12 @@ public partial class ClubManagementContext : DbContext
             entity.HasOne(d => d.Club).WithMany(p => p.UserClubs)
                 .HasForeignKey(d => d.ClubId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FKuserClubs901847");
+                .HasConstraintName("FK__userClubs__clubI__1AD3FDA4");
 
             entity.HasOne(d => d.User).WithMany(p => p.UserClubs)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FKuserClubs595478");
+                .HasConstraintName("FK__userClubs__userI__19DFD96B");
         });
 
         OnModelCreatingPartial(modelBuilder);

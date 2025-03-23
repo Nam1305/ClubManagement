@@ -157,7 +157,7 @@ namespace ClubManagement {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ClubManagement;V1.0.0.0;component/chairmantask.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ClubManagement;component/chairmantask.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ChairmanTask.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

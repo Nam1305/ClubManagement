@@ -118,7 +118,25 @@ namespace Repository
             return new string(Enumerable.Repeat(chars, 8)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+        public void LeaveClub(int userId, int clubId)
+        {
+            try
+            {
+                var userClub = context.UserClubs
+                    .FirstOrDefault(uc => uc.UserId == userId && uc.ClubId == clubId && uc.Status == "approved");
+                if (userClub == null)
+                {
+                    throw new Exception("You are not a member of this club or have already left.");
+                }
 
+                userClub.Status = "left";
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error leaving club: " + ex.Message, ex);
+            }
+        }
         public Role GetRoleByName(string roleName)
         {
             return context.Roles.FirstOrDefault(r => r.RoleName.ToLower() == roleName.ToLower());

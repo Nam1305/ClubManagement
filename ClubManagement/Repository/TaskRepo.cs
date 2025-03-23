@@ -26,11 +26,21 @@ namespace Repository
 
         public void CreateTask(ClubTask task)
         {
-            if (CurrentUser.RoleId != 3)
-                throw new UnauthorizedAccessException("Only Vice Chairman can create tasks for groups.");
+            // Kiểm tra quyền: Vice Chairman (RoleId = 3) hoặc Group Leader (RoleId = 4)
+            if (CurrentUser.RoleId != 3 && CurrentUser.RoleId != 4)
+                throw new UnauthorizedAccessException("Only Vice Chairman or Group Leader can create tasks for groups.");
 
+            // Kiểm tra ClubId
             if (CurrentUser.ClubId != task.ClubId)
                 throw new UnauthorizedAccessException("You can only create tasks for your current club.");
+
+            // Nếu là Group Leader, kiểm tra xem họ có phải là Leader của nhóm không
+            if (CurrentUser.RoleId == 4)
+            {
+                var group = _context.Groups.FirstOrDefault(g => g.GroupId == task.GroupId);
+                if (group == null || group.LeaderId != CurrentUser.UserId)
+                    throw new UnauthorizedAccessException("You can only create tasks for groups where you are the leader.");
+            }
 
             task.AssignedBy = CurrentUser.UserId;
             task.Status = "pending";
@@ -42,13 +52,11 @@ namespace Repository
             }
             catch (Exception ex)
             {
-                // Ghi log chi tiết lỗi
                 string errorMessage = ex.InnerException?.Message ?? ex.Message;
                 System.Diagnostics.Debug.WriteLine($"Lỗi khi tạo task: {errorMessage}");
                 throw new Exception($"Lỗi khi tạo task: {errorMessage}", ex);
             }
         }
-
         public void UpdateTask(ClubTask task)
         {
             var existingTask = _context.ClubTasks.FirstOrDefault(t => t.TaskId == task.TaskId);

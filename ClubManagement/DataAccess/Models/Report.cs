@@ -5,9 +5,9 @@ namespace DataAccess.Models;
 
 public partial class Report
 {
-    public DateOnly? CreatedDate { get; set; }
-
     public int ReportId { get; set; }
+
+    public DateOnly? CreatedDate { get; set; }
 
     public string? Semester { get; set; }
 

@@ -1,5 +1,6 @@
 D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement.csproj.AssemblyReference.cache
 D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\Styles.baml
+D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\TeamLeaderhome.baml
 D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ViceChairmanhome.baml
 D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\Adminhome.g.cs
 D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ChairmanApprove.g.cs
@@ -176,7 +177,6 @@ D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-wind
 D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\Memberhome.baml
 D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\RegisterWindow.baml
 D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ResetPasswordWindow .baml
-D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\TeamLeaderhome.baml
 D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\UpdateMemeberProfile.baml
 D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement.g.resources
 D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\ClubManagement.GeneratedMSBuildEditorConfig.editorconfig

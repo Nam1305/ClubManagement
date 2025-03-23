@@ -8,6 +8,8 @@ using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 using Services;
 using System.Windows.Data;
+using ClosedXML.Excel;
+using Repository.DTO;
 
 namespace ClubManagement
 {
@@ -37,8 +39,10 @@ namespace ClubManagement
 
             LoadGroups();
             LoadEvents();
-            LoadTerms(); // Tải danh sách kỳ
-            LoadMembers(TermComboBox.SelectedItem?.ToString() ?? "Fall" + DateTime.Now.Year); // Tải mặc định cho kỳ đầu tiên
+            LoadTerms();
+            LoadMembers(TermComboBox.SelectedItem?.ToString() ?? "Fall" + DateTime.Now.Year);
+            LoadReportSemesters();
+            LoadReports();
         }
 
         private void LoadGroups()
@@ -56,12 +60,11 @@ namespace ClubManagement
 
         private void LoadTerms()
         {
-            // Tạo danh sách kỳ dựa trên năm hiện tại và các năm trước đó
             var terms = new List<string>();
             int currentYear = DateTime.Now.Year;
             string[] seasons = { "Spring", "Summer", "Fall" };
 
-            for (int year = currentYear; year >= currentYear - 2; year--) // Hiển thị 3 năm gần nhất
+            for (int year = currentYear; year >= currentYear - 2; year--)
             {
                 foreach (var season in seasons)
                 {
@@ -70,13 +73,274 @@ namespace ClubManagement
             }
 
             TermComboBox.ItemsSource = terms;
-            TermComboBox.SelectedIndex = 0; // Chọn kỳ đầu tiên (ví dụ: Fall2025 nếu hiện tại là 2025)
+            TermComboBox.SelectedIndex = 0;
         }
 
         private void LoadMembers(string term)
         {
             var memberData = _memberService.GetClubMembersWithParticipation(CurrentUser.ClubId.Value, term);
             MembersListView.ItemsSource = memberData;
+        }
+
+        private void LoadReportSemesters()
+        {
+            var semesters = new List<string>();
+            int currentYear = DateTime.Now.Year;
+            string[] seasons = { "Spring", "Summer", "Fall" };
+
+            for (int year = currentYear; year >= currentYear - 2; year--)
+            {
+                foreach (var season in seasons)
+                {
+                    semesters.Add($"{season}{year}");
+                }
+            }
+
+            ReportSemesterComboBox.ItemsSource = semesters;
+            ReportSemesterComboBox.SelectedIndex = 0;
+        }
+
+        private void LoadReports()
+        {
+            var reports = _context.Report
+                .Where(r => r.ClubId == CurrentUser.ClubId.Value)
+                .ToList();
+            ReportsListView.ItemsSource = reports;
+        }
+
+        private void ExportToExcelButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (MembersListView.Items.Count == 0)
+                {
+                    MessageBox.Show("No data to export!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                using (var workbook = new XLWorkbook())
+                {
+                    var worksheet = workbook.Worksheets.Add("Members");
+
+                    worksheet.Cell(1, 1).Value = "Full Name";
+                    worksheet.Cell(1, 2).Value = "Student Number";
+                    worksheet.Cell(1, 3).Value = "Email";
+                    worksheet.Cell(1, 4).Value = "Participation (%)";
+                    worksheet.Cell(1, 5).Value = "Activity Level";
+
+                    var headerRange = worksheet.Range("A1:E1");
+                    headerRange.Style.Font.Bold = true;
+                    headerRange.Style.Fill.BackgroundColor = XLColor.LightGray;
+
+                    var members = MembersListView.Items.Cast<MemberParticipationDto>().ToList();
+                    for (int i = 0; i < members.Count; i++)
+                    {
+                        worksheet.Cell(i + 2, 1).Value = members[i].FullName;
+                        worksheet.Cell(i + 2, 2).Value = members[i].StudentNumber;
+                        worksheet.Cell(i + 2, 3).Value = members[i].Email;
+                        worksheet.Cell(i + 2, 4).Value = members[i].ParticipationPercentage;
+                        worksheet.Cell(i + 2, 5).Value = members[i].ActivityLevel;
+                    }
+
+                    worksheet.Columns().AdjustToContents();
+
+                    var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+                    {
+                        Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*",
+                        FileName = $"Members_{TermComboBox.SelectedItem}_{DateTime.Now:yyyyMMdd}.xlsx"
+                    };
+
+                    if (saveFileDialog.ShowDialog() == true)
+                    {
+                        workbook.SaveAs(saveFileDialog.FileName);
+                        MessageBox.Show("Exported to Excel successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error exporting to Excel: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void TermComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TermComboBox.SelectedItem != null)
+            {
+                string selectedTerm = TermComboBox.SelectedItem.ToString();
+                LoadMembers(selectedTerm);
+            }
+        }
+
+        private void RefreshMembersButton_Click(object sender, RoutedEventArgs e)
+        {
+            string selectedTerm = TermComboBox.SelectedItem?.ToString() ?? "Fall" + DateTime.Now.Year;
+            LoadMembers(selectedTerm);
+        }
+
+        private void ReportSemesterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ReportSemesterComboBox.SelectedItem != null)
+            {
+                string selectedSemester = ReportSemesterComboBox.SelectedItem.ToString();
+                var reports = _context.Report
+                    .Where(r => r.ClubId == CurrentUser.ClubId.Value && r.Semester == selectedSemester)
+                    .ToList();
+                ReportsListView.ItemsSource = reports;
+            }
+        }
+
+        private void GenerateReportButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string selectedSemester = ReportSemesterComboBox.SelectedItem?.ToString();
+                if (string.IsNullOrEmpty(selectedSemester))
+                {
+                    MessageBox.Show("Please select a semester!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                string season = selectedSemester.Substring(0, selectedSemester.Length - 4);
+                int year = int.Parse(selectedSemester.Substring(selectedSemester.Length - 4));
+
+                // Tính số sinh viên gia nhập CLB trong kỳ
+                var membersJoined = _context.UserClubs
+                    .Where(uc => uc.ClubId == CurrentUser.ClubId.Value && uc.Status == "approved" && uc.ApprovedAt.HasValue)
+                    .ToList()
+                    .GroupBy(uc => uc.UserId)
+                    .Select(g => g.OrderByDescending(uc => uc.ApprovedAt).First())
+                    .Count(uc => uc.ApprovedAt.Value.Year == year &&
+                                 ((season == "Spring" && uc.ApprovedAt.Value.Month >= 1 && uc.ApprovedAt.Value.Month <= 4) ||
+                                  (season == "Summer" && uc.ApprovedAt.Value.Month >= 5 && uc.ApprovedAt.Value.Month <= 8) ||
+                                  (season == "Fall" && uc.ApprovedAt.Value.Month >= 9 && uc.ApprovedAt.Value.Month <= 12)));
+
+                // Tính số sinh viên rời CLB trong kỳ (dựa trên Status = "left")
+                var membersLeft = _context.UserClubs
+                    .Where(uc => uc.ClubId == CurrentUser.ClubId.Value && uc.Status == "left" && uc.ApprovedAt.HasValue)
+                    .ToList()
+                    .GroupBy(uc => uc.UserId)
+                    .Select(g => g.OrderByDescending(uc => uc.ApprovedAt).First())
+                    .Count(uc => uc.ApprovedAt.Value.Year == year &&
+                                 ((season == "Spring" && uc.ApprovedAt.Value.Month >= 1 && uc.ApprovedAt.Value.Month <= 4) ||
+                                  (season == "Summer" && uc.ApprovedAt.Value.Month >= 5 && uc.ApprovedAt.Value.Month <= 8) ||
+                                  (season == "Fall" && uc.ApprovedAt.Value.Month >= 9 && uc.ApprovedAt.Value.Month <= 12)));
+
+                string memberChangesText = $"{membersJoined} members joined, {membersLeft} members left";
+
+                // Tính số sự kiện trong kỳ
+                var events = _context.Events
+                    .Where(ev => ev.ClubId == CurrentUser.ClubId.Value && ev.EventDate.HasValue &&
+                                 ev.EventDate.Value.Year == year &&
+                                 ((season == "Spring" && ev.EventDate.Value.Month >= 1 && ev.EventDate.Value.Month <= 4) ||
+                                  (season == "Summer" && ev.EventDate.Value.Month >= 5 && ev.EventDate.Value.Month <= 8) ||
+                                  (season == "Fall" && ev.EventDate.Value.Month >= 9 && ev.EventDate.Value.Month <= 12)))
+                    .ToList();
+                string eventSummary = $"Organized {events.Count} events, {events.Count(e => e.Status == "Hoàn thành")} completed";
+
+                // Tính mức độ tham gia trung bình của thành viên
+                var participants = _context.EventParticipants
+                    .Where(ep => events.Select(e => e.EventId).Contains(ep.EventId))
+                    .GroupBy(ep => ep.UserId)
+                    .Select(g => new { UserId = g.Key, ParticipationCount = g.Count(ep => ep.Status == "Đã tham gia") })
+                    .ToList();
+                double avgParticipation = participants.Any() ? participants.Average(p => p.ParticipationCount) : 0;
+                string participationStatus = avgParticipation switch
+                {
+                    > 2 => "Tốt",
+                    > 1 => "Khá",
+                    _ => "Trung bình"
+                };
+
+                // Tạo báo cáo mới
+                var newReport = new Report
+                {
+                    CreatedDate = DateOnly.FromDateTime(DateTime.Now),
+                    Semester = selectedSemester,
+                    MemberChanges = memberChangesText,
+                    EventSummary = eventSummary,
+                    ParticipationStatus = participationStatus,
+                    ClubId = CurrentUser.ClubId.Value
+                };
+
+                _context.Report.Add(newReport);
+                _context.SaveChanges();
+
+                LoadReports();
+                MessageBox.Show("Report generated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error generating report: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private bool IsInSemester(int month, string season)
+        {
+            return season switch
+            {
+                "Spring" => month >= 1 && month <= 4,
+                "Summer" => month >= 5 && month <= 8,
+                "Fall" => month >= 9 && month <= 12,
+                _ => false
+            };
+        }
+
+        private void ExportReportToExcelButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (ReportsListView.Items.Count == 0)
+                {
+                    MessageBox.Show("No reports to export!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                using (var workbook = new XLWorkbook())
+                {
+                    var worksheet = workbook.Worksheets.Add("Reports");
+
+                    worksheet.Cell(1, 1).Value = "Created Date";
+                    worksheet.Cell(1, 2).Value = "Semester";
+                    worksheet.Cell(1, 3).Value = "Member Changes";
+                    worksheet.Cell(1, 4).Value = "Event Summary";
+                    worksheet.Cell(1, 5).Value = "Participation Status";
+
+                    var headerRange = worksheet.Range("A1:E1");
+                    headerRange.Style.Font.Bold = true;
+                    headerRange.Style.Fill.BackgroundColor = XLColor.LightGray;
+                    headerRange.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                    headerRange.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+
+                    var reports = ReportsListView.Items.Cast<Report>().ToList();
+                    for (int i = 0; i < reports.Count; i++)
+                    {
+                        worksheet.Cell(i + 2, 1).Value = reports[i].CreatedDate?.ToString("dd/MM/yyyy");
+                        worksheet.Cell(i + 2, 2).Value = reports[i].Semester;
+                        worksheet.Cell(i + 2, 3).Value = reports[i].MemberChanges;
+                        worksheet.Cell(i + 2, 4).Value = reports[i].EventSummary;
+                        worksheet.Cell(i + 2, 5).Value = reports[i].ParticipationStatus;
+                    }
+
+                    worksheet.Columns().AdjustToContents();
+
+                    var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+                    {
+                        Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*",
+                        FileName = $"Reports_{ReportSemesterComboBox.SelectedItem ?? "All"}_{DateTime.Now:yyyyMMdd}.xlsx"
+                    };
+
+                    if (saveFileDialog.ShowDialog() == true)
+                    {
+                        workbook.SaveAs(saveFileDialog.FileName);
+                        MessageBox.Show("Exported to Excel successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error exporting to Excel: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void CreateGroupButton_Click(object sender, RoutedEventArgs e)
@@ -326,14 +590,13 @@ namespace ClubManagement
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
 
-                var lblLeader = new Label { Content = "Select Leader:", Style = (Style)FindResource("FormLabelStyle") };
+                var lblLeader = new Label { Content = "Select Leader:", VerticalAlignment = VerticalAlignment.Center };
                 Grid.SetRow(lblLeader, 0);
 
                 var leaderComboBox = new ComboBox
                 {
                     ItemsSource = members,
-                    DisplayMemberPath = "FullName",
-                    Style = (Style)FindResource("FormInputStyle")
+                    DisplayMemberPath = "FullName"
                 };
                 Grid.SetRow(leaderComboBox, 1);
 
@@ -342,8 +605,8 @@ namespace ClubManagement
                     Orientation = Orientation.Horizontal,
                     HorizontalAlignment = HorizontalAlignment.Center
                 };
-                var confirmButton = new Button { Content = "Confirm", Style = (Style)FindResource("ConfirmButtonStyle") };
-                var cancelButton = new Button { Content = "Cancel", Style = (Style)FindResource("CancelButtonStyle") };
+                var confirmButton = new Button { Content = "Confirm", Width = 100, Background = System.Windows.Media.Brushes.Green, Foreground = System.Windows.Media.Brushes.White };
+                var cancelButton = new Button { Content = "Cancel", Width = 100, Background = System.Windows.Media.Brushes.Red, Foreground = System.Windows.Media.Brushes.White };
 
                 bool isConfirmed = false;
                 confirmButton.Click += (s, args) =>
@@ -484,16 +747,16 @@ namespace ClubManagement
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
 
-            var lblEventName = new Label { Content = "Event Name:", Style = (Style)FindResource("FormLabelStyle") };
+            var lblEventName = new Label { Content = "Event Name:", VerticalAlignment = VerticalAlignment.Center };
             Grid.SetRow(lblEventName, 0);
 
-            var eventNameTextBox = new TextBox { Style = (Style)FindResource("FormInputStyle") };
+            var eventNameTextBox = new TextBox { };
             Grid.SetRow(eventNameTextBox, 1);
 
-            var lblEventDate = new Label { Content = "Event Date:", Style = (Style)FindResource("FormLabelStyle") };
+            var lblEventDate = new Label { Content = "Event Date:", VerticalAlignment = VerticalAlignment.Center };
             Grid.SetRow(lblEventDate, 2);
 
-            var eventDatePicker = new DatePicker { Style = (Style)FindResource("FormInputStyle") };
+            var eventDatePicker = new DatePicker { };
             Grid.SetRow(eventDatePicker, 3);
 
             var buttonPanel = new StackPanel
@@ -501,8 +764,8 @@ namespace ClubManagement
                 Orientation = Orientation.Horizontal,
                 HorizontalAlignment = HorizontalAlignment.Center
             };
-            var confirmButton = new Button { Content = "Create", Style = (Style)FindResource("ConfirmButtonStyle") };
-            var cancelButton = new Button { Content = "Cancel", Style = (Style)FindResource("CancelButtonStyle") };
+            var confirmButton = new Button { Content = "Create", Width = 100, Background = System.Windows.Media.Brushes.Green, Foreground = System.Windows.Media.Brushes.White };
+            var cancelButton = new Button { Content = "Cancel", Width = 100, Background = System.Windows.Media.Brushes.Red, Foreground = System.Windows.Media.Brushes.White };
 
             bool isConfirmed = false;
             confirmButton.Click += (s, args) =>
@@ -575,23 +838,21 @@ namespace ClubManagement
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
 
-                var lblEventName = new Label { Content = "Event Name:", Style = (Style)FindResource("FormLabelStyle") };
+                var lblEventName = new Label { Content = "Event Name:", VerticalAlignment = VerticalAlignment.Center };
                 Grid.SetRow(lblEventName, 0);
 
                 var eventNameTextBox = new TextBox
                 {
-                    Text = eventToEdit.EventName,
-                    Style = (Style)FindResource("FormInputStyle")
+                    Text = eventToEdit.EventName
                 };
                 Grid.SetRow(eventNameTextBox, 1);
 
-                var lblEventDate = new Label { Content = "Event Date:", Style = (Style)FindResource("FormLabelStyle") };
+                var lblEventDate = new Label { Content = "Event Date:", VerticalAlignment = VerticalAlignment.Center };
                 Grid.SetRow(lblEventDate, 2);
 
                 var eventDatePicker = new DatePicker
                 {
-                    SelectedDate = eventToEdit.EventDate.HasValue ? eventToEdit.EventDate.Value.ToDateTime(new TimeOnly()) : null,
-                    Style = (Style)FindResource("FormInputStyle")
+                    SelectedDate = eventToEdit.EventDate.HasValue ? eventToEdit.EventDate.Value.ToDateTime(new TimeOnly()) : null
                 };
                 Grid.SetRow(eventDatePicker, 3);
 
@@ -600,8 +861,8 @@ namespace ClubManagement
                     Orientation = Orientation.Horizontal,
                     HorizontalAlignment = HorizontalAlignment.Center
                 };
-                var confirmButton = new Button { Content = "Update", Style = (Style)FindResource("ConfirmButtonStyle") };
-                var cancelButton = new Button { Content = "Cancel", Style = (Style)FindResource("CancelButtonStyle") };
+                var confirmButton = new Button { Content = "Update", Width = 100, Background = System.Windows.Media.Brushes.Green, Foreground = System.Windows.Media.Brushes.White };
+                var cancelButton = new Button { Content = "Cancel", Width = 100, Background = System.Windows.Media.Brushes.Red, Foreground = System.Windows.Media.Brushes.White };
 
                 bool isConfirmed = false;
                 confirmButton.Click += (s, args) =>
@@ -711,14 +972,13 @@ namespace ClubManagement
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
 
-                var lblStatus = new Label { Content = "Select Status:", Style = (Style)FindResource("FormLabelStyle") };
+                var lblStatus = new Label { Content = "Select Status:", VerticalAlignment = VerticalAlignment.Center };
                 Grid.SetRow(lblStatus, 0);
 
                 var statusComboBox = new ComboBox
                 {
                     ItemsSource = new List<string> { "Active", "Inactive", "Completed" },
-                    SelectedItem = group.Status,
-                    Style = (Style)FindResource("FormInputStyle")
+                    SelectedItem = group.Status
                 };
                 Grid.SetRow(statusComboBox, 1);
 
@@ -727,8 +987,8 @@ namespace ClubManagement
                     Orientation = Orientation.Horizontal,
                     HorizontalAlignment = HorizontalAlignment.Center
                 };
-                var confirmButton = new Button { Content = "Update", Style = (Style)FindResource("ConfirmButtonStyle") };
-                var cancelButton = new Button { Content = "Cancel", Style = (Style)FindResource("CancelButtonStyle") };
+                var confirmButton = new Button { Content = "Update", Width = 100, Background = System.Windows.Media.Brushes.Green, Foreground = System.Windows.Media.Brushes.White };
+                var cancelButton = new Button { Content = "Cancel", Width = 100, Background = System.Windows.Media.Brushes.Red, Foreground = System.Windows.Media.Brushes.White };
 
                 bool isConfirmed = false;
                 confirmButton.Click += (s, args) =>
@@ -786,14 +1046,13 @@ namespace ClubManagement
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
 
-                var lblStatus = new Label { Content = "Select Status:", Style = (Style)FindResource("FormLabelStyle") };
+                var lblStatus = new Label { Content = "Select Status:", VerticalAlignment = VerticalAlignment.Center };
                 Grid.SetRow(lblStatus, 0);
 
                 var statusComboBox = new ComboBox
                 {
                     ItemsSource = new List<string> { "Upcoming", "Ongoing", "Completed", "Cancelled" },
-                    SelectedItem = eventToEdit.Status,
-                    Style = (Style)FindResource("FormInputStyle")
+                    SelectedItem = eventToEdit.Status
                 };
                 Grid.SetRow(statusComboBox, 1);
 
@@ -802,8 +1061,8 @@ namespace ClubManagement
                     Orientation = Orientation.Horizontal,
                     HorizontalAlignment = HorizontalAlignment.Center
                 };
-                var confirmButton = new Button { Content = "Update", Style = (Style)FindResource("ConfirmButtonStyle") };
-                var cancelButton = new Button { Content = "Cancel", Style = (Style)FindResource("CancelButtonStyle") };
+                var confirmButton = new Button { Content = "Update", Width = 100, Background = System.Windows.Media.Brushes.Green, Foreground = System.Windows.Media.Brushes.White };
+                var cancelButton = new Button { Content = "Cancel", Width = 100, Background = System.Windows.Media.Brushes.Red, Foreground = System.Windows.Media.Brushes.White };
 
                 bool isConfirmed = false;
                 confirmButton.Click += (s, args) =>
@@ -859,21 +1118,6 @@ namespace ClubManagement
                     }
                 }
             }
-        }
-
-        private void TermComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (TermComboBox.SelectedItem != null)
-            {
-                string selectedTerm = TermComboBox.SelectedItem.ToString();
-                LoadMembers(selectedTerm);
-            }
-        }
-
-        private void RefreshMembersButton_Click(object sender, RoutedEventArgs e)
-        {
-            string selectedTerm = TermComboBox.SelectedItem?.ToString() ?? "Fall" + DateTime.Now.Year;
-            LoadMembers(selectedTerm);
         }
 
         protected override void OnClosed(EventArgs e)
