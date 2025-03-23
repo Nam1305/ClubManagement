@@ -19,15 +19,19 @@ namespace Services
         // Tính toán và trả về thông tin thay đổi thành viên dưới dạng văn bản
         public string CalculateMemberChanges(int clubId, DateTime semesterStart, DateTime semesterEnd)
         {
-            // Lấy danh sách thành viên tại thời điểm bắt đầu kỳ
+            // Lấy danh sách thành viên tại thời điểm bắt đầu kỳ (đã được phê duyệt trước hoặc tại semesterStart)
             var membersAtStart = _context.UserClubs
-                .Where(uc => uc.ClubId == clubId && uc.JoinedDate <= semesterStart)
+                .Where(uc => uc.ClubId == clubId
+                    && uc.ApprovedAt.HasValue
+                    && uc.ApprovedAt.Value.ToDateTime(TimeOnly.MinValue) <= semesterStart)
                 .Select(uc => uc.UserId)
                 .ToList();
 
-            // Lấy danh sách thành viên tại thời điểm kết thúc kỳ
+            // Lấy danh sách thành viên tại thời điểm kết thúc kỳ (đã được phê duyệt trước hoặc tại semesterEnd)
             var membersAtEnd = _context.UserClubs
-                .Where(uc => uc.ClubId == clubId && uc.JoinedDate <= semesterEnd)
+                .Where(uc => uc.ClubId == clubId
+                    && uc.ApprovedAt.HasValue
+                    && uc.ApprovedAt.Value.ToDateTime(TimeOnly.MinValue) <= semesterEnd)
                 .Select(uc => uc.UserId)
                 .ToList();
 

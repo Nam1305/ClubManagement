@@ -1,6 +1,5 @@
 ﻿// Trong ClubManagement/LoginWindow.xaml.cs
 using System.Windows;
-using DataAccess.Models;
 using Services;
 
 namespace ClubManagement
@@ -39,14 +38,8 @@ namespace ClubManagement
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (account.UserClubs == null || !account.UserClubs.Any())
-            {
-                MessageBox.Show("Chairman không thuộc câu lạc bộ nào!", "Lỗi đăng nhập",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
             int clubId = account.UserClubs.FirstOrDefault().ClubId; // Lấy ClubId đầu tiên
-           
+
             Window targetWindow = null;
             // Kiểm tra vai trò dựa trên Role.RoleName
             switch (account.Role?.RoleName?.ToLower())
@@ -55,7 +48,7 @@ namespace ClubManagement
                     targetWindow = new Adminhome();
                     break;
                 case "chairman":
-                    targetWindow = new ChairmanMenu(account.UserId , clubId);
+                    targetWindow = new Chairmanhome(account.UserId, clubId); // Chỉ truyền UserId
                     break;
                 case "vicechairman":
                     targetWindow = new ViceChairmanhome(); // Chỉ truyền UserId
@@ -64,7 +57,7 @@ namespace ClubManagement
                     targetWindow = new TeamLeaderhome(account.UserId); // Chỉ truyền UserId
                     break;
                 case "member":
-                    targetWindow = new Memberhome(account.UserId);
+                    targetWindow = new Memberhome();
                     break;
                 default:
                     MessageBox.Show("Role không hợp lệ!", "Lỗi",

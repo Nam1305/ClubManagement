@@ -79,7 +79,7 @@ namespace ClubManagement
                 {
                     throw new Exception("Location cannot be empty.");
                 }
-                ev.Location = txtLocation.Text;
+                //ev.Location = txtLocation.Text;
 
                 ev.ClubId = clubId;
 
@@ -140,7 +140,7 @@ namespace ClubManagement
                 {
                     throw new Exception("Location cannot be empty.");
                 }
-                ev.Location = txtLocation.Text;
+                //ev.Location = txtLocation.Text;
 
                 ev.ClubId = clubId;
 
@@ -166,7 +166,7 @@ namespace ClubManagement
                 cbStatus.Text = ev.Status;
                 txtDescription.Text = ev.Description;
                 dpdate.Text = ev.EventDate.ToString();
-                txtLocation.Text = ev.Location;
+                //txtLocation.Text = ev.Location;
                 txtClubId.Text = ev.ClubId.ToString();
             }
         }
@@ -213,7 +213,7 @@ namespace ClubManagement
         {
             service = new ChairManService();
             string search = txtSearchEvent.Text;
-            dgEvents.ItemsSource = service.SearchEvent(clubId, search);
+            //dgEvents.ItemsSource = service.SearchEvent(clubId, search);
         }
     }
 }

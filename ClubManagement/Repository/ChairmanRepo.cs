@@ -171,10 +171,10 @@ namespace Repository
             return clubManagementContext.Events.Where(x => x.ClubId == clubId).ToList();
         }
 
-        public List<Event> SearchEvents(int clubId , string txt)
-        {
-            return clubManagementContext.Events.Where(x => x.ClubId == clubId && (x.EventName.Contains(txt) || x.Location.Contains(txt))).ToList();
-        }
+        //public List<Event> SearchEvents(int clubId , string txt)
+        //{
+        //    return clubManagementContext.Events.Where(x => x.ClubId == clubId && (x.EventName.Contains(txt).ToList();
+        //}
 
         public void AddEvent(Event e)
         {

@@ -15,23 +15,23 @@ namespace Repository
             _context = new ClubManagementContext();
         }
 
-      public List<User> GetEventParticipants(int eventId)
-{
-    using (var context = new ClubManagementContext())
-    {
-        return context.EventParticipants
-            .Where(ep => ep.EventId == eventId)
-            .Select(ep => ep.User)
-            .ToList();
-    }
-}
+        public List<User> GetEventParticipants(int eventId)
+        {
+            using (var context = new ClubManagementContext())
+            {
+                return context.EventParticipants
+                    .Where(ep => ep.EventId == eventId)
+                    .Select(ep => ep.User)
+                    .ToList();
+            }
+        }
         public List<Group> GetGroupsByClubId(int clubId)
         {
             using (var context = new ClubManagementContext())
             {
                 return context.Groups
-                    .Include(g => g.Leader) 
-                    .Include(g => g.Event)  
+                    .Include(g => g.Leader)
+                    .Include(g => g.Event)
                     .Where(g => g.ClubId == clubId)
                     .ToList();
             }

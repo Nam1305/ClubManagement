@@ -1,5 +1,4 @@
-// Trong Repository/UserRepo.cs
-using DataAccess.Models;
+﻿using DataAccess.Models;
 using BCrypt.Net;
 using Microsoft.EntityFrameworkCore;
 using ClubManagement;
@@ -52,12 +51,18 @@ namespace Repository
                     .ThenInclude(uc => uc.Club)
                     .FirstOrDefault(u => u.Username == username);
 
-                if (find == null || !BCrypt.Net.BCrypt.Verify(password, find.Password))
+                if (find == null)
+                {
+                    return null;
+                }
+                bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, find.Password);
+
+                if (!isPasswordValid)
                 {
                     return null;
                 }
 
-                CurrentUser.User = find; // Store user in CurrentUser
+                CurrentUser.User = find; 
                 return find;
             }
             catch (Exception ex)
@@ -65,6 +70,7 @@ namespace Repository
                 throw new Exception("Error during login: " + ex.Message, ex);
             }
         }
+
 
         public List<User> GetGroupMembersForLeader(int groupId)
         {

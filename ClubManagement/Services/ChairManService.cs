@@ -72,10 +72,10 @@ namespace Services
             return repo.GetAllEvents(clubId);
         }
 
-        public List<Event> SearchEvent(int clubId , string txt)
-        {
-            return repo.SearchEvents(clubId , txt);
-        }
+        //public List<Event> SearchEvent(int clubId , string txt)
+        //{
+        //    return repo.SearchEvents(clubId , txt);
+        //}
 
         public void UpdateEvent(Event e) { 
             repo.UpdateEvent(e);
