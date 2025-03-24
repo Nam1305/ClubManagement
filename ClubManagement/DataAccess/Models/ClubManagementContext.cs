@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
+
 namespace DataAccess.Models;
 
 public partial class ClubManagementContext : DbContext
@@ -28,6 +29,8 @@ public partial class ClubManagementContext : DbContext
 
     public virtual DbSet<GroupMember> GroupMembers { get; set; }
 
+    public virtual DbSet<Message> Messages { get; set; }
+
     public virtual DbSet<Report> Reports { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
@@ -35,7 +38,6 @@ public partial class ClubManagementContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserClub> UserClubs { get; set; }
-
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -45,7 +47,6 @@ public partial class ClubManagementContext : DbContext
         var configuration = builder.Build();
         optionsBuilder.UseSqlServer(configuration.GetConnectionString("Default"));
     }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Club>(entity =>
@@ -204,6 +205,38 @@ public partial class ClubManagementContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__GroupMemb__userI__2DE6D218");
+        });
+
+        modelBuilder.Entity<Message>(entity =>
+        {
+            entity.HasKey(e => e.MessageId).HasName("PK__Messages__4808B9937F0BB0FF");
+
+            entity.Property(e => e.MessageId).HasColumnName("messageId");
+            entity.Property(e => e.ClubId).HasColumnName("clubId");
+            entity.Property(e => e.Content)
+                .HasMaxLength(1000)
+                .HasColumnName("content");
+            entity.Property(e => e.IsRead).HasColumnName("isRead");
+            entity.Property(e => e.ReceiverId).HasColumnName("receiverId");
+            entity.Property(e => e.SenderId).HasColumnName("senderId");
+            entity.Property(e => e.SentAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("sentAt");
+
+            entity.HasOne(d => d.Club).WithMany(p => p.Messages)
+                .HasForeignKey(d => d.ClubId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Messages__clubId__40058253");
+
+            entity.HasOne(d => d.Receiver).WithMany(p => p.MessageReceivers)
+                .HasForeignKey(d => d.ReceiverId)
+                .HasConstraintName("FK__Messages__receiv__3F115E1A");
+
+            entity.HasOne(d => d.Sender).WithMany(p => p.MessageSenders)
+                .HasForeignKey(d => d.SenderId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Messages__sender__3E1D39E1");
         });
 
         modelBuilder.Entity<Report>(entity =>

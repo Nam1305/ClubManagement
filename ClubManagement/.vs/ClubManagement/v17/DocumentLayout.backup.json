@@ -1,46 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\",
+  "WorkspaceRootPath": "D:\\24\\ClubManagement\\ClubManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|d:\\clubmanagementfinal\\clubmanagement\\clubmanagement\\repository\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|solutionrelative:repository\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\24\\clubmanagement\\clubmanagement\\clubmanagement\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{461C5FC1-FEE2-4535-B680-4F622116E9D1}|Services\\Services.csproj|d:\\clubmanagementfinal\\clubmanagement\\clubmanagement\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{461C5FC1-FEE2-4535-B680-4F622116E9D1}|Services\\Services.csproj|solutionrelative:services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\clubmanagementfinal\\clubmanagement\\clubmanagement\\clubmanagement\\listjoinedclub.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\listjoinedclub.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\clubmanagementfinal\\clubmanagement\\clubmanagement\\clubmanagement\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\24\\clubmanagement\\clubmanagement\\clubmanagement\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|d:\\clubmanagementfinal\\clubmanagement\\clubmanagement\\repository\\eventparticipantrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|solutionrelative:repository\\eventparticipantrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\24\\clubmanagement\\clubmanagement\\clubmanagement\\chairmanapprove.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\chairmanapprove.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|d:\\clubmanagementfinal\\clubmanagement\\clubmanagement\\repository\\eventrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|solutionrelative:repository\\eventrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\24\\clubmanagement\\clubmanagement\\clubmanagement\\vicechairmanhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\vicechairmanhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\clubmanagementfinal\\clubmanagement\\clubmanagement\\clubmanagement\\listeventsparticipant.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\listeventsparticipant.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\clubmanagementfinal\\clubmanagement\\clubmanagement\\clubmanagement\\listeventsparticipant.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\listeventsparticipant.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\clubmanagementfinal\\clubmanagement\\clubmanagement\\clubmanagement\\listallclub.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\listallclub.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\clubmanagementfinal\\clubmanagement\\clubmanagement\\clubmanagement\\listallclub.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\listallclub.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|d:\\24\\clubmanagement\\clubmanagement\\clubmanagement\\vicechairmanhome.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\vicechairmanhome.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,135 +30,89 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:8:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:9:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UserRepo.cs",
-              "DocumentMoniker": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\Repository\\UserRepo.cs",
-              "RelativeDocumentMoniker": "Repository\\UserRepo.cs",
-              "ToolTip": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\Repository\\UserRepo.cs",
-              "RelativeToolTip": "Repository\\UserRepo.cs",
-              "ViewState": "AgIAAEEBAAAAAAAAAAAhwE0BAAAJAAAAAAAAAA==",
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "D:\\24\\ClubManagement\\ClubManagement\\ClubManagement\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "ClubManagement\\MainWindow.xaml.cs",
+              "ToolTip": "D:\\24\\ClubManagement\\ClubManagement\\ClubManagement\\MainWindow.xaml.cs*",
+              "RelativeToolTip": "ClubManagement\\MainWindow.xaml.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T09:06:58.477Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ListJoinedClub.xaml.cs",
-              "DocumentMoniker": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\ClubManagement\\ListJoinedClub.xaml.cs",
-              "RelativeDocumentMoniker": "ClubManagement\\ListJoinedClub.xaml.cs",
-              "ToolTip": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\ClubManagement\\ListJoinedClub.xaml.cs",
-              "RelativeToolTip": "ClubManagement\\ListJoinedClub.xaml.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAiwDgAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T09:06:44.806Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LoginWindow.xaml.cs",
-              "DocumentMoniker": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\ClubManagement\\LoginWindow.xaml.cs",
-              "RelativeDocumentMoniker": "ClubManagement\\LoginWindow.xaml.cs",
-              "ToolTip": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\ClubManagement\\LoginWindow.xaml.cs",
-              "RelativeToolTip": "ClubManagement\\LoginWindow.xaml.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAgwEoAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T09:03:36.331Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "EventRepo.cs",
-              "DocumentMoniker": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\Repository\\EventRepo.cs",
-              "RelativeDocumentMoniker": "Repository\\EventRepo.cs",
-              "ToolTip": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\Repository\\EventRepo.cs",
-              "RelativeToolTip": "Repository\\EventRepo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T09:01:19.073Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "EventParticipantRepo.cs",
-              "DocumentMoniker": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\Repository\\EventParticipantRepo.cs",
-              "RelativeDocumentMoniker": "Repository\\EventParticipantRepo.cs",
-              "ToolTip": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\Repository\\EventParticipantRepo.cs",
-              "RelativeToolTip": "Repository\\EventParticipantRepo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T08:59:40.711Z",
+              "WhenOpened": "2025-03-24T13:39:10.691Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\UserService.cs",
-              "ToolTip": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\Services\\UserService.cs",
-              "RelativeToolTip": "Services\\UserService.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAASwDgAAAAqAAAAAAAAAA==",
+              "Title": "LoginWindow.xaml.cs",
+              "DocumentMoniker": "D:\\24\\ClubManagement\\ClubManagement\\ClubManagement\\LoginWindow.xaml.cs",
+              "RelativeDocumentMoniker": "ClubManagement\\LoginWindow.xaml.cs",
+              "ToolTip": "D:\\24\\ClubManagement\\ClubManagement\\ClubManagement\\LoginWindow.xaml.cs*",
+              "RelativeToolTip": "ClubManagement\\LoginWindow.xaml.cs*",
+              "ViewState": "AgIAADsAAAAAAAAAAAAuwEYAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T08:59:14.465Z",
+              "WhenOpened": "2025-03-24T13:38:26.271Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ListEventsParticipant.xaml.cs",
-              "DocumentMoniker": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\ClubManagement\\ListEventsParticipant.xaml.cs",
-              "RelativeDocumentMoniker": "ClubManagement\\ListEventsParticipant.xaml.cs",
-              "ToolTip": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\ClubManagement\\ListEventsParticipant.xaml.cs",
-              "RelativeToolTip": "ClubManagement\\ListEventsParticipant.xaml.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAQwCgAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T08:58:37.931Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ListEventsParticipant.xaml",
-              "DocumentMoniker": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\ClubManagement\\ListEventsParticipant.xaml",
-              "RelativeDocumentMoniker": "ClubManagement\\ListEventsParticipant.xaml",
-              "ToolTip": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\ClubManagement\\ListEventsParticipant.xaml",
-              "RelativeToolTip": "ClubManagement\\ListEventsParticipant.xaml",
+              "DocumentIndex": 2,
+              "Title": "ChairmanApprove.xaml",
+              "DocumentMoniker": "D:\\24\\ClubManagement\\ClubManagement\\ClubManagement\\ChairmanApprove.xaml",
+              "RelativeDocumentMoniker": "ClubManagement\\ChairmanApprove.xaml",
+              "ToolTip": "D:\\24\\ClubManagement\\ClubManagement\\ClubManagement\\ChairmanApprove.xaml",
+              "RelativeToolTip": "ClubManagement\\ChairmanApprove.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-24T08:58:22.425Z",
+              "WhenOpened": "2025-03-24T13:37:53.601Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ListAllClub.xaml.cs",
-              "DocumentMoniker": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\ClubManagement\\ListAllClub.xaml.cs",
-              "RelativeDocumentMoniker": "ClubManagement\\ListAllClub.xaml.cs",
-              "ToolTip": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\ClubManagement\\ListAllClub.xaml.cs",
-              "RelativeToolTip": "ClubManagement\\ListAllClub.xaml.cs",
-              "ViewState": "AgIAAF8AAAAAAAAAAAAAAF8AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ViceChairmanhome.xaml.cs",
+              "DocumentMoniker": "D:\\24\\ClubManagement\\ClubManagement\\ClubManagement\\ViceChairmanhome.xaml.cs",
+              "RelativeDocumentMoniker": "ClubManagement\\ViceChairmanhome.xaml.cs",
+              "ToolTip": "D:\\24\\ClubManagement\\ClubManagement\\ClubManagement\\ViceChairmanhome.xaml.cs",
+              "RelativeToolTip": "ClubManagement\\ViceChairmanhome.xaml.cs",
+              "ViewState": "AgIAAOoCAAAAAAAAAAAswPMCAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T08:53:26.722Z",
+              "WhenOpened": "2025-03-24T09:40:34.836Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ListAllClub.xaml",
-              "DocumentMoniker": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\ClubManagement\\ListAllClub.xaml",
-              "RelativeDocumentMoniker": "ClubManagement\\ListAllClub.xaml",
-              "ToolTip": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\ClubManagement\\ListAllClub.xaml",
-              "RelativeToolTip": "ClubManagement\\ListAllClub.xaml",
+              "DocumentIndex": 4,
+              "Title": "ViceChairmanhome.xaml",
+              "DocumentMoniker": "D:\\24\\ClubManagement\\ClubManagement\\ClubManagement\\ViceChairmanhome.xaml",
+              "RelativeDocumentMoniker": "ClubManagement\\ViceChairmanhome.xaml",
+              "ToolTip": "D:\\24\\ClubManagement\\ClubManagement\\ClubManagement\\ViceChairmanhome.xaml",
+              "RelativeToolTip": "ClubManagement\\ViceChairmanhome.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-24T08:52:46.905Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-24T09:40:33.327Z"
             }
           ]
         }

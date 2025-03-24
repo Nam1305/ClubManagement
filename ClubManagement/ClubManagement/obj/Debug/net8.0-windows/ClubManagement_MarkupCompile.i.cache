@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\ClubManagementFinal\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\
+D:\24\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\
 ClubManagement
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-D:\ClubManagementFinal\ClubManagement\ClubManagement\ClubManagement\App.xaml
-20645637581
+D:\24\ClubManagement\ClubManagement\ClubManagement\App.xaml
+21-1851401531
 
-24-2026404234
-255357161137
-AdminMenu.xaml;ChairmanApprove.xaml;ChairmanEvent.xaml;Chairmanhome.xaml;ChairmanMenu.xaml;ChairmanReport.xaml;ChairmanTask.xaml;ClubManageForAdminWindow.xaml;ListAllClub.xaml;ListEventsParticipant.xaml;ListJoinedClub.xaml;LoginWindow.xaml;MainWindow.xaml;Memberhome.xaml;MemberManagement.xaml;RegisterWindow.xaml;ResetPasswordWindow .xaml;Styles.xaml;UpdateMemeberProfile.xaml;ViceChairmanhome.xaml;
+251111741441
+255-1220157131
+AdminMenu.xaml;ChairmanApprove.xaml;ChairmanEvent.xaml;Chairmanhome.xaml;ChairmanMenu.xaml;ChairmanReport.xaml;ChairmanTask.xaml;ClubManageForAdminWindow.xaml;ListAllClub.xaml;ListEventsParticipant.xaml;ListJoinedClub.xaml;LoginWindow.xaml;MainWindow.xaml;Memberhome.xaml;MemberManagement.xaml;RegisterWindow.xaml;ResetPasswordWindow .xaml;Styles.xaml;TeamLeaderhome.xaml;UpdateMemeberProfile.xaml;ViceChairmanhome.xaml;
 
 False
 

@@ -31,6 +31,10 @@ public partial class User
 
     public virtual ICollection<Group> Groups { get; set; } = new List<Group>();
 
+    public virtual ICollection<Message> MessageReceivers { get; set; } = new List<Message>();
+
+    public virtual ICollection<Message> MessageSenders { get; set; } = new List<Message>();
+
     public virtual Role? Role { get; set; }
 
     public virtual ICollection<UserClub> UserClubs { get; set; } = new List<UserClub>();

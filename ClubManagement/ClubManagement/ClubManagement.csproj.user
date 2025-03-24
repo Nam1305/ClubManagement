@@ -55,6 +55,9 @@
     <Compile Update="ResetPasswordWindow .xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="TeamLeaderhome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UpdateMemeberProfile.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -115,6 +118,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TeamLeaderhome.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UpdateMemeberProfile.xaml">

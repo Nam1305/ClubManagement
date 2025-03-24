@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {}
+    "D:\\24\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {}
   },
   "projects": {
-    "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
+    "D:\\24\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "D:\\24\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\DataAccess\\obj\\",
+        "projectPath": "D:\\24\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\emkob\\.nuget\\packages\\",
+        "outputPath": "D:\\24\\ClubManagement\\ClubManagement\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\emkob\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -93,20 +93,20 @@
         }
       }
     },
-    "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {
+    "D:\\24\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
+        "projectUniqueName": "D:\\24\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\Repository\\obj\\",
+        "projectPath": "D:\\24\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\emkob\\.nuget\\packages\\",
+        "outputPath": "D:\\24\\ClubManagement\\ClubManagement\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\emkob\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -121,8 +121,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "D:\\ClubManagementFinal\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj"
+              "D:\\24\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "D:\\24\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj"
               }
             }
           }
