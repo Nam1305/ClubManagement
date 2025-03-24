@@ -41,7 +41,7 @@ namespace ClubManagement
         private void dgDataClub_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Club clubs = (Club)dgDataClub.SelectedItem as Club;
-            if(clubs != null)
+            if (clubs != null)
             {
                 txtClubId.Text = clubs.ClubId.ToString();
                 txtClubName.Text = clubs.ClubName;
@@ -59,22 +59,24 @@ namespace ClubManagement
             }
         }
 
-        private void btnSearch_Click(object sender, RoutedEventArgs e)
-        {
-            string clubName = this.txtClubNameSearch.Text;
-            if (!clubName.IsNullOrEmpty())
-            {
-                adminService = new AdminService();
-                var club = adminService.SearchClubByName(clubName);
-                this.dgDataClub.ItemsSource = club;
-            }
-        }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             string clubName = this.txtClubName.Text;
             string desciption = this.txtDescription.Text;
+            // Kiểm tra các trường bắt buộc
+            if (string.IsNullOrEmpty(clubName) || string.IsNullOrEmpty(desciption) || dpEstablishDate.SelectedDate == null)
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin Club!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             DateOnly establishDate = DateOnly.FromDateTime(dpEstablishDate.SelectedDate.Value);
+            // Kiểm tra ClubName có trùng không
+            if (adminService.IsDuplicateName(clubName))
+            {
+                MessageBox.Show("Tên Club đã tồn tại. Vui lòng chọn tên khác!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             Club club = new Club()
             {
                 ClubName = clubName,
@@ -97,6 +99,11 @@ namespace ClubManagement
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             Club selectedClub = (Club)dgDataClub.SelectedItem;
+            if (selectedClub == null)
+            {
+                MessageBox.Show("Vui lòng chọn 1 Club nếu muốn update", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
             string clubName = this.txtClubName.Text;
             string desciption = this.txtDescription.Text;
             DateOnly establishDate = DateOnly.FromDateTime(dpEstablishDate.SelectedDate.Value);
@@ -129,20 +136,6 @@ namespace ClubManagement
 
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            int clubId = int.Parse( this.txtClubId.Text);
-            if (adminService.DeleteClub(clubId))
-            {
-                MessageBox.Show("Delete Club thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                LoadDataGridClub();
-            }
-            else
-            {
-                MessageBox.Show("Thêm Club thất bại!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-
-        }
 
         private void btnReset_Click_1(object sender, RoutedEventArgs e)
         {
@@ -154,6 +147,17 @@ namespace ClubManagement
             rbActive.IsChecked = false;
             rbInactive.IsChecked = false;
             LoadDataGridClub();
+        }
+
+        private void txtClubNameSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string clubName = this.txtClubNameSearch.Text;
+            if (!clubName.IsNullOrEmpty())
+            {
+                adminService = new AdminService();
+                var club = adminService.SearchClubByName(clubName);
+                this.dgDataClub.ItemsSource = club;
+            }
         }
     }
 }

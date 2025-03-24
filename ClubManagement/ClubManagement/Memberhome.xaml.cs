@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DataAccess.Models;
@@ -23,7 +24,7 @@ namespace ClubManagement
     public partial class Memberhome : Window
     {
         private readonly int userId;
-        UserService userService;
+
         public Memberhome()
         {
 
@@ -39,22 +40,41 @@ namespace ClubManagement
         private void btnEditProfile_Click(object sender, RoutedEventArgs e)
         {
             Window EditProfile = new UpdateMemeberProfile(userId);
+            EditProfile.WindowState = WindowState.Maximized;
             EditProfile.Show();
-            this.Close();
+
         }
 
         private void btnListAllClub_Click(object sender, RoutedEventArgs e)
         {
             Window ListALlClub = new ListAllClub(userId);
+            ListALlClub.WindowState = WindowState.Maximized;
             ListALlClub.Show();
-            this.Close();
+
         }
 
         private void btnViewClubJoined_Click(object sender, RoutedEventArgs e)
         {
             Window ViewClubJoined = new ListJoinedClub(userId);
-            ViewClubJoined.Show();  
+            ViewClubJoined.WindowState = WindowState.Maximized;
+            ViewClubJoined.Show();
+
+        }
+
+        private void btnEvent_Click(object sender, RoutedEventArgs e)
+        {
+            Window ListEventJoined = new ListEventsParticipant(userId);
+            ListEventJoined.WindowState = WindowState.Maximized;
+            ListEventJoined.Show();
+
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            Window login = new LoginWindow();
+            login.Show();
             this.Close();
         }
+
     }
 }

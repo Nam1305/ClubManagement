@@ -25,7 +25,7 @@ namespace ClubManagement
         UserService userService;
         public ListJoinedClub()
         {
-            
+
         }
 
         public ListJoinedClub(int userId)
@@ -41,7 +41,7 @@ namespace ClubManagement
         {
             userService = new UserService();
             var data = userService.GetClubJoinedByUserId(userId);
-            this.dgClubJoined.ItemsSource = data;   
+            this.dgClubJoined.ItemsSource = data;
         }
 
         public void LoadDataDridClubApproving()
@@ -54,7 +54,7 @@ namespace ClubManagement
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             string querySearch = txtSearch.Text;
-            var data = userService.SearchUserClub(userId ,querySearch);
+            var data = userService.SearchUserClub(userId, querySearch);
             this.dgClubJoined.ItemsSource = data;
         }
 
@@ -70,10 +70,10 @@ namespace ClubManagement
         private void dgClubJoined_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UserClub clubs = (UserClub)dgClubJoined.SelectedItem as UserClub;
-            if(clubs != null)
+            if (clubs != null)
             {
                 txtClubName.Text = clubs.Club.ClubName;
-                txtDescription.Text = clubs.Club.Description;   
+                txtDescription.Text = clubs.Club.Description;
                 txtEstablishDate.Text = clubs.Club.EstablishedDate.ToString();
             }
         }

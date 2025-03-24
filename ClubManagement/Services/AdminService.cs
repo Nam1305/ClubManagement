@@ -21,7 +21,7 @@ namespace Services
 
         public List<User> LoadDataGridUser()
         {
-            return userRepo.GetAllUsers();    
+            return userRepo.GetAllUsers();
         }
 
         public List<User> SearchUserByStudentNumber(string studentNumber)
@@ -49,18 +49,18 @@ namespace Services
             return userRepo.AddNewUser(user);
         }
 
-        public bool UpdateUser(User user) 
+        public bool UpdateUser(User user)
         {
             return userRepo.UpdateUser(user);
 
         }
 
-        public bool DeleteUser(string studentNumber) 
+        public bool DeleteUser(string studentNumber)
         {
             return userRepo.DeleteUser(studentNumber);
         }
 
-        public List<User> GetUsersByCbRoleChanged(int roleId) 
+        public List<User> GetUsersByCbRoleChanged(int roleId)
         {
             return userRepo.GetUserByCbRoleChanged(roleId);
         }
@@ -80,6 +80,11 @@ namespace Services
             return clubRepo.AddNewClub(club);
         }
 
+        public bool IsDuplicateName(string clubName)
+        {
+            return clubRepo.IsClubNameExists(clubName);
+        }
+
         public bool UpdateClub(Club club)
         {
             return clubRepo.UpdateClub(club);
@@ -89,6 +94,21 @@ namespace Services
         public bool DeleteClub(int clubId)
         {
             return clubRepo.DeleteClub(clubId);
+        }
+
+        public bool IsEmailAnotherExists(int userId, string email)
+        {
+            return userRepo.IsEmailAnotherExists(userId, email);
+        }
+
+        public bool IsUsernameAnotherExists(int userId, string username)
+        {
+            return userRepo.IsUsernameAnotherExists(userId, username);
+        }
+
+        public bool IsStudentNumberAnotherExists(int userId, string studentNumber)
+        {
+            return userRepo.IsStudentNumberAnotherExists(userId, studentNumber);
         }
         //Het code cua Pham Hoang Nam
     }

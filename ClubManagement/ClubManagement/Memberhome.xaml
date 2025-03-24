@@ -7,26 +7,15 @@
         mc:Ignorable="d"
         Title="Memberhome" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Welcome to Club Management" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Button x:Name="btnEditProfile" Height="30" Width="200" Content="Edit Profile" Click="btnEditProfile_Click" />
+            <Button x:Name="btnViewClubJoined" Height="30" Width="200" Content="View list Club Joined" Click="btnViewClubJoined_Click" />
+            <Button x:Name="btnListAllClub" Height="30" Width="200" Content="View all Club" Click="btnListAllClub_Click" />
+            <Button x:Name="btnEvent" Width="200" Height="30" Content="View events joined" Click="btnEvent_Click" />
+            <Button x:Name="btnLogout" Content="Logout" Width="200" Height="50" Background="Blue" Foreground="White" Click="btnLogout_Click" />
+        </StackPanel>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBlock Text="Click to button Edit Profile to update profile" TextWrapping="Wrap" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" Foreground="Red" FontSize="20"/>
-        <TextBlock Text="Click to button View list club joined to see clubs which you joined" TextWrapping="Wrap" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" Foreground="Red" FontSize="20"/>
-        <TextBlock Text="Click to button View all Club to see all on the system" TextWrapping="Wrap" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" Foreground="Red" FontSize="20"/>
-        <TextBlock Text="Click to button Notification to see your notification" TextWrapping="Wrap" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0" Foreground="Red" FontSize="20"/>
 
-        <Button x:Name="btnEditProfile" MinWidth="80" Margin="3" Content="Edit Profile" Grid.Row="1" Grid.Column="0" Click="btnEditProfile_Click" />
-        <Button x:Name="btnViewClubJoined" MinWidth="80" Margin="3" Content="View list Club Joined" Grid.Row="1" Grid.Column="1" Click="btnViewClubJoined_Click" />
-        <Button x:Name="btnListAllClub" MinWidth="80" Margin="3" Content="View all Club" Grid.Row="1" Grid.Column="2" Click="btnListAllClub_Click" />
-        <Button MinWidth="80" Margin="3" Content="Notification" Grid.Row="1" Grid.Column="3"/>
     </Grid>
 </Window>

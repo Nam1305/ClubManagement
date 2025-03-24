@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,10 +23,12 @@ namespace ClubManagement
     public partial class UpdateMemeberProfile : Window
     {
         private readonly int userId;
+
         UserService userService;
+        AdminService adminService;
         public UpdateMemeberProfile()
         {
-            
+
         }
 
         public UpdateMemeberProfile(int userId)
@@ -50,42 +53,70 @@ namespace ClubManagement
             txtStudentNumber.Text = user.StudentNumber;
             txtUserName.Text = user.Username;
             txtRole.Text = user.Role.RoleName;
-            if (user.Status == "active")
-            {
-                rbActive.IsChecked = true;
-            }
-
-            if (user.Status == "inactive")
-            {
-                rbInactive.IsChecked = true;
-            }
+            txtStatus.Text = user.Status;
 
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            this.adminService = new AdminService();
             int userId = int.Parse(this.txtMemberId.Text);
             string studentNumber = this.txtStudentNumber.Text;
             string email = this.txtEmail.Text;
             string fullName = this.txtFullName.Text;
             string userName = this.txtUserName.Text;
-            string status = "";
+            if (string.IsNullOrWhiteSpace(studentNumber))
+            {
+                MessageBox.Show("Student Number không được để trống!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                MessageBox.Show("Email không được để trống!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(fullName))
+            {
+                MessageBox.Show("Full Name không được để trống!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                MessageBox.Show("user Name không được để trống!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; // Regex kiểm tra email
+            if (!Regex.IsMatch(email, emailPattern))
+            {
+                MessageBox.Show("Email không đúng định dạng!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (adminService.IsEmailAnotherExists(userId, email))
+            {
+                MessageBox.Show("Email đã tồn tại vui lòng sử dụng mail khác", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (adminService.IsStudentNumberAnotherExists(userId, studentNumber))
+            {
+                MessageBox.Show("StudentNumber đã tồn tại", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (adminService.IsUsernameAnotherExists(userId, userName))
+            {
+                MessageBox.Show("user name đã tồn tại", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             string roleName = this.txtRole.Text;
             int roleId = 0;
-            if(roleName == "Member")
+            if (roleName == "Member")
             {
                 roleId = 5;
             }
-            if (rbActive.IsChecked == true)
-            {
-                status = "active";
-            }
-            if (rbInactive.IsChecked == true)
-            {
-                status = "inactive";
-            }
+            string status = this.txtStatus.Text;
 
-            User updatedUser = new User() 
+
+            User updatedUser = new User()
             {
                 UserId = userId,
                 StudentNumber = studentNumber,
@@ -103,8 +134,9 @@ namespace ClubManagement
             }
             else
             {
-                MessageBox.Show("Update user thất bị!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update user thất bại!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
     }
 }

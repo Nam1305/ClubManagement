@@ -32,14 +32,14 @@
 
         <Label Grid.Row="0" Grid.Column="0" Content="Member information:" Foreground="Red" FontSize="15"/>
         <Label Grid.Row="1" Grid.Column="0" Content="Student Number"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="150" HorizontalAlignment="Left" Name="txtStudentNumber"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="150" HorizontalAlignment="Left" Name="txtStudentNumber" IsReadOnly="True"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Student Name"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="150" HorizontalAlignment="Left" Name="txtStudentName"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="150" HorizontalAlignment="Left" Name="txtStudentName"  IsReadOnly="True"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Email"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Width="150" HorizontalAlignment="Left" Name="txtEmail"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Width="150" HorizontalAlignment="Left" Name="txtEmail"  IsReadOnly="True"/>
         <Label Grid.Row="4" Grid.Column="0" Content="List club joined:" Foreground="Red" FontSize="13"/>
         <Label Grid.Row="5" Grid.Column="0" Content="Search"/>
-        
+
         <TextBox Grid.Row="5" Grid.Column="1" Margin="3" Width="100" HorizontalAlignment="Left" Name="txtSearch" TextChanged="txtSearch_TextChanged"/>
 
         <DataGrid Name="dgClubJoined" Margin="3" Grid.Row="6" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgClubJoined_SelectionChanged" >
@@ -51,13 +51,13 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Label Grid.Row="0" Grid.Column="3" Content="Club information:" Foreground="Red" FontSize="15"/>
+        <Label Grid.Row="1" Grid.Column="3" Content="Club information:" Foreground="Red" FontSize="15"/>
         <Label Grid.Row="2" Grid.Column="2" Content="Club Name:"/>
         <Label Grid.Row="3" Grid.Column="2" Content="Description:"/>
         <Label Grid.Row="4" Grid.Column="2" Content="Establish Date:"/>
-        <TextBox Grid.Row="2" Grid.Column="3" Margin="3" Width="100" HorizontalAlignment="Left" Name="txtClubName"/>
-        <TextBox Grid.Row="3" Grid.Column="3" Margin="3" Width="230" HorizontalAlignment="Left" Name="txtDescription"/>
-        <TextBox Grid.Row="4" Grid.Column="3" Margin="3" Width="100" HorizontalAlignment="Left" Name="txtEstablishDate"/>
+        <TextBox Grid.Row="2" Grid.Column="3" Margin="3" Width="100" HorizontalAlignment="Left" Name="txtClubName"  IsReadOnly="True"/>
+        <TextBox Grid.Row="3" Grid.Column="3" Margin="3" Width="230" HorizontalAlignment="Left" Name="txtDescription"  IsReadOnly="True"/>
+        <TextBox Grid.Row="4" Grid.Column="3" Margin="3" Width="100" HorizontalAlignment="Left" Name="txtEstablishDate"  IsReadOnly="True"/>
         <Label Grid.Row="5" Grid.Column="2" Content="List club wait for approve:" Foreground="Red" FontSize="15"/>
 
         <DataGrid Name="dgClubApproving" Margin="3" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgClubApproving_SelectionChanged" >

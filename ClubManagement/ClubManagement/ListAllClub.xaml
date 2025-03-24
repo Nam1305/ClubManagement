@@ -44,12 +44,9 @@
 
         </TextBox>
 
-        <DatePicker Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="dpEstablishDate" > </DatePicker>
+        <DatePicker Grid.Row="4" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="dpEstablishDate" IsEnabled="False"></DatePicker>
         <Label Grid.Row="5" Grid.Column="0" Content="Search CLub By Name:"/>
-        <TextBox Grid.Row="5" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtSearch">
-
-        </TextBox>
-        <Button x:Name="btnSearch" Width="100" Margin="3" HorizontalAlignment="Left" Grid.Row="6" Grid.Column="1" Content="Search" Click="btnSearch_Click" />
+        <TextBox Grid.Row="5" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtSearch" TextChanged="txtSearch_TextChanged" ></TextBox>
 
         <Button x:Name="btnJoin" Width="200" Margin="3" HorizontalAlignment="Center" Grid.Row="7" Grid.Column="1" Content="Join Club" Click="btnJoin_Click" />
 

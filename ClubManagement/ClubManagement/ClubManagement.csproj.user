@@ -7,7 +7,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Adminhome.xaml.cs">
+    <Compile Update="AdminMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ChairmanApprove.xaml.cs">
@@ -34,6 +34,9 @@
     <Compile Update="ListAllClub.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ListEventsParticipant.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ListJoinedClub.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -41,6 +44,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Memberhome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MemberManagement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="RegisterWindow.xaml.cs">
@@ -57,7 +63,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Adminhome.xaml">
+    <Page Update="AdminMenu.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ChairmanApprove.xaml">
@@ -84,6 +90,9 @@
     <Page Update="ListAllClub.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="ListEventsParticipant.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="ListJoinedClub.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -94,6 +103,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Memberhome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MemberManagement.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="RegisterWindow.xaml">

@@ -12,10 +12,14 @@ namespace Services
     {
         UserRepo userRepo;
         ClubRepo clubRepo;
+        EventParticipantRepo eventParticipantRepo;
+        EventRepo eventRepo;
         public UserService()
         {
             userRepo = new UserRepo();
             clubRepo = new ClubRepo();
+            eventParticipantRepo = new EventParticipantRepo();
+            eventRepo = new EventRepo();
         }
 
         public User GetUserByUserId(int userId)
@@ -51,6 +55,11 @@ namespace Services
         public List<UserClub> SearchUserClub(int userId, string name)
         {
             return userRepo.SearchUserClub(userId, name);
+        }
+
+        public List<EventParticipant> GetAllEventsJoined(int userId)
+        {
+            return eventParticipantRepo.GetEventsParticipant(userId);
         }
 
 

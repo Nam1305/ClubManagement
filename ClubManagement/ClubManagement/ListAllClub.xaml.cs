@@ -23,6 +23,7 @@ namespace ClubManagement
     public partial class ListAllClub : Window
     {
         private readonly int userId;
+
         AdminService adminService;
         UserService userService;
         public ListAllClub()
@@ -32,7 +33,7 @@ namespace ClubManagement
 
         public ListAllClub(int userId)
         {
-            
+
             InitializeComponent();
             this.userId = userId;
             LoadDataGridClub();
@@ -57,20 +58,16 @@ namespace ClubManagement
             }
         }
 
-        private void btnSearch_Click(object sender, RoutedEventArgs e)
-        {
-            string searchQuery = this.txtSearch.Text;
-            userService = new UserService();
-            if (!searchQuery.IsNullOrEmpty())
-            {
-                var club = userService.SearchClubByName(searchQuery);
-                this.dgDataClub.ItemsSource = club;
-            }
-        }
 
         private void btnJoin_Click(object sender, RoutedEventArgs e)
         {
-            int clubId = int.Parse(txtClubId.Text); 
+            if (string.IsNullOrWhiteSpace(txtClubId.Text))
+            {
+                MessageBox.Show("Vui lòng chọn một câu lạc bộ để tham gia!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            int clubId = int.Parse(txtClubId.Text);
+
             userService = new UserService();
             bool success = userService.JoinClub(userId, clubId);
             if (success)
@@ -82,6 +79,17 @@ namespace ClubManagement
                 MessageBox.Show("Bạn đã gửi yêu cầu trước đó!");
             }
 
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchQuery = this.txtSearch.Text;
+            userService = new UserService();
+            if (!searchQuery.IsNullOrEmpty())
+            {
+                var club = userService.SearchClubByName(searchQuery);
+                this.dgDataClub.ItemsSource = club;
+            }
         }
     }
 }

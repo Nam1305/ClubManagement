@@ -27,20 +27,19 @@
 
         <Label Grid.Row="0" Grid.Column="0" Content="ClubId:"/>
         <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtClubId" IsReadOnly="True">
-            
+
         </TextBox>
 
         <Label Grid.Row="1" Grid.Column="0" Content="Club Name:"/>
-        <Button Grid.Row="0" Grid.Column="2" MinWidth="80" Margin="3" Content="Back to home page" HorizontalAlignment="Right"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Description:"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Establish Date:"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Status:"/>
-            
+
         <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtClubName">
 
         </TextBox>
 
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtDescription">
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="500" HorizontalAlignment="Left" Name="txtDescription">
 
         </TextBox>
 
@@ -54,14 +53,12 @@
         <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
             <Button x:Name="btnAdd" MinWidth="80" Margin="3" Content="Add" Click="btnAdd_Click" />
             <Button x:Name="btnUpdate" MinWidth="80" Margin="3" Content="Update" Click="btnUpdate_Click" />
-            <Button x:Name="btnDelete" MinWidth="80" Margin="3" Content="Delete" Click="btnDelete_Click" />
         </StackPanel>
 
         <Label Grid.Row="6" Grid.Column="0" Content="Search By Club Name:"/>
-        <TextBox Grid.Row="6" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtClubNameSearch">
+        <TextBox Grid.Row="6" Grid.Column="1" Margin="3" Width="300" HorizontalAlignment="Left" Name="txtClubNameSearch" TextChanged="txtClubNameSearch_TextChanged" >
 
         </TextBox>
-        <Button x:Name="btnSearch" Grid.Row="6" Grid.Column="2" Margin="3" HorizontalAlignment="Left" MinWidth="80" Content="Search" Click="btnSearch_Click" />
         <Button x:Name="btnReset" Grid.Row="7" Grid.Column="1" Margin="3" HorizontalAlignment="Center" MinWidth="80" Content="Reset" Click="btnReset_Click_1" />
 
         <DataGrid Grid.Row="8" Grid.ColumnSpan="3" Name="dgDataClub" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgDataClub_SelectionChanged" >

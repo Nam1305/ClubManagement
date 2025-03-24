@@ -23,7 +23,7 @@ namespace Repository
                 .ToList();
         }
 
-        public List<Club> SearchClubByName(string clubName) 
+        public List<Club> SearchClubByName(string clubName)
         {
             return context.Clubs.Where(c => c.ClubName.Contains(clubName)).ToList();
         }
@@ -41,6 +41,11 @@ namespace Repository
                 Console.WriteLine(ex.Message);
                 return false;
             }
+        }
+
+        public bool IsClubNameExists(string clubName)
+        {
+            return context.Clubs.Any(c => c.ClubName == clubName);
         }
 
         public bool UpdateClub(Club club)

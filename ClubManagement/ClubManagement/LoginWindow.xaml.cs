@@ -60,7 +60,7 @@ namespace ClubManagement
             switch (account.Role.RoleName.ToLower())
             {
                 case "admin":
-                    targetWindow = new Adminhome();
+                    targetWindow = new AdminMenu();
                     break;
                 case "chairman":
                     targetWindow = new ChairmanMenu(account.UserId, clubId);
@@ -72,7 +72,7 @@ namespace ClubManagement
                 //    targetWindow = new TeamLeaderhome();
                 //    break;
                 case "member":
-                    targetWindow = new Memberhome();
+                    targetWindow = new Memberhome(account.UserId);
                     break;
                 default:
                     MessageBox.Show("Role không hợp lệ!", "Lỗi",

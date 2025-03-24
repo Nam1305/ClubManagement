@@ -327,10 +327,25 @@ namespace Repository
             return context.UserClubs
                 .Include(uc => uc.User)
                 .Where(uc => uc.UserId == userId)
-                .Where(uc => uc.Status.Equals("pending"))
+                .Where(uc => uc.Status.Equals("approved"))
                 .Include(uc => uc.Club)
                 .Where(uc => uc.Club.ClubName.Contains(name))
                 .ToList();
+        }
+
+        public bool IsUsernameAnotherExists(int userId, string username)
+        {
+            return context.Users.Any(u => u.Username == username && u.UserId != userId);
+        }
+
+        public bool IsStudentNumberAnotherExists(int userId, string studentNumber)
+        {
+            return context.Users.Any(u => u.StudentNumber == studentNumber && u.UserId != userId);
+        }
+
+        public bool IsEmailAnotherExists(int userId, string email)
+        {
+            return context.Users.Any(u => u.Email == email && u.UserId != userId);
         }
     }
 }
