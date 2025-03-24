@@ -140,6 +140,21 @@ CREATE TABLE [dbo].[Report] (
 )
 GO
 
+-- Tạo bảng Messages (Tin nhắn)
+CREATE TABLE [dbo].[Messages] (
+    [messageId] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, -- Mã tin nhắn
+    [senderId] INT NOT NULL,                           -- Mã người gửi
+    [receiverId] INT NULL,                             -- Mã người nhận (NULL nếu là tin nhắn chung trong câu lạc bộ)
+    [clubId] INT NOT NULL,                             -- Mã câu lạc bộ
+    [content] NVARCHAR(1000) NOT NULL,                 -- Nội dung tin nhắn
+    [sentAt] DATETIME NOT NULL DEFAULT GETDATE(),      -- Thời gian gửi
+    [isRead] BIT NOT NULL DEFAULT 0,                   -- Trạng thái đã đọc (0: chưa đọc, 1: đã đọc)
+    FOREIGN KEY ([senderId]) REFERENCES [dbo].[Users] ([userId]),   -- Khóa ngoại tới Users (người gửi)
+    FOREIGN KEY ([receiverId]) REFERENCES [dbo].[Users] ([userId]), -- Khóa ngoại tới Users (người nhận)
+    FOREIGN KEY ([clubId]) REFERENCES [dbo].[Clubs] ([clubId])      -- Khóa ngoại tới Clubs
+)
+GO
+
 -- Đặt database về chế độ đọc/ghi
 USE [master]
 GO
