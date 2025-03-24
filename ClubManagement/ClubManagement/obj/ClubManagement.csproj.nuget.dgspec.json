@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\New folder\\ClubManagement\\ClubManagement\\ClubManagement\\ClubManagement.csproj": {}
+    "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\ClubManagement\\ClubManagement.csproj": {}
   },
   "projects": {
-    "D:\\New folder\\ClubManagement\\ClubManagement\\ClubManagement\\ClubManagement.csproj": {
+    "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\ClubManagement\\ClubManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\New folder\\ClubManagement\\ClubManagement\\ClubManagement\\ClubManagement.csproj",
+        "projectUniqueName": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\ClubManagement\\ClubManagement.csproj",
         "projectName": "ClubManagement",
-        "projectPath": "D:\\New folder\\ClubManagement\\ClubManagement\\ClubManagement\\ClubManagement.csproj",
-        "packagesPath": "C:\\Users\\emkob\\.nuget\\packages\\",
-        "outputPath": "D:\\New folder\\ClubManagement\\ClubManagement\\ClubManagement\\obj\\",
+        "projectPath": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\ClubManagement\\ClubManagement.csproj",
+        "packagesPath": "C:\\Users\\thang\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\ClubManagement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\emkob\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net8.0-windows7.0": {
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "D:\\New folder\\ClubManagement\\ClubManagement\\Services\\Services.csproj": {
-                "projectPath": "D:\\New folder\\ClubManagement\\ClubManagement\\Services\\Services.csproj"
+              "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Services\\Services.csproj": {
+                "projectPath": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Services\\Services.csproj"
               }
             }
           }
@@ -100,20 +100,20 @@
         }
       }
     },
-    "D:\\New folder\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\New folder\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "D:\\New folder\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\emkob\\.nuget\\packages\\",
-        "outputPath": "D:\\New folder\\ClubManagement\\ClubManagement\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\thang\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\emkob\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -189,20 +189,20 @@
         }
       }
     },
-    "D:\\New folder\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {
+    "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\New folder\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
+        "projectUniqueName": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "D:\\New folder\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
-        "packagesPath": "C:\\Users\\emkob\\.nuget\\packages\\",
-        "outputPath": "D:\\New folder\\ClubManagement\\ClubManagement\\Repository\\obj\\",
+        "projectPath": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\thang\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\emkob\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -217,8 +217,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\New folder\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "D:\\New folder\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj"
               }
             }
           }
@@ -268,20 +268,20 @@
         }
       }
     },
-    "D:\\New folder\\ClubManagement\\ClubManagement\\Services\\Services.csproj": {
+    "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\New folder\\ClubManagement\\ClubManagement\\Services\\Services.csproj",
+        "projectUniqueName": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "D:\\New folder\\ClubManagement\\ClubManagement\\Services\\Services.csproj",
-        "packagesPath": "C:\\Users\\emkob\\.nuget\\packages\\",
-        "outputPath": "D:\\New folder\\ClubManagement\\ClubManagement\\Services\\obj\\",
+        "projectPath": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Services\\Services.csproj",
+        "packagesPath": "C:\\Users\\thang\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\emkob\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -296,8 +296,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\New folder\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {
-                "projectPath": "D:\\New folder\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj"
+              "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj": {
+                "projectPath": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Repository\\Repository.csproj"
               }
             }
           }

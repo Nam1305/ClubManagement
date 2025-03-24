@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\New folder\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\
+C:\Users\thang\Downloads\clooooon\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\
 ClubManagement
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-D:\New folder\ClubManagement\ClubManagement\ClubManagement\App.xaml
+C:\Users\thang\Downloads\clooooon\ClubManagement\ClubManagement\ClubManagement\App.xaml
 18-1494581132
 
 201945480928
-255965827358
+255-1417179625
 Adminhome.xaml;ChairmanApprove.xaml;ChairmanEvent.xaml;Chairmanhome.xaml;ChairmanMenu.xaml;ChairmanReport.xaml;ChairmanTask.xaml;ClubManageForAdminWindow.xaml;ListAllClub.xaml;ListJoinedClub.xaml;LoginWindow.xaml;MainWindow.xaml;Memberhome.xaml;RegisterWindow.xaml;ResetPasswordWindow .xaml;Styles.xaml;UpdateMemeberProfile.xaml;ViceChairmanhome.xaml;
 
 False

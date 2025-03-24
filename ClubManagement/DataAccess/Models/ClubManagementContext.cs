@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-
+using Microsoft.Extensions.Configuration.Json;
 namespace DataAccess.Models;
 
 public partial class ClubManagementContext : DbContext
@@ -39,13 +39,11 @@ public partial class ClubManagementContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json")
-            .Build();
-
-        var connectionString = configuration.GetConnectionString("DBDefault");
-        optionsBuilder.UseSqlServer(connectionString);
+        var builder = new ConfigurationBuilder();
+        builder.SetBasePath(Directory.GetCurrentDirectory());
+        builder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+        var configuration = builder.Build();
+        optionsBuilder.UseSqlServer(configuration.GetConnectionString("Default"));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
