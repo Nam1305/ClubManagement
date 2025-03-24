@@ -10,30 +10,41 @@ using Services;
 using System.Windows.Data;
 using ClosedXML.Excel;
 using Repository.DTO;
-
+using System.Windows.Threading;
+using System.Collections.Generic;
 namespace ClubManagement
 {
     public partial class ViceChairmanhome : Window
     {
+        private readonly ClubManagementContext _context;
+        private readonly TaskRepo _taskRepo;
         private readonly GroupRepo _groupRepo;
         private readonly UserRepo _userRepo;
-        private readonly TaskRepo _taskRepo;
-        private readonly ClubManagementContext _context;
         private readonly MemberService _memberService;
-
+        private List<MemberParticipationDto> _allMembers;
+        private DispatcherTimer _chatTimer;
         public ViceChairmanhome()
         {
-            _context = new ClubManagementContext(); 
-            _taskRepo = new TaskRepo(); 
+            _context = new ClubManagementContext();
+            _taskRepo = new TaskRepo();
             _groupRepo = new GroupRepo();
             _userRepo = new UserRepo();
             _memberService = new MemberService();
 
             InitializeComponent();
+            Loaded += ViceChairmanhome_Loaded;
+            _chatTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(5) 
+            };
+            _chatTimer.Tick += (s, e) => LoadChatMessages();
+        }
 
+        private void ViceChairmanhome_Loaded(object sender, RoutedEventArgs e)
+        {
             if (CurrentUser.RoleId != 3 || !CurrentUser.ClubId.HasValue)
             {
-                MessageBox.Show("You do not have permission or are not assigned to a club.", "Access Denied", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Bạn không có quyền hoặc chưa được gán vào câu lạc bộ.", "Truy cập bị từ chối", MessageBoxButton.OK, MessageBoxImage.Error);
                 Close();
                 return;
             }
@@ -41,22 +52,143 @@ namespace ClubManagement
             LoadGroups();
             LoadEvents();
             LoadTerms();
-            LoadMembers(TermComboBox.SelectedItem?.ToString() ?? "Fall" + DateTime.Now.Year);
             LoadReportSemesters();
             LoadReports();
+            LoadTasks();
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                if (TermComboBox != null && MembersListView != null)
+                {
+                    LoadMembers(TermComboBox.SelectedItem?.ToString() ?? "Fall" + DateTime.Now.Year);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("MembersListView or TermComboBox is still null after delay.");
+                }
+            }), System.Windows.Threading.DispatcherPriority.Background);
+
+            var tabControl = FindName("TabControl") as TabControl;
+            if (tabControl != null)
+            {
+                tabControl.SelectionChanged += (s, args) =>
+                {
+                    if (tabControl.SelectedItem is TabItem selectedTab && selectedTab.Header.ToString() == "Chat")
+                    {
+                        LoadChatMessages();
+                        _chatTimer.Start();
+                    }
+                    else
+                    {
+                        _chatTimer.Stop();
+                    }
+                };
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("TabControl not found in ViceChairmanhome.xaml.");
+                MessageBox.Show("Không tìm thấy TabControl trong giao diện!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
+        private void LoadChatMessages()
+        {
+            try
+            {
+                var messages = _context.Messages
+                    .Where(m => m.ClubId == CurrentUser.ClubId.Value)
+                    .Join(_context.Users,
+                        m => m.SenderId,
+                        u => u.UserId,
+                        (m, u) => new MessageDto
+                        {
+                            MessageId = m.MessageId,
+                            SenderName = u.FullName,
+                            Content = m.Content,
+                            SentAt = m.SentAt
+                        })
+                    .OrderBy(m => m.SentAt)
+                    .ToList();
+
+                ChatListView.ItemsSource = messages;
+                ChatListView.ScrollIntoView(ChatListView.Items[ChatListView.Items.Count - 1]); // Cuộn xuống tin nhắn mới nhất
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void MessageTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (MessageTextBox.Text == "Nhập tin nhắn...")
+            {
+                MessageTextBox.Text = "";
+            }
+        }
+
+        private void MessageTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(MessageTextBox.Text))
+            {
+                MessageTextBox.Text = "Nhập tin nhắn...";
+            }
+        }
+
+        private void SendMessageButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(MessageTextBox.Text) || MessageTextBox.Text == "Nhập tin nhắn...")
+                {
+                    MessageBox.Show("Vui lòng nhập nội dung tin nhắn!", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                var newMessage = new DataAccess.Models.Message
+                {
+                    SenderId = CurrentUser.UserId,
+                    ReceiverId = null, 
+                    ClubId = CurrentUser.ClubId.Value,
+                    Content = MessageTextBox.Text,
+                    SentAt = DateTime.Now,
+                    IsRead = false
+                };
+
+                _context.Messages.Add(newMessage);
+                _context.SaveChanges();
+
+                MessageTextBox.Text = "Nhập tin nhắn...";
+                LoadChatMessages();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi gửi tin nhắn: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
         private void LoadGroups()
         {
-            var groups = _groupRepo.GetGroupsByClubId(CurrentUser.ClubId.Value);
-            GroupsListView.ItemsSource = groups;
-            GroupComboBox.ItemsSource = groups;
+            try
+            {
+                var groups = _groupRepo.GetGroupsByClubId(CurrentUser.ClubId.Value);
+                GroupsListView.ItemsSource = groups;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading groups: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void LoadEvents()
         {
-            var events = _context.Events.Where(e => e.ClubId == CurrentUser.ClubId.Value).ToList();
-            EventsListView.ItemsSource = events;
+            try
+            {
+                var events = _context.Events.Where(e => e.ClubId == CurrentUser.ClubId.Value).ToList();
+                EventsListView.ItemsSource = events;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading events: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void LoadTerms()
@@ -77,10 +209,36 @@ namespace ClubManagement
             TermComboBox.SelectedIndex = 0;
         }
 
-        private void LoadMembers(string term, int? eventId = null, string participationStatus = null)
+        private void LoadMembers(string term, string searchText = null)
         {
-            var memberData = _memberService.GetClubMembersWithParticipation(CurrentUser.ClubId.Value, term, eventId, participationStatus);
-            MembersListView.ItemsSource = memberData;
+            try
+            {
+                if (MembersListView == null)
+                {
+                    System.Diagnostics.Debug.WriteLine("MembersListView is null at LoadMembers call.");
+                    return;
+                }
+
+                _allMembers = _memberService.GetClubMembersWithParticipation(CurrentUser.ClubId.Value, term) ?? new List<MemberParticipationDto>();
+
+                if (string.IsNullOrEmpty(searchText) || searchText == "Search by name or student number")
+                {
+                    MembersListView.ItemsSource = _allMembers;
+                }
+                else
+                {
+                    var filteredMembers = _allMembers
+                        .Where(m => (m.FullName?.ToLower().Contains(searchText.ToLower()) ?? false) ||
+                                    (m.StudentNumber?.ToLower().Contains(searchText.ToLower()) ?? false))
+                        .ToList();
+                    MembersListView.ItemsSource = filteredMembers;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in LoadMembers: {ex.Message}\nStackTrace: {ex.StackTrace}");
+                MessageBox.Show($"Lỗi khi tải danh sách thành viên: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void LoadReportSemesters()
@@ -103,10 +261,35 @@ namespace ClubManagement
 
         private void LoadReports()
         {
-            var reports = _context.Reports
-                .Where(r => r.ClubId == CurrentUser.ClubId.Value)
-                .ToList();
-            ReportsListView.ItemsSource = reports;
+            try
+            {
+                var reports = _context.Reports
+                    .Where(r => r.ClubId == CurrentUser.ClubId.Value)
+                    .ToList();
+                ReportsListView.ItemsSource = reports;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading reports: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void LoadTasks()
+        {
+            try
+            {
+                var tasks = _context.ClubTasks
+                    .Where(t => t.ClubId == CurrentUser.ClubId.Value && t.AssignedBy == CurrentUser.UserId) // Chỉ hiển thị task do Vice Chairman giao
+                    .Include(t => t.Group)
+                    .Include(t => t.AssignedToNavigation)
+                    .Include(t => t.AssignedByNavigation)
+                    .ToList();
+                TasksListView.ItemsSource = tasks;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading tasks: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void ExportToExcelButton_Click(object sender, RoutedEventArgs e)
@@ -123,15 +306,13 @@ namespace ClubManagement
                 {
                     var worksheet = workbook.Worksheets.Add("Members");
 
-                    // Cập nhật tiêu đề cột
                     worksheet.Cell(1, 1).Value = "Full Name";
                     worksheet.Cell(1, 2).Value = "Student Number";
                     worksheet.Cell(1, 3).Value = "Email";
                     worksheet.Cell(1, 4).Value = "Participation (%)";
                     worksheet.Cell(1, 5).Value = "Activity Level";
-                    worksheet.Cell(1, 6).Value = "Event Participation Status"; // Thêm cột trạng thái tham gia
 
-                    var headerRange = worksheet.Range("A1:F1");
+                    var headerRange = worksheet.Range("A1:E1");
                     headerRange.Style.Font.Bold = true;
                     headerRange.Style.Fill.BackgroundColor = XLColor.LightGray;
 
@@ -143,7 +324,6 @@ namespace ClubManagement
                         worksheet.Cell(i + 2, 3).Value = members[i].Email;
                         worksheet.Cell(i + 2, 4).Value = members[i].ParticipationPercentage;
                         worksheet.Cell(i + 2, 5).Value = members[i].ActivityLevel;
-                        worksheet.Cell(i + 2, 6).Value = members[i].EventParticipationStatus; // Thêm dữ liệu trạng thái tham gia
                     }
 
                     worksheet.Columns().AdjustToContents();
@@ -172,14 +352,30 @@ namespace ClubManagement
             if (TermComboBox.SelectedItem != null)
             {
                 string selectedTerm = TermComboBox.SelectedItem.ToString();
-                LoadMembers(selectedTerm);
+                LoadMembers(selectedTerm, SearchTextBox.Text);
             }
         }
 
-        private void RefreshMembersButton_Click(object sender, RoutedEventArgs e)
+        private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (SearchTextBox.Text == "Search by name or student number")
+            {
+                SearchTextBox.Text = "";
+            }
+        }
+
+        private void SearchTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchTextBox.Text))
+            {
+                SearchTextBox.Text = "Search by name or student number";
+            }
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string selectedTerm = TermComboBox.SelectedItem?.ToString() ?? "Fall" + DateTime.Now.Year;
-            LoadMembers(selectedTerm);
+            LoadMembers(selectedTerm, SearchTextBox.Text);
         }
 
         private void ReportSemesterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -208,7 +404,6 @@ namespace ClubManagement
                 string season = selectedSemester.Substring(0, selectedSemester.Length - 4);
                 int year = int.Parse(selectedSemester.Substring(selectedSemester.Length - 4));
 
-                // Tính số sinh viên gia nhập CLB trong kỳ
                 var membersJoined = _context.UserClubs
                     .Where(uc => uc.ClubId == CurrentUser.ClubId.Value && uc.Status == "approved" && uc.ApprovedAt.HasValue)
                     .ToList()
@@ -219,7 +414,6 @@ namespace ClubManagement
                                   (season == "Summer" && uc.ApprovedAt.Value.Month >= 5 && uc.ApprovedAt.Value.Month <= 8) ||
                                   (season == "Fall" && uc.ApprovedAt.Value.Month >= 9 && uc.ApprovedAt.Value.Month <= 12)));
 
-                // Tính số sinh viên rời CLB trong kỳ (dựa trên Status = "left")
                 var membersLeft = _context.UserClubs
                     .Where(uc => uc.ClubId == CurrentUser.ClubId.Value && uc.Status == "left" && uc.ApprovedAt.HasValue)
                     .ToList()
@@ -232,7 +426,6 @@ namespace ClubManagement
 
                 string memberChangesText = $"{membersJoined} members joined, {membersLeft} members left";
 
-                // Tính số sự kiện trong kỳ
                 var events = _context.Events
                     .Where(ev => ev.ClubId == CurrentUser.ClubId.Value && ev.EventDate.HasValue &&
                                  ev.EventDate.Value.Year == year &&
@@ -242,7 +435,6 @@ namespace ClubManagement
                     .ToList();
                 string eventSummary = $"Organized {events.Count} events, {events.Count(e => e.Status == "Hoàn thành")} completed";
 
-                // Tính mức độ tham gia trung bình của thành viên
                 var participants = _context.EventParticipants
                     .Where(ep => events.Select(e => e.EventId).Contains(ep.EventId))
                     .GroupBy(ep => ep.UserId)
@@ -256,7 +448,6 @@ namespace ClubManagement
                     _ => "Trung bình"
                 };
 
-                // Tạo báo cáo mới
                 var newReport = new Report
                 {
                     CreatedDate = DateOnly.FromDateTime(DateTime.Now),
@@ -277,17 +468,6 @@ namespace ClubManagement
             {
                 MessageBox.Show($"Error generating report: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private bool IsInSemester(int month, string season)
-        {
-            return season switch
-            {
-                "Spring" => month >= 1 && month <= 4,
-                "Summer" => month >= 5 && month <= 8,
-                "Fall" => month >= 9 && month <= 12,
-                _ => false
-            };
         }
 
         private void ExportReportToExcelButton_Click(object sender, RoutedEventArgs e)
@@ -691,56 +871,13 @@ namespace ClubManagement
             }
         }
 
-        private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(TaskNameTextBox.Text) || GroupComboBox.SelectedItem == null || DueDatePicker.SelectedDate == null)
-            {
-                MessageBox.Show("Please fill in all task details.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            try
-            {
-                var selectedGroup = GroupComboBox.SelectedItem as Group;
-                var newTask = new ClubTask
-                {
-                    TaskName = TaskNameTextBox.Text,
-                    ClubId = CurrentUser.ClubId.Value,
-                    GroupId = selectedGroup.GroupId,
-                    AssignedBy = CurrentUser.UserId,
-                    AssignedTo = GetAssignedToUserId(selectedGroup.GroupId),
-                    DueDate = DateOnly.FromDateTime(DueDatePicker.SelectedDate.Value), // Ép kiểu từ DateTime sang DateOnly
-                    Status = "pending"
-                };
-                _taskRepo.CreateTask(newTask);
-                MessageBox.Show("Task created successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                TaskNameTextBox.Text = "Enter task name";
-                GroupComboBox.SelectedItem = null;
-                DueDatePicker.SelectedDate = null;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private int GetAssignedToUserId(int groupId)
-        {
-            var members = _groupRepo.GetGroupMembers(groupId);
-            if (members == null || !members.Any())
-            {
-                throw new Exception("No members found in the selected group to assign the task to.");
-            }
-            return members.First().UserId;
-        }
-
         private void CreateEventButton_Click(object sender, RoutedEventArgs e)
         {
             var eventWindow = new Window
             {
                 Title = "Create Event",
                 Width = 300,
-                Height = 300, // Tăng chiều cao để chứa thêm trường Location
+                Height = 300,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner
             };
 
@@ -749,9 +886,9 @@ namespace ClubManagement
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) }); // Thêm hàng cho Location
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) }); // Thêm hàng cho Description
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
 
@@ -822,7 +959,7 @@ namespace ClubManagement
                     EventName = eventNameTextBox.Text,
                     ClubId = CurrentUser.ClubId.Value,
                     EventDate = DateOnly.FromDateTime(eventDatePicker.SelectedDate.Value),
-                    Location = locationTextBox.Text, 
+                    Location = locationTextBox.Text,
                     Description = descriptionTextBox.Text,
                     Status = "Upcoming"
                 };
@@ -848,7 +985,7 @@ namespace ClubManagement
                 {
                     Title = "Edit Event",
                     Width = 300,
-                    Height = 300, // Tăng chiều cao để chứa thêm trường Location
+                    Height = 300,
                     WindowStartupLocation = WindowStartupLocation.CenterOwner
                 };
 
@@ -857,9 +994,9 @@ namespace ClubManagement
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
-                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) }); // Thêm hàng cho Location
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
-                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) }); // Thêm hàng cho Description
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
 
@@ -930,8 +1067,8 @@ namespace ClubManagement
                 {
                     eventToEdit.EventName = eventNameTextBox.Text;
                     eventToEdit.EventDate = DateOnly.FromDateTime(eventDatePicker.SelectedDate.Value);
-                    eventToEdit.Location = locationTextBox.Text; 
-                    eventToEdit.Description = descriptionTextBox.Text; 
+                    eventToEdit.Location = locationTextBox.Text;
+                    eventToEdit.Description = descriptionTextBox.Text;
                     _context.Events.Update(eventToEdit);
                     _context.SaveChanges();
                     LoadEvents();
@@ -1052,7 +1189,7 @@ namespace ClubManagement
                 _context.SaveChanges();
 
                 LoadGroups();
-                MessageBox.Show($"Group status updated to {group.Status}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Group status updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -1060,14 +1197,8 @@ namespace ClubManagement
         {
             if (sender is Button button && button.Tag is int eventId)
             {
-                var eventToEdit = _context.Events.FirstOrDefault(e => e.EventId == eventId);
-                if (eventToEdit == null) return;
-
-                if (CurrentUser.RoleId != 3 && CurrentUser.RoleId != 2)
-                {
-                    MessageBox.Show("You do not have permission to update this event's status!", "Access Denied", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
+                var eventToUpdate = _context.Events.FirstOrDefault(ev => ev.EventId == eventId);
+                if (eventToUpdate == null) return;
 
                 var statusWindow = new Window
                 {
@@ -1088,7 +1219,7 @@ namespace ClubManagement
                 var statusComboBox = new ComboBox
                 {
                     ItemsSource = new List<string> { "Upcoming", "Ongoing", "Completed", "Cancelled" },
-                    SelectedItem = eventToEdit.Status
+                    SelectedItem = eventToUpdate.Status
                 };
                 Grid.SetRow(statusComboBox, 1);
 
@@ -1121,12 +1252,12 @@ namespace ClubManagement
 
                 if (!isConfirmed) return;
 
-                eventToEdit.Status = statusComboBox.SelectedItem as string ?? eventToEdit.Status;
-                _context.Events.Update(eventToEdit);
+                eventToUpdate.Status = statusComboBox.SelectedItem as string ?? eventToUpdate.Status;
+                _context.Events.Update(eventToUpdate);
                 _context.SaveChanges();
 
                 LoadEvents();
-                MessageBox.Show($"Event status updated to {eventToEdit.Status}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Event status updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -1139,7 +1270,7 @@ namespace ClubManagement
                 {
                     try
                     {
-                        var eventToDelete = _context.Events.FirstOrDefault(e => e.EventId == eventId);
+                        var eventToDelete = _context.Events.FirstOrDefault(ev => ev.EventId == eventId);
                         if (eventToDelete != null)
                         {
                             _context.Events.Remove(eventToDelete);
@@ -1156,10 +1287,336 @@ namespace ClubManagement
             }
         }
 
-        protected override void OnClosed(EventArgs e)
+        private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            _context.Dispose();
-            base.OnClosed(e);
+            var taskWindow = new Window
+            {
+                Title = "Create Task",
+                Width = 400,
+                Height = 400,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
+
+            var grid = new Grid { Margin = new Thickness(10) };
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+
+            // Task Name
+            var lblTaskName = new Label { Content = "Task Name:", VerticalAlignment = VerticalAlignment.Center };
+            Grid.SetRow(lblTaskName, 0);
+            var taskNameTextBox = new TextBox { };
+            Grid.SetRow(taskNameTextBox, 1);
+
+            // Assign to Group
+            var lblGroup = new Label { Content = "Assign to Group:", VerticalAlignment = VerticalAlignment.Center };
+            Grid.SetRow(lblGroup, 2);
+            var groupComboBox = new ComboBox
+            {
+                ItemsSource = _context.Groups.Where(g => g.ClubId == CurrentUser.ClubId.Value).ToList(),
+                DisplayMemberPath = "GroupName"
+            };
+            Grid.SetRow(groupComboBox, 3);
+
+            // Assign to Leader (Chỉ hiển thị trưởng nhóm)
+            var lblAssignedTo = new Label { Content = "Assign to Leader:", VerticalAlignment = VerticalAlignment.Center };
+            Grid.SetRow(lblAssignedTo, 4);
+            var assignedToComboBox = new ComboBox { };
+            Grid.SetRow(assignedToComboBox, 5);
+
+            // Cập nhật danh sách trưởng nhóm khi chọn nhóm
+            groupComboBox.SelectionChanged += (s, args) =>
+            {
+                if (groupComboBox.SelectedItem is Group selectedGroup)
+                {
+                    var leader = _context.Users.FirstOrDefault(u => u.UserId == selectedGroup.LeaderId);
+                    if (leader == null)
+                    {
+                        MessageBox.Show("This group does not have a leader yet!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        assignedToComboBox.ItemsSource = null;
+                        return;
+                    }
+                    assignedToComboBox.ItemsSource = new List<User> { leader };
+                    assignedToComboBox.DisplayMemberPath = "FullName";
+                    assignedToComboBox.SelectedItem = leader;
+                }
+                else
+                {
+                    assignedToComboBox.ItemsSource = null;
+                }
+            };
+
+            // Due Date
+            var lblDueDate = new Label { Content = "Due Date:", VerticalAlignment = VerticalAlignment.Center };
+            Grid.SetRow(lblDueDate, 6);
+            var dueDatePicker = new DatePicker { };
+            Grid.SetRow(dueDatePicker, 7);
+
+            // Description
+            var lblDescription = new Label { Content = "Description:", VerticalAlignment = VerticalAlignment.Center };
+            Grid.SetRow(lblDescription, 8);
+            var descriptionTextBox = new TextBox { AcceptsReturn = true, Height = 50 };
+            Grid.SetRow(descriptionTextBox, 9);
+
+            // Buttons
+            var buttonPanel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+            var confirmButton = new Button { Content = "Create", Width = 100, Background = System.Windows.Media.Brushes.Green, Foreground = System.Windows.Media.Brushes.White };
+            var cancelButton = new Button { Content = "Cancel", Width = 100, Background = System.Windows.Media.Brushes.Red, Foreground = System.Windows.Media.Brushes.White };
+
+            bool isConfirmed = false;
+            confirmButton.Click += (s, args) =>
+            {
+                if (string.IsNullOrEmpty(taskNameTextBox.Text) || groupComboBox.SelectedItem == null || assignedToComboBox.SelectedItem == null || dueDatePicker.SelectedDate == null)
+                {
+                    MessageBox.Show("Please fill in all required fields (Task Name, Group, Assigned To, Due Date)!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                isConfirmed = true;
+                taskWindow.Close();
+            };
+            cancelButton.Click += (s, args) => taskWindow.Close();
+
+            buttonPanel.Children.Add(confirmButton);
+            buttonPanel.Children.Add(cancelButton);
+            Grid.SetRow(buttonPanel, 10);
+
+            grid.Children.Add(lblTaskName);
+            grid.Children.Add(taskNameTextBox);
+            grid.Children.Add(lblGroup);
+            grid.Children.Add(groupComboBox);
+            grid.Children.Add(lblAssignedTo);
+            grid.Children.Add(assignedToComboBox);
+            grid.Children.Add(lblDueDate);
+            grid.Children.Add(dueDatePicker);
+            grid.Children.Add(lblDescription);
+            grid.Children.Add(descriptionTextBox);
+            grid.Children.Add(buttonPanel);
+
+            taskWindow.Content = grid;
+            taskWindow.ShowDialog();
+
+            if (!isConfirmed) return;
+
+            try
+            {
+                var selectedGroup = groupComboBox.SelectedItem as Group;
+                var selectedLeader = assignedToComboBox.SelectedItem as User;
+
+                var newTask = new DataAccess.Models.ClubTask
+                {
+                    TaskName = taskNameTextBox.Text,
+                    GroupId = selectedGroup.GroupId,
+                    AssignedTo = selectedLeader.UserId,
+                    AssignedBy = CurrentUser.UserId,
+                    ClubId = CurrentUser.ClubId.Value,
+                    DueDate = DateOnly.FromDateTime(dueDatePicker.SelectedDate.Value),
+                    Description = descriptionTextBox.Text,
+                    Status = "Pending"
+                };
+
+                _taskRepo.CreateTask(newTask);
+                LoadTasks();
+                MessageBox.Show($"Task '{newTask.TaskName}' created and assigned to leader '{selectedLeader.FullName}' in group '{selectedGroup.GroupName}' successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void EditTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is int taskId)
+            {
+                var taskToEdit = _context.ClubTasks
+                    .Include(t => t.Group)
+                    .Include(t => t.AssignedToNavigation)
+                    .FirstOrDefault(t => t.TaskId == taskId);
+                if (taskToEdit == null) return;
+
+                var taskWindow = new Window
+                {
+                    Title = "Edit Task",
+                    Width = 400,
+                    Height = 400,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner
+                };
+
+                var grid = new Grid { Margin = new Thickness(10) };
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+
+                // Task Name
+                var lblTaskName = new Label { Content = "Task Name:", VerticalAlignment = VerticalAlignment.Center };
+                Grid.SetRow(lblTaskName, 0);
+                var taskNameTextBox = new TextBox { Text = taskToEdit.TaskName };
+                Grid.SetRow(taskNameTextBox, 1);
+
+                // Assign to Group
+                var lblGroup = new Label { Content = "Assign to Group:", VerticalAlignment = VerticalAlignment.Center };
+                Grid.SetRow(lblGroup, 2);
+                var groupComboBox = new ComboBox
+                {
+                    ItemsSource = _context.Groups.Where(g => g.ClubId == CurrentUser.ClubId.Value).ToList(),
+                    DisplayMemberPath = "GroupName",
+                    SelectedItem = taskToEdit.Group
+                };
+                Grid.SetRow(groupComboBox, 3);
+
+                // Assign to Leader (Chỉ hiển thị trưởng nhóm)
+                var lblAssignedTo = new Label { Content = "Assign to Leader:", VerticalAlignment = VerticalAlignment.Center };
+                Grid.SetRow(lblAssignedTo, 4);
+                var assignedToComboBox = new ComboBox
+                {
+                    ItemsSource = taskToEdit.Group != null ? new List<User> { _context.Users.FirstOrDefault(u => u.UserId == taskToEdit.Group.LeaderId) } : null,
+                    DisplayMemberPath = "FullName",
+                    SelectedItem = taskToEdit.AssignedToNavigation
+                };
+                Grid.SetRow(assignedToComboBox, 5);
+
+                // Cập nhật danh sách trưởng nhóm khi chọn nhóm
+                groupComboBox.SelectionChanged += (s, args) =>
+                {
+                    if (groupComboBox.SelectedItem is Group selectedGroup)
+                    {
+                        var leader = _context.Users.FirstOrDefault(u => u.UserId == selectedGroup.LeaderId);
+                        if (leader == null)
+                        {
+                            MessageBox.Show("This group does not have a leader yet!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            assignedToComboBox.ItemsSource = null;
+                            return;
+                        }
+                        assignedToComboBox.ItemsSource = new List<User> { leader };
+                        assignedToComboBox.DisplayMemberPath = "FullName";
+                        assignedToComboBox.SelectedItem = leader;
+                    }
+                    else
+                    {
+                        assignedToComboBox.ItemsSource = null;
+                    }
+                };
+
+                // Due Date
+                var lblDueDate = new Label { Content = "Due Date:", VerticalAlignment = VerticalAlignment.Center };
+                Grid.SetRow(lblDueDate, 6);
+                var dueDatePicker = new DatePicker
+                {
+                    SelectedDate = taskToEdit.DueDate.HasValue ? taskToEdit.DueDate.Value.ToDateTime(new TimeOnly()) : null
+                };
+                Grid.SetRow(dueDatePicker, 7);
+
+                // Description
+                var lblDescription = new Label { Content = "Description:", VerticalAlignment = VerticalAlignment.Center };
+                Grid.SetRow(lblDescription, 8);
+                var descriptionTextBox = new TextBox { Text = taskToEdit.Description, AcceptsReturn = true, Height = 50 };
+                Grid.SetRow(descriptionTextBox, 9);
+
+                // Buttons
+                var buttonPanel = new StackPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
+                var confirmButton = new Button { Content = "Update", Width = 100, Background = System.Windows.Media.Brushes.Green, Foreground = System.Windows.Media.Brushes.White };
+                var cancelButton = new Button { Content = "Cancel", Width = 100, Background = System.Windows.Media.Brushes.Red, Foreground = System.Windows.Media.Brushes.White };
+
+                bool isConfirmed = false;
+                confirmButton.Click += (s, args) =>
+                {
+                    if (string.IsNullOrEmpty(taskNameTextBox.Text) || groupComboBox.SelectedItem == null || assignedToComboBox.SelectedItem == null || dueDatePicker.SelectedDate == null)
+                    {
+                        MessageBox.Show("Please fill in all required fields (Task Name, Group, Assigned To, Due Date)!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                    isConfirmed = true;
+                    taskWindow.Close();
+                };
+                cancelButton.Click += (s, args) => taskWindow.Close();
+
+                buttonPanel.Children.Add(confirmButton);
+                buttonPanel.Children.Add(cancelButton);
+                Grid.SetRow(buttonPanel, 10);
+
+                grid.Children.Add(lblTaskName);
+                grid.Children.Add(taskNameTextBox);
+                grid.Children.Add(lblGroup);
+                grid.Children.Add(groupComboBox);
+                grid.Children.Add(lblAssignedTo);
+                grid.Children.Add(assignedToComboBox);
+                grid.Children.Add(lblDueDate);
+                grid.Children.Add(dueDatePicker);
+                grid.Children.Add(lblDescription);
+                grid.Children.Add(descriptionTextBox);
+                grid.Children.Add(buttonPanel);
+
+                taskWindow.Content = grid;
+                taskWindow.ShowDialog();
+
+                if (!isConfirmed) return;
+
+                try
+                {
+                    var selectedGroup = groupComboBox.SelectedItem as Group;
+                    var selectedLeader = assignedToComboBox.SelectedItem as User;
+
+                    taskToEdit.TaskName = taskNameTextBox.Text;
+                    taskToEdit.GroupId = selectedGroup.GroupId;
+                    taskToEdit.AssignedTo = selectedLeader.UserId;
+                    taskToEdit.DueDate = DateOnly.FromDateTime(dueDatePicker.SelectedDate.Value);
+                    taskToEdit.Description = descriptionTextBox.Text;
+
+                    _taskRepo.UpdateTask(taskToEdit);
+                    LoadTasks();
+                    MessageBox.Show("Task updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void DeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is int taskId)
+            {
+                var result = MessageBox.Show("Are you sure you want to delete this task?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        var taskToDelete = _context.ClubTasks.FirstOrDefault(t => t.TaskId == taskId);
+                        if (taskToDelete != null)
+                        {
+                            _context.ClubTasks.Remove(taskToDelete);
+                            _context.SaveChanges();
+                            LoadTasks();
+                            MessageBox.Show("Task deleted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
         }
     }
 }

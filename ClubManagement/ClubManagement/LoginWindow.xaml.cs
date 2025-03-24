@@ -64,14 +64,14 @@ namespace ClubManagement
                     targetWindow = new Adminhome();
                     break;
                 case "chairman":
-                    targetWindow = new Chairmanhome(account.UserId, clubId);
+                    targetWindow = new Chairmanhome();
                     break;
                 case "vicechairman":
                     targetWindow = new ViceChairmanhome();
                     break;
-                //case "teamleader":
-                //    targetWindow = new TeamLeaderhome();
-                //    break;
+                case "teamleader":
+                    targetWindow = new TeamLeaderhome();
+                    break;
                 case "member":
                     targetWindow = new Memberhome();
                     break;

@@ -4706,11 +4706,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\New folder\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
+      "projectUniqueName": "D:\\Sex\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
-      "projectPath": "D:\\New folder\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
+      "projectPath": "D:\\Sex\\ClubManagement\\ClubManagement\\DataAccess\\DataAccess.csproj",
       "packagesPath": "C:\\Users\\emkob\\.nuget\\packages\\",
-      "outputPath": "D:\\New folder\\ClubManagement\\ClubManagement\\DataAccess\\obj\\",
+      "outputPath": "D:\\Sex\\ClubManagement\\ClubManagement\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

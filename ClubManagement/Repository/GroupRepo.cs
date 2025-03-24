@@ -25,6 +25,7 @@ namespace Repository
                     .ToList();
             }
         }
+
         public List<Group> GetGroupsByClubId(int clubId)
         {
             using (var context = new ClubManagementContext())
@@ -36,6 +37,19 @@ namespace Repository
                     .ToList();
             }
         }
+
+        public List<Group> GetGroupsByLeaderId(int leaderId)
+        {
+            using (var context = new ClubManagementContext())
+            {
+                return context.Groups
+                    .Include(g => g.Leader)
+                    .Include(g => g.Event)
+                    .Where(g => g.LeaderId == leaderId)
+                    .ToList();
+            }
+        }
+
         public List<User> GetGroupMembers(int groupId)
         {
             return _context.Users
@@ -71,28 +85,30 @@ namespace Repository
 
         public void AssignLeaderToGroup(int groupId, int leaderId)
         {
-            using (var context = new ClubManagementContext()) // Tạo một context mới để tránh cache
+            using (var context = new ClubManagementContext())
             {
-                // Tìm nhóm cần cập nhật
                 var group = context.Groups.FirstOrDefault(g => g.GroupId == groupId);
                 if (group == null)
                 {
-                    throw new Exception("Group not found.");
+                    throw new Exception("Không tìm thấy nhóm.");
                 }
 
-                // Kiểm tra xem leaderId có phải là thành viên của nhóm không
                 var isMember = context.GroupMembers
                     .Any(gm => gm.GroupId == groupId && gm.UserId == leaderId);
                 if (!isMember)
                 {
-                    throw new Exception("The selected leader is not a member of this group.");
+                    throw new Exception("Người được chọn không phải là thành viên của nhóm này.");
                 }
 
-                // Cập nhật LeaderId cho nhóm
                 group.LeaderId = leaderId;
                 context.Groups.Update(group);
                 context.SaveChanges();
             }
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }

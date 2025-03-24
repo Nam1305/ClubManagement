@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fL3di7WN8Kk=",
+  "dgSpecHash": "bjqQqxCU5Cw=",
   "success": true,
-  "projectFilePath": "D:\\New folder\\ClubManagement\\ClubManagement\\Services\\Services.csproj",
+  "projectFilePath": "D:\\Sex\\ClubManagement\\ClubManagement\\Services\\Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\emkob\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\emkob\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

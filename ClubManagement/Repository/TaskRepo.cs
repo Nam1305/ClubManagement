@@ -32,21 +32,38 @@ namespace Repository
             }
         }
 
+        public List<ClubTask> GetTasksByGroupIds(List<int> groupIds)
+        {
+            try
+            {
+                return _context.ClubTasks
+                    .Include(t => t.AssignedToNavigation)
+                    .Include(t => t.AssignedByNavigation) 
+                    .Where(t => t.GroupId.HasValue && groupIds.Contains(t.GroupId.Value))
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in GetTasksByGroupIds: {ex.Message}");
+                throw;
+            }
+        }
+
         public void CreateTask(ClubTask task)
         {
             if (task == null) throw new ArgumentNullException(nameof(task));
 
             if (CurrentUser.RoleId != 3 && CurrentUser.RoleId != 4)
-                throw new UnauthorizedAccessException("Only Vice Chairman or Group Leader can create tasks for groups.");
+                throw new UnauthorizedAccessException("Chỉ Phó Chủ tịch hoặc Trưởng nhóm mới có thể tạo nhiệm vụ cho nhóm.");
 
             if (CurrentUser.ClubId != task.ClubId)
-                throw new UnauthorizedAccessException("You can only create tasks for your current club.");
+                throw new UnauthorizedAccessException("Bạn chỉ có thể tạo nhiệm vụ cho câu lạc bộ hiện tại của mình.");
 
             if (CurrentUser.RoleId == 4)
             {
                 var group = _context.Groups.FirstOrDefault(g => g.GroupId == task.GroupId);
                 if (group == null || group.LeaderId != CurrentUser.UserId)
-                    throw new UnauthorizedAccessException("You can only create tasks for groups where you are the leader.");
+                    throw new UnauthorizedAccessException("Bạn chỉ có thể tạo nhiệm vụ cho nhóm mà bạn là trưởng nhóm.");
             }
 
             task.AssignedBy = CurrentUser.UserId;
@@ -62,7 +79,7 @@ namespace Repository
             {
                 string errorMessage = ex.InnerException?.Message ?? ex.Message;
                 System.Diagnostics.Debug.WriteLine($"Database error in CreateTask: {errorMessage}");
-                throw new Exception($"Database error while creating task: {errorMessage}", ex);
+                throw new Exception($"Lỗi cơ sở dữ liệu khi tạo nhiệm vụ: {errorMessage}", ex);
             }
         }
 
@@ -70,9 +87,9 @@ namespace Repository
         {
             var existingTask = _context.ClubTasks.FirstOrDefault(t => t.TaskId == task.TaskId);
             if (existingTask == null)
-                throw new Exception("Task not found.");
+                throw new Exception("Không tìm thấy nhiệm vụ.");
 
-            if (CurrentUser.RoleId == 3) // Vice Chairman cập nhật thông tin chung
+            if (CurrentUser.RoleId == 3) 
             {
                 existingTask.TaskName = task.TaskName;
                 existingTask.Description = task.Description;
@@ -83,14 +100,14 @@ namespace Repository
             {
                 var group = _context.Groups.FirstOrDefault(g => g.GroupId == existingTask.GroupId);
                 if (group?.LeaderId != CurrentUser.UserId)
-                    throw new UnauthorizedAccessException("Only the group leader can assign tasks to members.");
+                    throw new UnauthorizedAccessException("Chỉ trưởng nhóm mới có thể gán nhiệm vụ cho thành viên.");
 
                 existingTask.AssignedTo = task.AssignedTo;
                 existingTask.Status = task.Status;
             }
             else
             {
-                throw new UnauthorizedAccessException("Unauthorized to update this task.");
+                throw new UnauthorizedAccessException("Không có quyền cập nhật nhiệm vụ này.");
             }
 
             try
@@ -103,8 +120,14 @@ namespace Repository
             {
                 string errorMessage = ex.InnerException?.Message ?? ex.Message;
                 System.Diagnostics.Debug.WriteLine($"Database error in UpdateTask: {errorMessage}");
-                throw new Exception($"Database error while updating task: {errorMessage}", ex);
+                throw new Exception($"Lỗi cơ sở dữ liệu khi cập nhật nhiệm vụ: {errorMessage}", ex);
             }
+        }
+
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }
