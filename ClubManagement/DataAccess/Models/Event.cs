@@ -19,8 +19,6 @@ public partial class Event
 
     public int ClubId { get; set; }
 
-    public int? Column { get; set; }
-
     public virtual Club Club { get; set; } = null!;
 
     public virtual ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();

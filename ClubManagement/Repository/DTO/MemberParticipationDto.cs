@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Repository.DTO
+﻿namespace Repository.DTO
 {
-   public class MemberParticipationDto
+    public class MemberParticipationDto
     {
         public int UserId { get; set; }
         public string FullName { get; set; }
@@ -14,5 +8,6 @@ namespace Repository.DTO
         public string Email { get; set; }
         public double ParticipationPercentage { get; set; }
         public string ActivityLevel { get; set; }
+        public string EventParticipationStatus { get; set; } 
     }
 }

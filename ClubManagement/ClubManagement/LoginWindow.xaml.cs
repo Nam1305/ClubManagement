@@ -38,24 +38,40 @@ namespace ClubManagement
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            int clubId = account.UserClubs.FirstOrDefault().ClubId; // Lấy ClubId đầu tiên
+
+            // Kiểm tra UserClubs trước khi truy cập
+            if (account.UserClubs == null || !account.UserClubs.Any())
+            {
+                MessageBox.Show("Tài khoản không thuộc câu lạc bộ nào!", "Lỗi",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            int clubId = account.UserClubs.First().ClubId; // Lấy ClubId đầu tiên
 
             Window targetWindow = null;
             // Kiểm tra vai trò dựa trên Role.RoleName
-            switch (account.Role?.RoleName?.ToLower())
+            if (account.Role == null || string.IsNullOrEmpty(account.Role.RoleName))
+            {
+                MessageBox.Show("Vai trò của tài khoản không hợp lệ!", "Lỗi",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            switch (account.Role.RoleName.ToLower())
             {
                 case "admin":
                     targetWindow = new Adminhome();
                     break;
                 case "chairman":
-                    targetWindow = new Chairmanhome(account.UserId, clubId); // Chỉ truyền UserId
+                    targetWindow = new Chairmanhome(account.UserId, clubId);
                     break;
                 case "vicechairman":
-                    targetWindow = new ViceChairmanhome(); // Chỉ truyền UserId
+                    targetWindow = new ViceChairmanhome();
                     break;
-                case "teamleader":
-                    targetWindow = new TeamLeaderhome(); // Chỉ truyền UserId
-                    break;
+                //case "teamleader":
+                //    targetWindow = new TeamLeaderhome();
+                //    break;
                 case "member":
                     targetWindow = new Memberhome();
                     break;

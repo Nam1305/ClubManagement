@@ -17,18 +17,19 @@ namespace ClubManagement
     {
         private readonly GroupRepo _groupRepo;
         private readonly UserRepo _userRepo;
-        private readonly TaskRepository _taskRepo;
+        private readonly TaskRepo _taskRepo;
         private readonly ClubManagementContext _context;
         private readonly MemberService _memberService;
 
         public ViceChairmanhome()
         {
-            InitializeComponent();
+            _context = new ClubManagementContext(); 
+            _taskRepo = new TaskRepo(); 
             _groupRepo = new GroupRepo();
             _userRepo = new UserRepo();
-            _taskRepo = new TaskRepository();
-            _context = new ClubManagementContext();
             _memberService = new MemberService();
+
+            InitializeComponent();
 
             if (CurrentUser.RoleId != 3 || !CurrentUser.ClubId.HasValue)
             {
@@ -76,9 +77,9 @@ namespace ClubManagement
             TermComboBox.SelectedIndex = 0;
         }
 
-        private void LoadMembers(string term)
+        private void LoadMembers(string term, int? eventId = null, string participationStatus = null)
         {
-            var memberData = _memberService.GetClubMembersWithParticipation(CurrentUser.ClubId.Value, term);
+            var memberData = _memberService.GetClubMembersWithParticipation(CurrentUser.ClubId.Value, term, eventId, participationStatus);
             MembersListView.ItemsSource = memberData;
         }
 
@@ -102,7 +103,7 @@ namespace ClubManagement
 
         private void LoadReports()
         {
-            var reports = _context.Report
+            var reports = _context.Reports
                 .Where(r => r.ClubId == CurrentUser.ClubId.Value)
                 .ToList();
             ReportsListView.ItemsSource = reports;
@@ -122,13 +123,15 @@ namespace ClubManagement
                 {
                     var worksheet = workbook.Worksheets.Add("Members");
 
+                    // Cập nhật tiêu đề cột
                     worksheet.Cell(1, 1).Value = "Full Name";
                     worksheet.Cell(1, 2).Value = "Student Number";
                     worksheet.Cell(1, 3).Value = "Email";
                     worksheet.Cell(1, 4).Value = "Participation (%)";
                     worksheet.Cell(1, 5).Value = "Activity Level";
+                    worksheet.Cell(1, 6).Value = "Event Participation Status"; // Thêm cột trạng thái tham gia
 
-                    var headerRange = worksheet.Range("A1:E1");
+                    var headerRange = worksheet.Range("A1:F1");
                     headerRange.Style.Font.Bold = true;
                     headerRange.Style.Fill.BackgroundColor = XLColor.LightGray;
 
@@ -140,6 +143,7 @@ namespace ClubManagement
                         worksheet.Cell(i + 2, 3).Value = members[i].Email;
                         worksheet.Cell(i + 2, 4).Value = members[i].ParticipationPercentage;
                         worksheet.Cell(i + 2, 5).Value = members[i].ActivityLevel;
+                        worksheet.Cell(i + 2, 6).Value = members[i].EventParticipationStatus; // Thêm dữ liệu trạng thái tham gia
                     }
 
                     worksheet.Columns().AdjustToContents();
@@ -183,7 +187,7 @@ namespace ClubManagement
             if (ReportSemesterComboBox.SelectedItem != null)
             {
                 string selectedSemester = ReportSemesterComboBox.SelectedItem.ToString();
-                var reports = _context.Report
+                var reports = _context.Reports
                     .Where(r => r.ClubId == CurrentUser.ClubId.Value && r.Semester == selectedSemester)
                     .ToList();
                 ReportsListView.ItemsSource = reports;
@@ -263,7 +267,7 @@ namespace ClubManagement
                     ClubId = CurrentUser.ClubId.Value
                 };
 
-                _context.Report.Add(newReport);
+                _context.Reports.Add(newReport);
                 _context.SaveChanges();
 
                 LoadReports();
@@ -705,7 +709,7 @@ namespace ClubManagement
                     GroupId = selectedGroup.GroupId,
                     AssignedBy = CurrentUser.UserId,
                     AssignedTo = GetAssignedToUserId(selectedGroup.GroupId),
-                    DueDate = DueDatePicker.SelectedDate.HasValue ? DateOnly.FromDateTime(DueDatePicker.SelectedDate.Value) : null,
+                    DueDate = DateOnly.FromDateTime(DueDatePicker.SelectedDate.Value), // Ép kiểu từ DateTime sang DateOnly
                     Status = "pending"
                 };
                 _taskRepo.CreateTask(newTask);
@@ -736,7 +740,7 @@ namespace ClubManagement
             {
                 Title = "Create Event",
                 Width = 300,
-                Height = 200,
+                Height = 300, // Tăng chiều cao để chứa thêm trường Location
                 WindowStartupLocation = WindowStartupLocation.CenterOwner
             };
 
@@ -745,19 +749,31 @@ namespace ClubManagement
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) }); // Thêm hàng cho Location
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) }); // Thêm hàng cho Description
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
 
             var lblEventName = new Label { Content = "Event Name:", VerticalAlignment = VerticalAlignment.Center };
             Grid.SetRow(lblEventName, 0);
-
             var eventNameTextBox = new TextBox { };
             Grid.SetRow(eventNameTextBox, 1);
 
             var lblEventDate = new Label { Content = "Event Date:", VerticalAlignment = VerticalAlignment.Center };
             Grid.SetRow(lblEventDate, 2);
-
             var eventDatePicker = new DatePicker { };
             Grid.SetRow(eventDatePicker, 3);
+
+            var lblLocation = new Label { Content = "Location:", VerticalAlignment = VerticalAlignment.Center };
+            Grid.SetRow(lblLocation, 4);
+            var locationTextBox = new TextBox { };
+            Grid.SetRow(locationTextBox, 5);
+
+            var lblDescription = new Label { Content = "Description:", VerticalAlignment = VerticalAlignment.Center };
+            Grid.SetRow(lblDescription, 6);
+            var descriptionTextBox = new TextBox { };
+            Grid.SetRow(descriptionTextBox, 7);
 
             var buttonPanel = new StackPanel
             {
@@ -770,9 +786,9 @@ namespace ClubManagement
             bool isConfirmed = false;
             confirmButton.Click += (s, args) =>
             {
-                if (string.IsNullOrEmpty(eventNameTextBox.Text) || eventDatePicker.SelectedDate == null)
+                if (string.IsNullOrEmpty(eventNameTextBox.Text) || eventDatePicker.SelectedDate == null || string.IsNullOrEmpty(locationTextBox.Text))
                 {
-                    MessageBox.Show("Please fill in all fields!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Please fill in all required fields (Event Name, Date, Location)!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
                 isConfirmed = true;
@@ -782,12 +798,16 @@ namespace ClubManagement
 
             buttonPanel.Children.Add(confirmButton);
             buttonPanel.Children.Add(cancelButton);
-            Grid.SetRow(buttonPanel, 4);
+            Grid.SetRow(buttonPanel, 8);
 
             grid.Children.Add(lblEventName);
             grid.Children.Add(eventNameTextBox);
             grid.Children.Add(lblEventDate);
             grid.Children.Add(eventDatePicker);
+            grid.Children.Add(lblLocation);
+            grid.Children.Add(locationTextBox);
+            grid.Children.Add(lblDescription);
+            grid.Children.Add(descriptionTextBox);
             grid.Children.Add(buttonPanel);
 
             eventWindow.Content = grid;
@@ -802,13 +822,14 @@ namespace ClubManagement
                     EventName = eventNameTextBox.Text,
                     ClubId = CurrentUser.ClubId.Value,
                     EventDate = DateOnly.FromDateTime(eventDatePicker.SelectedDate.Value),
-                    Status = "Upcoming",
-                    Description = "New event"
+                    Location = locationTextBox.Text, 
+                    Description = descriptionTextBox.Text,
+                    Status = "Upcoming"
                 };
                 _context.Events.Add(newEvent);
                 _context.SaveChanges();
                 LoadEvents();
-                MessageBox.Show($"Event '{newEvent.EventName}' created successfully for {newEvent.EventDate}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Event '{newEvent.EventName}' created successfully for {newEvent.EventDate} at {newEvent.Location}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -827,7 +848,7 @@ namespace ClubManagement
                 {
                     Title = "Edit Event",
                     Width = 300,
-                    Height = 200,
+                    Height = 300, // Tăng chiều cao để chứa thêm trường Location
                     WindowStartupLocation = WindowStartupLocation.CenterOwner
                 };
 
@@ -836,25 +857,34 @@ namespace ClubManagement
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) }); // Thêm hàng cho Location
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) }); // Thêm hàng cho Description
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
 
                 var lblEventName = new Label { Content = "Event Name:", VerticalAlignment = VerticalAlignment.Center };
                 Grid.SetRow(lblEventName, 0);
-
-                var eventNameTextBox = new TextBox
-                {
-                    Text = eventToEdit.EventName
-                };
+                var eventNameTextBox = new TextBox { Text = eventToEdit.EventName };
                 Grid.SetRow(eventNameTextBox, 1);
 
                 var lblEventDate = new Label { Content = "Event Date:", VerticalAlignment = VerticalAlignment.Center };
                 Grid.SetRow(lblEventDate, 2);
-
                 var eventDatePicker = new DatePicker
                 {
                     SelectedDate = eventToEdit.EventDate.HasValue ? eventToEdit.EventDate.Value.ToDateTime(new TimeOnly()) : null
                 };
                 Grid.SetRow(eventDatePicker, 3);
+
+                var lblLocation = new Label { Content = "Location:", VerticalAlignment = VerticalAlignment.Center };
+                Grid.SetRow(lblLocation, 4);
+                var locationTextBox = new TextBox { Text = eventToEdit.Location };
+                Grid.SetRow(locationTextBox, 5);
+
+                var lblDescription = new Label { Content = "Description:", VerticalAlignment = VerticalAlignment.Center };
+                Grid.SetRow(lblDescription, 6);
+                var descriptionTextBox = new TextBox { Text = eventToEdit.Description };
+                Grid.SetRow(descriptionTextBox, 7);
 
                 var buttonPanel = new StackPanel
                 {
@@ -867,9 +897,9 @@ namespace ClubManagement
                 bool isConfirmed = false;
                 confirmButton.Click += (s, args) =>
                 {
-                    if (string.IsNullOrEmpty(eventNameTextBox.Text) || eventDatePicker.SelectedDate == null)
+                    if (string.IsNullOrEmpty(eventNameTextBox.Text) || eventDatePicker.SelectedDate == null || string.IsNullOrEmpty(locationTextBox.Text))
                     {
-                        MessageBox.Show("Please fill in all fields!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Please fill in all required fields (Event Name, Date, Location)!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
                     isConfirmed = true;
@@ -879,12 +909,16 @@ namespace ClubManagement
 
                 buttonPanel.Children.Add(confirmButton);
                 buttonPanel.Children.Add(cancelButton);
-                Grid.SetRow(buttonPanel, 4);
+                Grid.SetRow(buttonPanel, 8);
 
                 grid.Children.Add(lblEventName);
                 grid.Children.Add(eventNameTextBox);
                 grid.Children.Add(lblEventDate);
                 grid.Children.Add(eventDatePicker);
+                grid.Children.Add(lblLocation);
+                grid.Children.Add(locationTextBox);
+                grid.Children.Add(lblDescription);
+                grid.Children.Add(descriptionTextBox);
                 grid.Children.Add(buttonPanel);
 
                 editWindow.Content = grid;
@@ -896,6 +930,8 @@ namespace ClubManagement
                 {
                     eventToEdit.EventName = eventNameTextBox.Text;
                     eventToEdit.EventDate = DateOnly.FromDateTime(eventDatePicker.SelectedDate.Value);
+                    eventToEdit.Location = locationTextBox.Text; 
+                    eventToEdit.Description = descriptionTextBox.Text; 
                     _context.Events.Update(eventToEdit);
                     _context.SaveChanges();
                     LoadEvents();

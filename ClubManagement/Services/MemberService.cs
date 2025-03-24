@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DataAccess;
-using DataAccess.Models;
-using Repository.DTO;
-
-namespace Services
+﻿namespace Services
 {
+    using Microsoft.EntityFrameworkCore; // Thêm dòng này
+    using DataAccess.Models;
+    using Repository.DTO;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class MemberService
     {
         private readonly ClubManagementContext _context;
@@ -16,76 +16,75 @@ namespace Services
             _context = new ClubManagementContext();
         }
 
-        public IEnumerable<MemberParticipationDto> GetClubMembersWithParticipation(int clubId, string term)
+        public List<MemberParticipationDto> GetClubMembersWithParticipation(int clubId, string term, int? eventId = null, string participationStatus = null)
         {
-            // Lấy danh sách thành viên của câu lạc bộ
+            var season = term.Substring(0, term.Length - 4);
+            var year = int.Parse(term.Substring(term.Length - 4));
+
+            // Sử dụng Include để tải trước dữ liệu liên quan
             var members = _context.UserClubs
-                .Where(uc => uc.ClubId == clubId)
+                .Where(uc => uc.ClubId == clubId && uc.Status == "approved")
+                .Include(uc => uc.User) // Đảm bảo Include hoạt động
                 .Select(uc => uc.User)
+                .Distinct()
                 .ToList();
 
-            // Lấy danh sách sự kiện của câu lạc bộ
             var events = _context.Events
-                .Where(e => e.ClubId == clubId && e.EventDate.HasValue)
+                .Where(e => e.ClubId == clubId && e.EventDate.HasValue &&
+                            e.EventDate.Value.Year == year &&
+                            ((season == "Spring" && e.EventDate.Value.Month >= 1 && e.EventDate.Value.Month <= 4) ||
+                             (season == "Summer" && e.EventDate.Value.Month >= 5 && e.EventDate.Value.Month <= 8) ||
+                             (season == "Fall" && e.EventDate.Value.Month >= 9 && e.EventDate.Value.Month <= 12)))
                 .ToList();
 
-            // Phân tích kỳ từ chuỗi term (ví dụ: "Fall2024" -> season: Fall, year: 2024)
-            string season = term.Substring(0, term.Length - 4); // Lấy phần mùa (Fall, Summer, Spring)
-            int year = int.Parse(term.Substring(term.Length - 4)); // Lấy phần năm (2024)
+            var eventIds = events.Select(e => e.EventId).ToList();
+            var eventParticipants = _context.EventParticipants
+                .Where(ep => eventIds.Contains(ep.EventId))
+                .ToList();
 
-            // Lọc sự kiện theo kỳ cụ thể
-            var termEvents = events.Where(e =>
+            var result = new List<MemberParticipationDto>();
+            foreach (var member in members)
             {
-                int eventYear = e.EventDate.Value.Year;
-                int eventMonth = e.EventDate.Value.Month;
+                var userEvents = eventParticipants.Where(ep => ep.UserId == member.UserId).ToList();
+                var totalEvents = events.Count;
+                var participatedEvents = userEvents.Count(ep => ep.Status == "Đã tham gia");
+                var participationPercentage = totalEvents > 0 ? (double)participatedEvents / totalEvents * 100 : 0;
 
-                if (eventYear != year) return false;
-
-                return season switch
+                var activityLevel = participationPercentage switch
                 {
-                    "Spring" => eventMonth >= 1 && eventMonth <= 4,  // Spring: Tháng 1-4
-                    "Summer" => eventMonth >= 5 && eventMonth <= 8,  // Summer: Tháng 5-8
-                    "Fall" => eventMonth >= 9 && eventMonth <= 12,   // Fall: Tháng 9-12
-                    _ => false
-                };
-            }).ToList();
-
-            var totalEvents = termEvents.Count;
-
-            // Tính toán thông tin cho từng thành viên
-            var memberData = members.Select(member =>
-            {
-                // Số sự kiện mà thành viên đã tham gia
-                var eventIds = _context.EventParticipants
-                    .Where(ep => ep.UserId == member.UserId && ep.Status == "approved")
-                    .Select(ep => ep.EventId);
-
-                var participatedEvents = termEvents
-                    .Count(e => eventIds.Contains(e.EventId));
-
-                double participationPercentage = totalEvents > 0
-                    ? (double)participatedEvents / totalEvents * 100
-                    : 0;
-
-                string activityLevel = participationPercentage switch
-                {
-                    > 80 => "Tích cực",
-                    >= 50 => "Bình thường",
-                    _ => "Không tích cực"
+                    >= 80 => "Rất tích cực",
+                    >= 50 => "Tích cực",
+                    >= 30 => "Bình thường",
+                    _ => "Thấp"
                 };
 
-                return new MemberParticipationDto
+                // Lấy trạng thái tham gia sự kiện được chọn
+                string eventParticipationStatus = "Chưa đăng ký";
+                if (eventId.HasValue)
+                {
+                    var participant = eventParticipants.FirstOrDefault(ep => ep.EventId == eventId.Value && ep.UserId == member.UserId);
+                    eventParticipationStatus = participant?.Status ?? "Chưa đăng ký";
+                }
+
+                // Lọc theo trạng thái tham gia nếu có
+                if (participationStatus != null && participationStatus != "All" && eventParticipationStatus != participationStatus)
+                {
+                    continue;
+                }
+
+                result.Add(new MemberParticipationDto
                 {
                     UserId = member.UserId,
                     FullName = member.FullName,
                     StudentNumber = member.StudentNumber,
                     Email = member.Email,
                     ParticipationPercentage = participationPercentage,
-                    ActivityLevel = activityLevel
-                };
-            }).ToList();
+                    ActivityLevel = activityLevel,
+                    EventParticipationStatus = eventParticipationStatus
+                });
+            }
 
-            return memberData;
+            return result;
         }
     }
 }

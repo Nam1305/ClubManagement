@@ -7,34 +7,41 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Repository
 {
-    public class TaskRepository
+    public class TaskRepo
     {
         private readonly ClubManagementContext _context;
 
-        public TaskRepository()
+        public TaskRepo()
         {
             _context = new ClubManagementContext();
         }
 
         public List<ClubTask> GetTasksByGroupId(int groupId)
         {
-            return _context.ClubTasks
-                .Include(t => t.AssignedToNavigation) // Sửa từ AssignedTo thành AssignedToNavigation
-                .Where(t => t.GroupId == groupId)
-                .ToList();
+            try
+            {
+                return _context.ClubTasks
+                    .Include(t => t.AssignedToNavigation)
+                    .Where(t => t.GroupId == groupId)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in GetTasksByGroupId: {ex.Message}");
+                throw;
+            }
         }
 
         public void CreateTask(ClubTask task)
         {
-            // Kiểm tra quyền: Vice Chairman (RoleId = 3) hoặc Group Leader (RoleId = 4)
+            if (task == null) throw new ArgumentNullException(nameof(task));
+
             if (CurrentUser.RoleId != 3 && CurrentUser.RoleId != 4)
                 throw new UnauthorizedAccessException("Only Vice Chairman or Group Leader can create tasks for groups.");
 
-            // Kiểm tra ClubId
             if (CurrentUser.ClubId != task.ClubId)
                 throw new UnauthorizedAccessException("You can only create tasks for your current club.");
 
-            // Nếu là Group Leader, kiểm tra xem họ có phải là Leader của nhóm không
             if (CurrentUser.RoleId == 4)
             {
                 var group = _context.Groups.FirstOrDefault(g => g.GroupId == task.GroupId);
@@ -43,20 +50,22 @@ namespace Repository
             }
 
             task.AssignedBy = CurrentUser.UserId;
-            task.Status = "pending";
+            task.Status = task.Status ?? "pending";
 
             try
             {
                 _context.ClubTasks.Add(task);
-                _context.SaveChanges();
+                int rowsAffected = _context.SaveChanges();
+                System.Diagnostics.Debug.WriteLine($"Task created, rows affected: {rowsAffected}");
             }
-            catch (Exception ex)
+            catch (DbUpdateException ex)
             {
                 string errorMessage = ex.InnerException?.Message ?? ex.Message;
-                System.Diagnostics.Debug.WriteLine($"Lỗi khi tạo task: {errorMessage}");
-                throw new Exception($"Lỗi khi tạo task: {errorMessage}", ex);
+                System.Diagnostics.Debug.WriteLine($"Database error in CreateTask: {errorMessage}");
+                throw new Exception($"Database error while creating task: {errorMessage}", ex);
             }
         }
+
         public void UpdateTask(ClubTask task)
         {
             var existingTask = _context.ClubTasks.FirstOrDefault(t => t.TaskId == task.TaskId);
@@ -77,7 +86,7 @@ namespace Repository
                     throw new UnauthorizedAccessException("Only the group leader can assign tasks to members.");
 
                 existingTask.AssignedTo = task.AssignedTo;
-                existingTask.Status = task.Status; // Leader cập nhật trạng thái
+                existingTask.Status = task.Status;
             }
             else
             {
@@ -87,13 +96,14 @@ namespace Repository
             try
             {
                 _context.ClubTasks.Update(existingTask);
-                _context.SaveChanges();
+                int rowsAffected = _context.SaveChanges();
+                System.Diagnostics.Debug.WriteLine($"Task updated, rows affected: {rowsAffected}");
             }
-            catch (Exception ex)
+            catch (DbUpdateException ex)
             {
                 string errorMessage = ex.InnerException?.Message ?? ex.Message;
-                System.Diagnostics.Debug.WriteLine($"Lỗi khi cập nhật task: {errorMessage}");
-                throw new Exception($"Lỗi khi cập nhật task: {errorMessage}", ex);
+                System.Diagnostics.Debug.WriteLine($"Database error in UpdateTask: {errorMessage}");
+                throw new Exception($"Database error while updating task: {errorMessage}", ex);
             }
         }
     }

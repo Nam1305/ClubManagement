@@ -66,6 +66,7 @@
                             <GridView>
                                 <GridViewColumn Header="Event Name" DisplayMemberBinding="{Binding EventName}" Width="200" />
                                 <GridViewColumn Header="Date" DisplayMemberBinding="{Binding EventDate, StringFormat={}{0:dd/MM/yyyy}}" Width="100" />
+                                <GridViewColumn Header="Location" DisplayMemberBinding="{Binding Location}" Width="150" />
                                 <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="100" />
                                 <GridViewColumn Header="Actions" Width="250">
                                     <GridViewColumn.CellTemplate>
@@ -105,12 +106,20 @@
                                 <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="200" />
                                 <GridViewColumn Header="Participation (%)" DisplayMemberBinding="{Binding ParticipationPercentage, StringFormat={}{0:F2}%}" Width="100" />
                                 <GridViewColumn Header="Activity Level" DisplayMemberBinding="{Binding ActivityLevel}" Width="120" />
+                                <GridViewColumn Header="Event Participation Status" DisplayMemberBinding="{Binding EventParticipationStatus}" Width="150" />
                             </GridView>
                         </ListView.View>
                     </ListView>
 
                     <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Top">
                         <ComboBox x:Name="TermComboBox" Width="150" Margin="0,0,0,10" SelectionChanged="TermComboBox_SelectionChanged" />
+                        <ComboBox x:Name="EventComboBox" Width="150" Margin="0,0,0,10" DisplayMemberPath="EventName" />
+                        <ComboBox x:Name="ParticipationStatusComboBox" Width="150" Margin="0,0,0,10">
+                            <ComboBoxItem Content="All" />
+                            <ComboBoxItem Content="Đã đăng ký" />
+                            <ComboBoxItem Content="Đã tham dự" />
+                            <ComboBoxItem Content="Vắng mặt" />
+                        </ComboBox>
                         <Button x:Name="RefreshMembersButton" Content="Refresh" Click="RefreshMembersButton_Click" Width="120" Margin="0,0,0,10" />
                         <Button x:Name="ExportToExcelButton" Content="Export to Excel" Click="ExportToExcelButton_Click" Width="120" Margin="0,0,0,10" />
                     </StackPanel>

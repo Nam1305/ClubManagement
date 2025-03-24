@@ -19,7 +19,7 @@ namespace Repository
         // Lấy tất cả báo cáo theo ClubId
         public List<Report> GetReportsByClubId(int clubId)
         {
-            return _context.Report
+            return _context.Reports
                 .Where(r => r.ClubId == clubId)
                 .Include(r => r.Club)
                 .ToList();
@@ -28,7 +28,7 @@ namespace Repository
         // Lấy báo cáo theo ReportId
         public Report GetReportById(int reportId)
         {
-            return _context.Report
+            return _context.Reports
                 .Include(r => r.Club)
                 .FirstOrDefault(r => r.ReportId == reportId);
         }
@@ -36,18 +36,18 @@ namespace Repository
         // Tạo báo cáo mới
         public void CreateReport(Report report)
         {
-            _context.Report.Add(report);
+            _context.Reports.Add(report);
             _context.SaveChanges();
         }
 
         // Cập nhật trạng thái báo cáo (Approved/Rejected)
         public void UpdateReportStatus(int reportId, string status)
         {
-            var report = _context.Report.FirstOrDefault(r => r.ReportId == reportId);
+            var report = _context.Reports.FirstOrDefault(r => r.ReportId == reportId);
             if (report != null)
             {
                 report.ParticipationStatus = status;
-                _context.Report.Update(report);
+                _context.Reports.Update(report);
                 _context.SaveChanges();
             }
         }
