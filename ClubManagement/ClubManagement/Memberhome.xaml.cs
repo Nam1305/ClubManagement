@@ -76,5 +76,11 @@ namespace ClubManagement
             this.Close();
         }
 
+        private void btnJoinEvent_Click(object sender, RoutedEventArgs e)
+        {
+            Window JoinEvent = new JoinEvent(userId);
+            JoinEvent.WindowState = WindowState.Maximized;
+            JoinEvent.Show();
+        }
     }
 }

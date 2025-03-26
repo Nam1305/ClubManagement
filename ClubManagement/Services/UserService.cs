@@ -62,6 +62,15 @@ namespace Services
             return eventParticipantRepo.GetEventsParticipant(userId);
         }
 
+        public List<Event> GetAvailableEventsForUser(int userId)
+        {
+            return eventRepo.GetAvailableEventsForUser(userId);
+        }
+
+        public bool RegisterUserForEvent(int userId, int eventId)
+        {
+            return eventParticipantRepo.RegisterUserForEvent(userId, eventId);
+        }
 
 
     }

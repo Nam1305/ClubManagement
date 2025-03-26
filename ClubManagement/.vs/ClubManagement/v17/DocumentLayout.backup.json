@@ -1,112 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|c:\\users\\thang\\downloads\\clooooon\\clubmanagement\\clubmanagement\\clubmanagement\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|c:\\users\\thang\\downloads\\clooooon\\clubmanagement\\clubmanagement\\clubmanagement\\chairmantask.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\chairmantask.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|c:\\users\\thang\\downloads\\clooooon\\clubmanagement\\clubmanagement\\repository\\chairmanrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C027AE7F-FAFB-4907-9104-50BE3C742114}|Repository\\Repository.csproj|solutionrelative:repository\\chairmanrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|c:\\users\\thang\\downloads\\clooooon\\clubmanagement\\clubmanagement\\clubmanagement\\chairmantask.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\chairmantask.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|c:\\users\\thang\\downloads\\clooooon\\clubmanagement\\clubmanagement\\clubmanagement\\teamleaderhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{221BFE64-2CA4-4637-AC5C-EB80704B17C6}|ClubManagement\\ClubManagement.csproj|solutionrelative:clubmanagement\\teamleaderhome.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "D:\\ClubManagementReal\\ClubManagement\\ClubManagement\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedHeight": 200,
-          "SelectedChildIndex": 7,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ChairmanRepo.cs",
-              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Repository\\ChairmanRepo.cs",
-              "RelativeDocumentMoniker": "Repository\\ChairmanRepo.cs",
-              "ToolTip": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\Repository\\ChairmanRepo.cs",
-              "RelativeToolTip": "Repository\\ChairmanRepo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T15:52:47.294Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ChairmanTask.xaml",
-              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\ClubManagement\\ChairmanTask.xaml",
-              "RelativeDocumentMoniker": "ClubManagement\\ChairmanTask.xaml",
-              "ToolTip": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\ClubManagement\\ChairmanTask.xaml",
-              "RelativeToolTip": "ClubManagement\\ChairmanTask.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-24T15:45:24.293Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ChairmanTask.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\ClubManagement\\ChairmanTask.xaml.cs",
-              "RelativeDocumentMoniker": "ClubManagement\\ChairmanTask.xaml.cs",
-              "ToolTip": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\ClubManagement\\ChairmanTask.xaml.cs",
-              "RelativeToolTip": "ClubManagement\\ChairmanTask.xaml.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAYwDIAAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T15:45:00.269Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TeamLeaderhome.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\ClubManagement\\TeamLeaderhome.xaml.cs",
-              "RelativeDocumentMoniker": "ClubManagement\\TeamLeaderhome.xaml.cs",
-              "ToolTip": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\ClubManagement\\TeamLeaderhome.xaml.cs",
-              "RelativeToolTip": "ClubManagement\\TeamLeaderhome.xaml.cs",
-              "ViewState": "AgIAAKAAAAAAAAAAAAAswKwAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T14:41:29.844Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LoginWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\ClubManagement\\LoginWindow.xaml.cs",
-              "RelativeDocumentMoniker": "ClubManagement\\LoginWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\thang\\Downloads\\clooooon\\ClubManagement\\ClubManagement\\ClubManagement\\LoginWindow.xaml.cs",
-              "RelativeToolTip": "ClubManagement\\LoginWindow.xaml.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAcwFcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T14:39:31.726Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

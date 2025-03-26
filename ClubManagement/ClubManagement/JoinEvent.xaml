@@ -1,0 +1,71 @@
+﻿<Window x:Class="ClubManagement.JoinEvent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClubManagement"
+        mc:Ignorable="d"
+        Title="JoinEvent" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="EVENT DETAIL:" Foreground="Red" FontSize="20"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Event ID:"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Event Name:"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Event Date:"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Event Description:"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Event Location:"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="Club Host:"/>
+
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Width="50" HorizontalAlignment="Left" Name="txtEventId" IsReadOnly="True">
+        </TextBox>
+
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left" Name="txtEventName" IsReadOnly="True">
+        </TextBox>
+
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left" Name="txtDate" IsReadOnly="True">
+        </TextBox>
+
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left" Name="txtDescription" IsReadOnly="True">
+        </TextBox>
+
+        <TextBox Grid.Row="5" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left" Name="txtLocation" IsReadOnly="True">
+        </TextBox>
+
+        <TextBox Grid.Row="6" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left" Name="txtClubHost" IsReadOnly="True">
+        </TextBox>
+
+        <Button x:Name="btnJoinEvent" Grid.Row="7 " Grid.Column="1" Margin="3" Width="80" HorizontalAlignment="Center" Height="20" Content="Join this event" Click="btnJoinEvent_Click" ></Button>
+
+        <DataGrid Grid.Row="8" Grid.ColumnSpan="3" Name="dgData" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgData_SelectionChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Event ID" Binding="{Binding EventId}"/>
+                <DataGridTextColumn Width="*" Header="Event Name" Binding="{Binding EventName}"/>
+                <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
+                <DataGridTextColumn Width="*" Header="Date" Binding="{Binding EventDate}"/>
+                <DataGridTextColumn Width="*" Header="Location" Binding="{Binding Location}"/>
+                <DataGridTextColumn Width="*" Header="Club Host" Binding="{Binding Club.ClubName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+
+    </Grid>
+</Window>

@@ -31,6 +31,9 @@
     <Compile Update="ClubManageForAdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="JoinEvent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ListAllClub.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,6 +91,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ClubManageForAdminWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="JoinEvent.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ListAllClub.xaml">

@@ -23,5 +23,34 @@ namespace Repository
                 .ThenInclude(ep => ep.Club)
                 .ToList();
         }
+
+        public bool RegisterUserForEvent(int userId, int eventId)
+        {
+            var existingRegistration = context.EventParticipants
+                .FirstOrDefault(ep => ep.UserId == userId && ep.EventId == eventId);
+
+            if (existingRegistration == null)
+            {
+                var newParticipant = new EventParticipant
+                {
+                    UserId = userId,
+                    EventId = eventId,
+                    Status = "Đã đăng kí"
+                };
+                context.EventParticipants.Add(newParticipant);
+            }
+
+            else
+            {
+                // Nếu đã đăng ký rồi thì không làm gì cả, trả về false
+                return false;
+            }
+
+            context.SaveChanges();
+            return true;
+
+
+
+        }
     }
 }

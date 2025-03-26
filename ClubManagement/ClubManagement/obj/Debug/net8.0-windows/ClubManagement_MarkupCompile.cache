@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\thang\Downloads\clooooon\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\
+D:\ClubManagementReal\ClubManagement\ClubManagement\ClubManagement\obj\Debug\net8.0-windows\
 ClubManagement
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\thang\Downloads\clooooon\ClubManagement\ClubManagement\ClubManagement\App.xaml
-21-1851401531
+D:\ClubManagementReal\ClubManagement\ClubManagement\ClubManagement\App.xaml
+221845876296
 
-23-1755095532
-255-1417179625
-AdminMenu.xaml;ChairmanApprove.xaml;ChairmanEvent.xaml;Chairmanhome.xaml;ChairmanMenu.xaml;ChairmanReport.xaml;ChairmanTask.xaml;ClubManageForAdminWindow.xaml;ListAllClub.xaml;ListEventsParticipant.xaml;ListJoinedClub.xaml;LoginWindow.xaml;MainWindow.xaml;Memberhome.xaml;MemberManagement.xaml;RegisterWindow.xaml;ResetPasswordWindow .xaml;Styles.xaml;TeamLeaderhome.xaml;UpdateMemeberProfile.xaml;ViceChairmanhome.xaml;
+241721014085
+255-1308325158
+AdminMenu.xaml;ChairmanApprove.xaml;ChairmanEvent.xaml;Chairmanhome.xaml;ChairmanMenu.xaml;ChairmanReport.xaml;ChairmanTask.xaml;ClubManageForAdminWindow.xaml;JoinEvent.xaml;ListAllClub.xaml;ListEventsParticipant.xaml;ListJoinedClub.xaml;LoginWindow.xaml;MainWindow.xaml;Memberhome.xaml;MemberManagement.xaml;RegisterWindow.xaml;ResetPasswordWindow .xaml;Styles.xaml;TeamLeaderhome.xaml;UpdateMemeberProfile.xaml;ViceChairmanhome.xaml;
 
 False
 

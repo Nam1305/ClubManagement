@@ -13,6 +13,7 @@
             <Button x:Name="btnViewClubJoined" Height="30" Width="200" Content="View list Club Joined" Click="btnViewClubJoined_Click" />
             <Button x:Name="btnListAllClub" Height="30" Width="200" Content="View all Club" Click="btnListAllClub_Click" />
             <Button x:Name="btnEvent" Width="200" Height="30" Content="View events joined" Click="btnEvent_Click" />
+            <Button x:Name="btnJoinEvent" Width="200" Height="30" Content="Join event" Click="btnJoinEvent_Click" />
             <Button x:Name="btnLogout" Content="Logout" Width="200" Height="50" Background="Blue" Foreground="White" Click="btnLogout_Click" />
         </StackPanel>
 
