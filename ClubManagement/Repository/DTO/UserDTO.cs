@@ -17,8 +17,8 @@ namespace Repository.DTO
         public string Username { get; set; }
         public string ClubName { get; set; }
         public string Status { get; set; }
-        public DateTime? AppliedAt { get; set; }
-        public DateTime? ApprovedAt { get; set; }
+        public DateOnly? AppliedAt { get; set; }
+        public DateOnly? ApprovedAt { get; set; }
     }
 
 }

@@ -54,3 +54,4 @@ C:\Users\thang\Downloads\clooooon\ClubManagement\ClubManagement\Services\obj\Deb
 C:\Users\thang\Downloads\clooooon\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\refint\Services.dll
 C:\Users\thang\Downloads\clooooon\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\Services.pdb
 C:\Users\thang\Downloads\clooooon\ClubManagement\ClubManagement\Services\obj\Debug\net8.0\ref\Services.dll
+C:\Users\thang\Downloads\clooooon\ClubManagement\ClubManagement\Services\bin\Debug\net8.0\appsettings.json

@@ -33,8 +33,8 @@ namespace Repository
                     Status = user.Status,
                     ClubName = user.UserClubs.FirstOrDefault().Club.ClubName,
 
-                    //AppliedAt = user.UserClubs.FirstOrDefault().AppliedAt.ToDateTime(TimeOnly.MinValue),
-                    //ApprovedAt = user.UserClubs.FirstOrDefault().ApprovedAt
+                    AppliedAt = user.UserClubs.FirstOrDefault().AppliedAt,
+                    ApprovedAt = user.UserClubs.FirstOrDefault().ApprovedAt
 
                 })
                 .ToList(); 
@@ -57,8 +57,8 @@ namespace Repository
                     Status = user.Status,
                     ClubName = user.UserClubs.FirstOrDefault().Club.ClubName,
 
-                    //AppliedAt = user.UserClubs.FirstOrDefault().AppliedAt.ToDateTime(TimeOnly.MinValue),
-                    //ApprovedAt = user.UserClubs.FirstOrDefault().ApprovedAt
+                    AppliedAt = user.UserClubs.FirstOrDefault().AppliedAt,
+                    ApprovedAt = user.UserClubs.FirstOrDefault().ApprovedAt
 
                 })
                 .ToList();

@@ -39,17 +39,10 @@ namespace ClubManagement
                 return;
             }
 
-            // Kiểm tra UserClubs trước khi truy cập
-            if (account.UserClubs == null || !account.UserClubs.Any())
-            {
-                MessageBox.Show("Tài khoản không thuộc câu lạc bộ nào!", "Lỗi",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+            // Không kiểm tra UserClubs nữa
+            int? clubId = account.UserClubs?.FirstOrDefault()?.ClubId; // Lấy ClubId nếu có, null nếu không
 
-            int clubId = account.UserClubs.First().ClubId; // Lấy ClubId đầu tiên
             Window targetWindow = null;
-            // Kiểm tra vai trò dựa trên Role.RoleName
             if (account.Role == null || string.IsNullOrEmpty(account.Role.RoleName))
             {
                 MessageBox.Show("Vai trò của tài khoản không hợp lệ!", "Lỗi",
@@ -63,7 +56,7 @@ namespace ClubManagement
                     targetWindow = new AdminMenu();
                     break;
                 case "chairman":
-                    targetWindow = new ChairmanMenu(account.UserId, clubId);
+                    targetWindow = new ChairmanMenu(account.UserId, clubId ?? 0);
                     break;
                 case "vicechairman":
                     targetWindow = new ViceChairmanhome();
